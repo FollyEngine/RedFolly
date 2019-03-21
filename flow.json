@@ -9,7 +9,7 @@
     {
         "id": "e65dc516.c4e21",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Testing",
         "disabled": false,
         "info": ""
     },
@@ -181,7 +181,7 @@
         "z": "",
         "name": "Home",
         "icon": "home",
-        "order": 2,
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -259,6 +259,26 @@
         "port": "27017",
         "db": "local",
         "name": ""
+    },
+    {
+        "id": "abfe76fc.26ead",
+        "type": "ui_tab",
+        "z": "",
+        "name": "All Nodes",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "b5740beb.c122",
+        "type": "ui_group",
+        "z": "7f80a2cf.94a544",
+        "name": "Nodes",
+        "tab": "abfe76fc.26ead",
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "dced7457.72aad",
@@ -1056,5 +1076,62 @@
         "x": 331.5,
         "y": 158.4666748046875,
         "wires": []
+    },
+    {
+        "id": "27c6c35.01d873c",
+        "type": "ui_template",
+        "z": "7f80a2cf.94a544",
+        "group": "b5740beb.c122",
+        "name": "ALLNODES",
+        "order": 0,
+        "width": "6",
+        "height": "10",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>{{obj.name}}</td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1055.2666015625,
+        "y": 576.2666625976562,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "391555.27c16aac",
+        "type": "mongodb-node",
+        "z": "7f80a2cf.94a544",
+        "mongodb": "82a69951.ff1f48",
+        "name": "",
+        "collection": "nodes",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 816.1499328613281,
+        "y": 574.5166625976562,
+        "wires": [
+            [
+                "27c6c35.01d873c"
+            ]
+        ]
+    },
+    {
+        "id": "e591bf14.0d14d",
+        "type": "inject",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 592.1499633789062,
+        "y": 574.9666137695312,
+        "wires": [
+            [
+                "391555.27c16aac"
+            ]
+        ]
     }
 ]
