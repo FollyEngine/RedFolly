@@ -1,1 +1,1069 @@
-[]
+[
+    {
+        "id": "92d480a1.db57d",
+        "type": "tab",
+        "label": "Megagame",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e65dc516.c4e21",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2b493f5b.793ad8",
+        "type": "subflow",
+        "name": "RFID read",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 942.5,
+                "y": 427.3333435058594,
+                "wires": [
+                    {
+                        "id": "3cee837.cc31ffc",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "7f80a2cf.94a544",
+        "type": "subflow",
+        "name": "Node status",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 911,
+                "y": 290,
+                "wires": [
+                    {
+                        "id": "2fff761a.f9db82",
+                        "port": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "fa3d25ac.e5f148",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mqtt.folly.site",
+        "broker": "mqtt.thegame.folly.site",
+        "port": "8883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "node-red-birth",
+        "birthQos": "0",
+        "birthRetain": "true",
+        "birthPayload": "",
+        "closeTopic": "node-red-close",
+        "closeQos": "0",
+        "closeRetain": "true",
+        "closePayload": "",
+        "willTopic": "node-red-oops",
+        "willQos": "0",
+        "willRetain": "true",
+        "willPayload": ""
+    },
+    {
+        "id": "cdef01bd.4b911",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "66746000.f01c5",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "home",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ff553633.808228",
+        "type": "ui_group",
+        "z": "",
+        "name": "Megagame",
+        "tab": "66746000.f01c5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "98bc3804.11c048",
+        "type": "ui_group",
+        "z": "",
+        "name": "Form",
+        "tab": "66746000.f01c5",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "2d6890c2.17bdc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Event log",
+        "tab": "66746000.f01c5",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "9bca8c13.f41658",
+        "type": "ui_group",
+        "z": "",
+        "name": "Tags database",
+        "tab": "66746000.f01c5",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "cf464182.ea8b48",
+        "type": "ui_group",
+        "z": "",
+        "name": "Nodes",
+        "tab": "66746000.f01c5",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "fd7b8427.2d2d7",
+        "type": "ui_group",
+        "z": "",
+        "name": "Tag Read",
+        "tab": "66746000.f01c5",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "71074e68.a9476",
+        "type": "MySQLdatabase",
+        "z": "",
+        "host": "db",
+        "port": "3306",
+        "db": "nodered",
+        "tz": ""
+    },
+    {
+        "id": "82a69951.ff1f48",
+        "type": "mongodb-config",
+        "z": "",
+        "hostname": "mongo",
+        "port": "27017",
+        "db": "local",
+        "name": ""
+    },
+    {
+        "id": "dced7457.72aad",
+        "type": "mqtt in",
+        "z": "2b493f5b.793ad8",
+        "name": "",
+        "topic": "+/+/+",
+        "qos": "2",
+        "broker": "fa3d25ac.e5f148",
+        "x": 172,
+        "y": 160,
+        "wires": [
+            [
+                "3ad6d1d.66e5cae"
+            ]
+        ]
+    },
+    {
+        "id": "3ad6d1d.66e5cae",
+        "type": "json",
+        "z": "2b493f5b.793ad8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 320,
+        "y": 168,
+        "wires": [
+            [
+                "3cee837.cc31ffc",
+                "d42957dc.cc37d8",
+                "f06f513a.dafee8",
+                "3658bf25.f6be7"
+            ]
+        ]
+    },
+    {
+        "id": "3cee837.cc31ffc",
+        "type": "switch",
+        "z": "2b493f5b.793ad8",
+        "name": "RFID Tag Read",
+        "property": "payload.event",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "inserted",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 573.5,
+        "y": 413.3333435058594,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d3e6676.6197b",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "increase tag's counter",
+        "func": "var t = msg.topic.split(\"/\")\nfrom = t[0]\n\ntag = msg.orig.tag;\ncount = msg.payload[0].count;\nif (isNaN(count)) {\n    count = 0;\n}\nvar incrementor = flow.get('xp-incrementor') || \"\";\nif (incrementor === from) {\n    count = count + 1;\n}\n\nmsg.payload = {\n    \"count\": count,\n    \"from\": from,\n    \"tag\": tag,\n    \"operation\": \"set\",\n    \"colour\": \"blue\",\n};\nmsg.topic = from+\"/neopixel-level/play\"\n\n// what we're storing\nvar updatedb = {\n    query: {\"tag\": tag}, \n    payload: msg.payload,\n    collection: \"tags\",\n}\n\nreturn [msg, updatedb];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 790.5,
+        "y": 63,
+        "wires": [
+            [
+                "e10ae9f1.0aaf08",
+                "817e15ac.83b7d",
+                "5fba6b57.f0883c",
+                "c036b452.02f508",
+                "3b18e0f7.2dfe88"
+            ],
+            [
+                "72af6eb4.24bb98"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount",
+            "database"
+        ]
+    },
+    {
+        "id": "71e0258a.78cccc",
+        "type": "catch",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "scope": null,
+        "x": 90.5,
+        "y": 799.3333129882812,
+        "wires": [
+            [
+                "1b98b5fb.e2e7a2"
+            ]
+        ]
+    },
+    {
+        "id": "1b98b5fb.e2e7a2",
+        "type": "debug",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 239.50001525878906,
+        "y": 803.6666259765625,
+        "wires": []
+    },
+    {
+        "id": "f06f513a.dafee8",
+        "type": "debug",
+        "z": "2b493f5b.793ad8",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 578.5,
+        "y": 261,
+        "wires": []
+    },
+    {
+        "id": "d42957dc.cc37d8",
+        "type": "switch",
+        "z": "2b493f5b.793ad8",
+        "name": "Status",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 488.5,
+        "y": 121.33334350585938,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "817e15ac.83b7d",
+        "type": "mqtt out",
+        "z": "92d480a1.db57d",
+        "name": "send to mqtt.thegame.folly.site",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 1240.5,
+        "y": 373.33331298828125,
+        "wires": []
+    },
+    {
+        "id": "bd06e332.b2d49",
+        "type": "subflow:2b493f5b.793ad8",
+        "z": "92d480a1.db57d",
+        "name": "RFID tag read",
+        "x": 112.25,
+        "y": 78.16668701171875,
+        "wires": [
+            [
+                "708c5338.99400c"
+            ]
+        ]
+    },
+    {
+        "id": "e10ae9f1.0aaf08",
+        "type": "delay",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1127.5,
+        "y": 178,
+        "wires": [
+            [
+                "be25a83b.5fad58"
+            ]
+        ]
+    },
+    {
+        "id": "be25a83b.5fad58",
+        "type": "change",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.colour",
+                "pt": "msg",
+                "to": "off",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1209.5,
+        "y": 243,
+        "wires": [
+            [
+                "817e15ac.83b7d"
+            ]
+        ]
+    },
+    {
+        "id": "5fba6b57.f0883c",
+        "type": "ui_text",
+        "z": "92d480a1.db57d",
+        "group": "fd7b8427.2d2d7",
+        "order": 3,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "experience",
+        "format": "{{msg.payload.count}}",
+        "layout": "row-spread",
+        "x": 1118.5,
+        "y": 118,
+        "wires": []
+    },
+    {
+        "id": "c036b452.02f508",
+        "type": "ui_text",
+        "z": "92d480a1.db57d",
+        "group": "fd7b8427.2d2d7",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "tagid",
+        "format": "{{msg.payload.tag}}",
+        "layout": "row-spread",
+        "x": 1094.5,
+        "y": 82,
+        "wires": []
+    },
+    {
+        "id": "3658bf25.f6be7",
+        "type": "switch",
+        "z": "2b493f5b.793ad8",
+        "name": "Ping",
+        "property": "payload.ping",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 534,
+        "y": 179,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e429499.84d4c38",
+        "type": "mqtt in",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "topic": "+/+/+",
+        "qos": "2",
+        "broker": "fa3d25ac.e5f148",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "6d8475cf.3e5234"
+            ]
+        ]
+    },
+    {
+        "id": "6d8475cf.3e5234",
+        "type": "json",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 388,
+        "y": 288,
+        "wires": [
+            [
+                "2fff761a.f9db82"
+            ]
+        ]
+    },
+    {
+        "id": "2fff761a.f9db82",
+        "type": "switch",
+        "z": "7f80a2cf.94a544",
+        "name": "Ping",
+        "property": "payload.ping",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 586,
+        "y": 280,
+        "wires": [
+            [
+                "75a34c37.63af6c"
+            ]
+        ]
+    },
+    {
+        "id": "99f854ad.34936",
+        "type": "subflow:7f80a2cf.94a544",
+        "z": "92d480a1.db57d",
+        "x": 313,
+        "y": 373,
+        "wires": [
+            [
+                "3a461e53.479d02"
+            ]
+        ]
+    },
+    {
+        "id": "691e4622.bd82b8",
+        "type": "ui_dropdown",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "label": "Select flow state",
+        "tooltip": "This will be passed on to the node status LED",
+        "place": "Select option",
+        "group": "ff553633.808228",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "options": [
+            {
+                "label": "",
+                "value": "off",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "yellow",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "blue",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "green",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "red",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 312.5,
+        "y": 711,
+        "wires": [
+            [
+                "a55b9710.6102b"
+            ]
+        ]
+    },
+    {
+        "id": "a55b9710.6102b",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "set flow status - passed to rpi's status",
+        "func": "\n\nflow.set('gamestate', msg.payload);\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 601,
+        "y": 709,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "1fa9261f.65598a",
+        "type": "inject",
+        "z": "e65dc516.c4e21",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 171,
+        "y": 147,
+        "wires": [
+            [
+                "63b46ab4.5ab96c",
+                "f5b78d12.9a909"
+            ]
+        ]
+    },
+    {
+        "id": "f5b78d12.9a909",
+        "type": "Blockly",
+        "z": "e65dc516.c4e21",
+        "language": "en",
+        "func": "if ((msg['payload']) % 2 == 0) {\n  msg['payload'] = 'even';\n} else {\n  msg['payload'] = 'odd';\n}\nnode.send([msg]);\n",
+        "workspaceXml": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><block type=\"controls_if\" id=\"NTDBd@[8Q/h$qZy[U/8,\" x=\"13\" y=\"63\"><mutation else=\"1\"></mutation><value name=\"IF0\"><block type=\"math_number_property\" id=\".kS~)TEWIZ*6uS!U]sbB\"><mutation divisor_input=\"false\"></mutation><field name=\"PROPERTY\">EVEN</field><value name=\"NUMBER_TO_CHECK\"><shadow type=\"math_number\" id=\"S*8w,C|d:k~*lm:}F9p?\"><field name=\"NUM\">0</field></shadow><block type=\"node_object_get\" id=\"kb[oA~t9@usoif;2WP2A\"><mutation action=\"GET\"></mutation><field name=\"action\">GET</field><value name=\"object\"><shadow type=\"node_msg\" id=\"LWng+sRkl6E=W^P.(GTi\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"?xaQLfLuar01[.9;?j,0\"><field name=\"TEXT\">payload</field></shadow></value></block></value></block></value><statement name=\"DO0\"><block type=\"node_object_set\" id=\"7vE8Npi=g[82^jS~oE)$\"><value name=\"object_field\"><shadow type=\"node_msg\" id=\"V4oR.s6]vcLSe?mP?USm\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"8n74Vh~x+V9O{9%sL9Gc\"><field name=\"TEXT\">payload</field></shadow></value><value name=\"value_field\"><shadow type=\"text\" id=\"rlD@G61PM5grv8hb;M.7\"><field name=\"TEXT\">even</field></shadow></value></block></statement><statement name=\"ELSE\"><block type=\"node_object_set\" id=\"j(19*mNu]8k3dGQ.K4xT\"><value name=\"object_field\"><shadow type=\"node_msg\" id=\"oX_fxcV6,eGrw!A|1RIj\"></shadow></value><value name=\"field_name\"><shadow type=\"text\" id=\"zyuwfP3/_*lQ}mtU9HPu\"><field name=\"TEXT\">payload</field></shadow></value><value name=\"value_field\"><shadow type=\"text\" id=\"sWT*_p4/ncY;DvuV:^jM\"><field name=\"TEXT\">odd</field></shadow></value></block></statement><next><block type=\"node_send\" id=\"oISuY02rni=nk_L{m{9w\"><field name=\"OUTPUT_NR\">1</field><value name=\"MESSAGE_INPUT\"><shadow type=\"node_msg\" id=\"Y8|,~0b1X@SnPK7hcScR\"></shadow></value></block></next></block></xml>",
+        "outputs": 1,
+        "name": "",
+        "x": 371.5,
+        "y": 150,
+        "wires": [
+            [
+                "e113004e.cde128"
+            ]
+        ]
+    },
+    {
+        "id": "e113004e.cde128",
+        "type": "debug",
+        "z": "e65dc516.c4e21",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 615,
+        "y": 156,
+        "wires": []
+    },
+    {
+        "id": "63b46ab4.5ab96c",
+        "type": "debug",
+        "z": "e65dc516.c4e21",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 363,
+        "y": 65,
+        "wires": []
+    },
+    {
+        "id": "1dbef53e.befe9b",
+        "type": "function",
+        "z": "e65dc516.c4e21",
+        "name": "",
+        "func": "if ((msg['payload']) % 2 === 0) {\n  msg['payload'] = 'even1';\n} else {\n  msg['payload'] = 'odd1';\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 584.9999694824219,
+        "y": 544.9999694824219,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f08d0fcc.4d9ff",
+        "type": "ui_dropdown",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "label": "XP add node",
+        "tooltip": "The selected node will be the one that increases the XP",
+        "place": "Select option",
+        "group": "ff553633.808228",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 1044,
+        "y": 531,
+        "wires": [
+            [
+                "362b9c82.e97ec4"
+            ]
+        ]
+    },
+    {
+        "id": "362b9c82.e97ec4",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "set node chosen to be the incrementor",
+        "func": "\n\nflow.set('xp-incrementor', msg.payload);\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1310.5,
+        "y": 535,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "3424f6ac.a5447a",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "select the node to increment the XP",
+        "func": "\nvar def = flow.get('xp-incrementor') || \"\";\n\nvar nodes = []\nfor (const x of msg.payload) {\n    nodes.push(x.name)\n}\n\nreturn {payload: def, options: nodes};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 795,
+        "y": 477.0000305175781,
+        "wires": [
+            [
+                "f08d0fcc.4d9ff"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "3b18e0f7.2dfe88",
+        "type": "ui_text",
+        "z": "92d480a1.db57d",
+        "group": "fd7b8427.2d2d7",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "from",
+        "format": "{{msg.payload.from}}",
+        "layout": "row-spread",
+        "x": 1095,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3a461e53.479d02",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "reply to node ping with gamestate colour",
+        "func": "\n// what we're storing\nvar from = msg.payload.from\n\n// the reply to the node\nvar gamestatus = flow.get('gamestate') || \"yellow\";\nmsg.payload = {\n    \"from\": from,\n    \"status\": gamestatus,\n};\nmsg.topic = from+\"/ping/reply\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 689.8833312988281,
+        "y": 369.8833312988281,
+        "wires": [
+            [
+                "817e15ac.83b7d"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount",
+            ""
+        ]
+    },
+    {
+        "id": "76091bc6.c00cf4",
+        "type": "mongodb-node",
+        "z": "92d480a1.db57d",
+        "mongodb": "82a69951.ff1f48",
+        "name": "",
+        "collection": "nodes",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 526.7666320800781,
+        "y": 599.13330078125,
+        "wires": [
+            [
+                "b13b8aca.1966f",
+                "3424f6ac.a5447a"
+            ]
+        ]
+    },
+    {
+        "id": "3591ab1.370da54",
+        "type": "inject",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 311.76666259765625,
+        "y": 594.583251953125,
+        "wires": [
+            [
+                "76091bc6.c00cf4",
+                "15921cbd.9e5dc3"
+            ]
+        ]
+    },
+    {
+        "id": "b13b8aca.1966f",
+        "type": "ui_template",
+        "z": "92d480a1.db57d",
+        "group": "cf464182.ea8b48",
+        "name": "NODES",
+        "order": 0,
+        "width": "6",
+        "height": "10",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>{{obj.name}}</td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 755.88330078125,
+        "y": 600.88330078125,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72af6eb4.24bb98",
+        "type": "mongodb-node",
+        "z": "92d480a1.db57d",
+        "mongodb": "82a69951.ff1f48",
+        "name": "update tag",
+        "collection": "",
+        "operation": "update",
+        "upsert": true,
+        "multi": false,
+        "x": 780.88330078125,
+        "y": 136.88333129882812,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15921cbd.9e5dc3",
+        "type": "mongodb-node",
+        "z": "92d480a1.db57d",
+        "mongodb": "82a69951.ff1f48",
+        "name": "",
+        "collection": "tags",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 519.88330078125,
+        "y": 641.88330078125,
+        "wires": [
+            [
+                "9a3b885d.bcf478"
+            ]
+        ]
+    },
+    {
+        "id": "9a3b885d.bcf478",
+        "type": "ui_template",
+        "z": "92d480a1.db57d",
+        "group": "9bca8c13.f41658",
+        "name": "TAGS",
+        "order": 1,
+        "width": "6",
+        "height": "10",
+        "format": "<table width=\"100%\">\n <tr><td>tagid</td><td>count</td></tr>\n <tr ng-repeat=\"(id, obj) in msg.payload\">\n   <td>{{obj.tag}}</td><td>{{obj.count}}</td>\n </tr>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 741.88330078125,
+        "y": 639.88330078125,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "708c5338.99400c",
+        "type": "change",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "orig",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"tag\": $.payload.tag }",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 325.76666259765625,
+        "y": 76.56668090820312,
+        "wires": [
+            [
+                "4038d34.d293bac"
+            ]
+        ]
+    },
+    {
+        "id": "4038d34.d293bac",
+        "type": "mongodb-node",
+        "z": "92d480a1.db57d",
+        "mongodb": "82a69951.ff1f48",
+        "name": "get tag",
+        "collection": "tags",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 523.7666015625,
+        "y": 75.98333740234375,
+        "wires": [
+            [
+                "7d3e6676.6197b"
+            ]
+        ]
+    },
+    {
+        "id": "efc6abf2.bd917",
+        "type": "mongodb-node",
+        "z": "7f80a2cf.94a544",
+        "mongodb": "82a69951.ff1f48",
+        "name": "",
+        "collection": "nodes",
+        "operation": "update",
+        "upsert": true,
+        "multi": false,
+        "x": 1054.2666015625,
+        "y": 430.26666259765625,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "75a34c37.63af6c",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "store node info",
+        "func": "\n// what we're storing\nvar from = msg.payload.from\nvar now = new Date(Date.now())\nvar ip = msg.payload.ip || \"undef\"\nvar node = {\n    \"name\": from,\n    \"time\": now,\n    \"timestring\": now.toString(),\n    \"ip\": ip,\n}\n\nreturn {query: {\"name\": from}, payload: node};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 737.3833312988281,
+        "y": 421.01666259765625,
+        "wires": [
+            [
+                "efc6abf2.bd917"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount",
+            ""
+        ]
+    },
+    {
+        "id": "9d53cb0d.0118c",
+        "type": "comment",
+        "z": "7f80a2cf.94a544",
+        "name": "Remote Node status",
+        "info": "## All Nodes connected to this game server\n\nListens to Ping messages, and stores the node\ninfo in the database with the timestamp.\n\n### TODO\n\nAdd a Node management UI to select which flow a node belongs to\nthis selection can then be used to reduce the messages being output\nto only those for the flow its on...",
+        "x": 331.5,
+        "y": 158.4666748046875,
+        "wires": []
+    }
+]
