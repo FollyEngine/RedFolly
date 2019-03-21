@@ -252,15 +252,6 @@
         "collapse": false
     },
     {
-        "id": "71074e68.a9476",
-        "type": "MySQLdatabase",
-        "z": "",
-        "host": "db",
-        "port": "3306",
-        "db": "nodered",
-        "tz": ""
-    },
-    {
         "id": "82a69951.ff1f48",
         "type": "mongodb-config",
         "z": "",
