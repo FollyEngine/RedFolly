@@ -494,8 +494,8 @@
         "z": "92d480a1.db57d",
         "name": "RFID tag read",
         "env": [],
-        "x": 298.24998474121094,
-        "y": 42.16667938232422,
+        "x": 213.25,
+        "y": 73.16667938232422,
         "wires": [
             [
                 "708c5338.99400c"
@@ -1042,8 +1042,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 472.76666259765625,
-        "y": 81.5666732788086,
+        "x": 392.76666259765625,
+        "y": 73.56668090820312,
         "wires": [
             [
                 "4038d34.d293bac"
@@ -1060,8 +1060,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 613.7666015625,
-        "y": 27.98332977294922,
+        "x": 566.7666015625,
+        "y": 72.98332977294922,
         "wires": [
             [
                 "7d3e6676.6197b"
@@ -2550,26 +2550,6 @@
         "wires": []
     },
     {
-        "id": "8b2f1330.235cc",
-        "type": "inject",
-        "z": "92d480a1.db57d",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 197.5,
-        "y": 964,
-        "wires": [
-            [
-                "2cfb5a0e.617e16"
-            ]
-        ]
-    },
-    {
         "id": "34ce5557.cb7f0a",
         "type": "mqtt out",
         "z": "3c0e296d.ea2856",
@@ -2599,8 +2579,8 @@
                 "value": "/home/pi/convictshope/HeroTwinkle/short-twinkle.wav"
             }
         ],
-        "x": 563.25,
-        "y": 961,
+        "x": 550.25,
+        "y": 1013,
         "wires": []
     },
     {
@@ -2608,7 +2588,7 @@
         "type": "function",
         "z": "3c0e296d.ea2856",
         "name": "",
-        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.sound === undefined || msg.sound === \"\") {\n    msg.sound = env.get('sound')\n}\n\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node+\"/audio/play\"\n}\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n    msg.payload = {\n        \"sound\": msg.sound\n    }\n}\nreturn msg;",
+        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.sound === undefined || msg.sound === \"\") {\n    msg.sound = env.get('sound')\n}\n\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node+\"/audio/play\"\n}\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n    msg.payload = { }\n}\nif (msg.payload.sound === undefined) {\n    msg.payload.sound = msg.sound\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 593.5,
@@ -2639,16 +2619,16 @@
         "id": "22e67eec.664c2a",
         "type": "inject",
         "z": "92d480a1.db57d",
-        "name": "",
+        "name": "trigger using msg.node and msg.sound",
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "payload": "{}",
+        "payloadType": "json",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 191,
-        "y": 1012,
+        "x": 285,
+        "y": 1142,
         "wires": [
             [
                 "8e7d21b9.d445c8"
@@ -2672,8 +2652,8 @@
                 "value": ""
             }
         ],
-        "x": 562.75,
-        "y": 1011,
+        "x": 751.75,
+        "y": 1147,
         "wires": []
     },
     {
@@ -2702,12 +2682,73 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 372.5,
-        "y": 1012,
+        "x": 576.5,
+        "y": 1145,
         "wires": [
             [
                 "21660fdd.89bff"
             ]
         ]
+    },
+    {
+        "id": "965de268.8d9a18",
+        "type": "inject",
+        "z": "92d480a1.db57d",
+        "name": "trigger sound set on \"play sound\" node",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 282,
+        "y": 1019,
+        "wires": [
+            [
+                "2cfb5a0e.617e16"
+            ]
+        ]
+    },
+    {
+        "id": "96e27c1f.aafde",
+        "type": "inject",
+        "z": "92d480a1.db57d",
+        "name": "trigger using payload and topic in trigger",
+        "topic": "zero-1/audio/play",
+        "payload": "{\"sound\":\"/usr/share/scratch/Media/Sounds/Effects/DoorCreak.wav\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 292,
+        "y": 1076,
+        "wires": [
+            [
+                "29d302ae.b243c6"
+            ]
+        ]
+    },
+    {
+        "id": "29d302ae.b243c6",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": ""
+            }
+        ],
+        "x": 563.75,
+        "y": 1075,
+        "wires": []
     }
 ]
