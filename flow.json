@@ -326,15 +326,27 @@
         "collapse": false
     },
     {
+        "id": "7b4dfd29.bbf484",
+        "type": "ui_group",
+        "z": "",
+        "name": "Play",
+        "tab": "abfe76fc.26ead",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "dced7457.72aad",
         "type": "mqtt in",
         "z": "2b493f5b.793ad8",
         "name": "",
-        "topic": "+/+/+",
+        "topic": "+/rfid-nfc/scan",
         "qos": "2",
+        "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 172,
-        "y": 160,
+        "x": 155,
+        "y": 171,
         "wires": [
             [
                 "3ad6d1d.66e5cae"
@@ -353,10 +365,7 @@
         "y": 168,
         "wires": [
             [
-                "3cee837.cc31ffc",
-                "d42957dc.cc37d8",
-                "f06f513a.dafee8",
-                "3658bf25.f6be7"
+                "3cee837.cc31ffc"
             ]
         ]
     },
@@ -439,41 +448,6 @@
         "x": 428.5,
         "y": 826.6666259765625,
         "wires": []
-    },
-    {
-        "id": "f06f513a.dafee8",
-        "type": "debug",
-        "z": "2b493f5b.793ad8",
-        "name": "",
-        "active": true,
-        "tosidebar": false,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 578.5,
-        "y": 261,
-        "wires": []
-    },
-    {
-        "id": "d42957dc.cc37d8",
-        "type": "switch",
-        "z": "2b493f5b.793ad8",
-        "name": "Status",
-        "property": "payload.status",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 488.5,
-        "y": 121.33334350585938,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "817e15ac.83b7d",
@@ -585,36 +559,16 @@
         "wires": []
     },
     {
-        "id": "3658bf25.f6be7",
-        "type": "switch",
-        "z": "2b493f5b.793ad8",
-        "name": "Ping",
-        "property": "payload.ping",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "nnull"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 534,
-        "y": 179,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "e429499.84d4c38",
         "type": "mqtt in",
         "z": "7f80a2cf.94a544",
         "name": "",
-        "topic": "+/+/+",
+        "topic": "+/status/ping",
         "qos": "2",
+        "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 240,
-        "y": 280,
+        "x": 202,
+        "y": 296,
         "wires": [
             [
                 "6d8475cf.3e5234"
@@ -1120,17 +1074,19 @@
         "z": "7f80a2cf.94a544",
         "group": "b5740beb.c122",
         "name": "ALLNODES",
-        "order": 0,
+        "order": 2,
         "width": "6",
         "height": "10",
-        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>{{obj.name}}</td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-play-circle\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"click\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1055.2666015625,
-        "y": 576.2666625976562,
+        "x": 1042.2666015625,
+        "y": 573.2666625976562,
         "wires": [
-            []
+            [
+                "408af22.64a9f8c"
+            ]
         ]
     },
     {
@@ -2588,7 +2544,7 @@
         "type": "function",
         "z": "3c0e296d.ea2856",
         "name": "",
-        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.sound === undefined || msg.sound === \"\") {\n    msg.sound = env.get('sound')\n}\n\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node+\"/audio/play\"\n}\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n    msg.payload = { }\n}\nif (msg.payload.sound === undefined) {\n    msg.payload.sound = msg.sound\n}\nreturn msg;",
+        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.sound === undefined || msg.sound === \"\") {\n    msg.sound = env.get('sound')\n}\n\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node\n}\n// change msg.topic to end in \"/audio/play\"\nwords = msg.topic.split(\"/\")\nmsg.topic = words[0]+\"/audio/play\"\n\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n}\nmsg.orig = msg.payload\nmsg.payload = {\n    \"sound\": msg.sound\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 593.5,
@@ -2652,8 +2608,8 @@
                 "value": ""
             }
         ],
-        "x": 751.75,
-        "y": 1147,
+        "x": 756.75,
+        "y": 1153,
         "wires": []
     },
     {
@@ -2682,8 +2638,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 576.5,
-        "y": 1145,
+        "x": 581.5,
+        "y": 1151,
         "wires": [
             [
                 "21660fdd.89bff"
@@ -2750,5 +2706,237 @@
         "x": 563.75,
         "y": 1075,
         "wires": []
+    },
+    {
+        "id": "71665d8d.c3cfa4",
+        "type": "subflow:2b493f5b.793ad8",
+        "z": "92d480a1.db57d",
+        "name": "RFID tag read",
+        "env": [],
+        "x": 190,
+        "y": 1250,
+        "wires": [
+            [
+                "6ca2e73.19dc998"
+            ]
+        ]
+    },
+    {
+        "id": "6ca2e73.19dc998",
+        "type": "switch",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "property": "payload.tag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "550A5CBC",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 355.5,
+        "y": 1251,
+        "wires": [
+            [
+                "b6e1343f.152a28",
+                "2cfb5a0e.617e16"
+            ]
+        ]
+    },
+    {
+        "id": "b6e1343f.152a28",
+        "type": "debug",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 574.5,
+        "y": 1301,
+        "wires": []
+    },
+    {
+        "id": "ffdaa80c.62e14",
+        "type": "ui_button",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "group": "7b4dfd29.bbf484",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "play audio on zero-1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "allnodes_playsound",
+        "payloadType": "global",
+        "topic": "zero-1/audio/play",
+        "x": 183.5,
+        "y": 1434,
+        "wires": [
+            [
+                "8e6eb17.c64b3d"
+            ]
+        ]
+    },
+    {
+        "id": "8e6eb17.c64b3d",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "x": 381.5,
+        "y": 1436,
+        "wires": []
+    },
+    {
+        "id": "408af22.64a9f8c",
+        "type": "switch",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "property": "node",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1041.5,
+        "y": 662,
+        "wires": [
+            [
+                "2971dca0.73436c",
+                "52b140b0.b149e8"
+            ]
+        ]
+    },
+    {
+        "id": "2971dca0.73436c",
+        "type": "debug",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1241.5,
+        "y": 678,
+        "wires": []
+    },
+    {
+        "id": "a346432c.43edc8",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "x": 1232.5,
+        "y": 891,
+        "wires": []
+    },
+    {
+        "id": "52b140b0.b149e8",
+        "type": "change",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "allnodes_playsound",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1131.5,
+        "y": 765,
+        "wires": [
+            [
+                "a346432c.43edc8"
+            ]
+        ]
+    },
+    {
+        "id": "f5ac33d.1a1add",
+        "type": "ui_dropdown",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "label": "Debug Sound",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "b5740beb.c122",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "",
+                "value": "Dueling/Boost.wav",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "Dueling/Podium Ready.mp3",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "Dueling/Magic Detected.mp3",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "Dueling/ATK - Lightning.wav",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "Dueling/Disable.wav",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 419,
+        "y": 952,
+        "wires": [
+            [
+                "e3fcc45c.4b105"
+            ]
+        ]
+    },
+    {
+        "id": "e3fcc45c.4b105",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "set sound for play button",
+        "func": "\n\nglobal.set('allnodes_playsound', msg.payload);\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 582.5,
+        "y": 951,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
     }
 ]
