@@ -238,7 +238,7 @@
         "tab": "66746000.f01c5",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": "9",
         "collapse": false
     },
     {
@@ -322,7 +322,7 @@
         "name": "Nodes",
         "tab": "abfe76fc.26ead",
         "disp": true,
-        "width": "6",
+        "width": "12",
         "collapse": false
     },
     {
@@ -333,7 +333,7 @@
         "tab": "abfe76fc.26ead",
         "order": 2,
         "disp": true,
-        "width": "6",
+        "width": "11",
         "collapse": false
     },
     {
@@ -397,7 +397,7 @@
         "type": "function",
         "z": "92d480a1.db57d",
         "name": "increase tag's counter",
-        "func": "var t = msg.topic.split(\"/\")\nvar from = t[0]\n\nvar reader = msg.orig.reader;\nvar tag = msg.orig.tag;\n\nvar count = 0\nif (msg.payload.length > 0) {\n    count = msg.payload[0].count;\n    if (isNaN(count)) {\n        count = 0;\n    }\n}\nvar incrementor = flow.get('xp-incrementor') || \"\";\nif (incrementor === from) {\n    count = count + 1;\n}\n\nmsg.payload = {\n    \"count\": count,\n    \"from\": from,\n    \"reader\": reader,\n    \"tag\": tag,\n    \"operation\": \"set\",\n    \"colour\": \"blue\",\n};\nmsg.topic = from+\"/neopixel-level/play\"\n\n// what we're storing\nvar updatedb = {\n    query: {\"tag\": tag}, \n    payload: msg.payload,\n    collection: \"tags\",\n}\n\nreturn [msg, updatedb];",
+        "func": "var t = msg.topic.split(\"/\")\nvar from = t[0]\n\nvar reader = msg.orig.reader;\nvar tag = msg.orig.tag;\n\nvar count = 0\nif (msg.payload.length > 0) {\n    count = msg.payload[0].count;\n    if (isNaN(count)) {\n        count = 0;\n    }\n}\nvar incrementor = flow.get('xp-incrementor') || \"\";\nvar decrementor = flow.get('xp-decrementor') || \"\";\nvar resetor = flow.get('xp-reset') || \"\";\nif (resetor === from) {\n    count = 0\n} else if (decrementor === from) {\n    count = count - 1;\n} else if (incrementor === from) {\n    count = count + 1;\n}\n\nmsg.payload = {\n    \"count\": count,\n    \"from\": from,\n    \"reader\": reader,\n    \"tag\": tag,\n    \"operation\": \"set\",\n    \"colour\": \"blue\",\n};\nmsg.topic = from+\"/neopixel-level/play\"\n\n// what we're storing\nvar updatedb = {\n    query: {\"tag\": tag}, \n    payload: msg.payload,\n    collection: \"tags\",\n}\n\nreturn [msg, updatedb];",
         "outputs": 2,
         "noerr": 0,
         "x": 790.5,
@@ -809,8 +809,8 @@
         "func": "\nvar def = flow.get('xp-incrementor') || \"\";\n\nvar nodes = []\nfor (const x of msg.payload) {\n    nodes.push(x.name)\n}\n\nreturn {payload: def, options: nodes};",
         "outputs": 1,
         "noerr": 0,
-        "x": 795,
-        "y": 477.0000305175781,
+        "x": 806,
+        "y": 531,
         "wires": [
             [
                 "f08d0fcc.4d9ff"
@@ -866,13 +866,11 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 526.7666320800781,
-        "y": 599.13330078125,
+        "x": 477.7666015625,
+        "y": 594.13330078125,
         "wires": [
             [
-                "b13b8aca.1966f",
-                "3424f6ac.a5447a",
-                "c3a108ed.7f9198"
+                "b13b8aca.1966f"
             ]
         ]
     },
@@ -888,8 +886,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 302.76666259765625,
-        "y": 640.583251953125,
+        "x": 168.7666778564453,
+        "y": 641.583251953125,
         "wires": [
             [
                 "15921cbd.9e5dc3"
@@ -909,12 +907,10 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 755.88330078125,
-        "y": 600.88330078125,
+        "x": 687.88330078125,
+        "y": 595.88330078125,
         "wires": [
-            [
-                "2ed3ac29.236d1c"
-            ]
+            []
         ]
     },
     {
@@ -943,8 +939,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 519.88330078125,
-        "y": 641.88330078125,
+        "x": 385.88331604003906,
+        "y": 642.88330078125,
         "wires": [
             [
                 "9a3b885d.bcf478"
@@ -960,12 +956,12 @@
         "order": 1,
         "width": "6",
         "height": "10",
-        "format": "<table width=\"100%\">\n <tr><td>reader</td><td>tagid</td><td>count</td></tr>\n <tr ng-repeat=\"(id, obj) in msg.payload\">\n   <td>{{obj.reader}}</td>\n   <td>{{obj.tag}}</td>\n   <td>{{obj.count}}</td>\n </tr>\n</table>",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>reader</td><td>tagid</td><td>count</td></tr>\n <tr ng-repeat=\"(id, obj) in msg.payload\">\n   <td>{{obj.from}}</td>\n   <td>{{obj.reader}}</td>\n   <td>{{obj.tag}}</td>\n   <td>{{obj.count}}</td>\n   <td>\n     <md-button class=\"vibrate filled touched rounded fa fa-minus-circle\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"minus\", payload: {{obj.count}}})'\n     target=\"_blank\">\n    </md-button> \n    {{obj.count}}\n     <md-button class=\"vibrate filled touched rounded fa fa-plus-circle\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"plus\", payload: {{obj.count}}})'\n     target=\"_blank\">\n    </md-button> \n   </td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 741.88330078125,
-        "y": 639.88330078125,
+        "x": 607.8833160400391,
+        "y": 640.88330078125,
         "wires": [
             []
         ]
@@ -1075,8 +1071,8 @@
         "group": "b5740beb.c122",
         "name": "ALLNODES",
         "order": 2,
-        "width": "6",
-        "height": "10",
+        "width": "0",
+        "height": "0",
         "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-play-circle\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"click\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -1139,8 +1135,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 274,
-        "y": 576,
+        "x": 115.00001525878906,
+        "y": 593,
         "wires": [
             [
                 "a6c1ba51.af21f"
@@ -1155,42 +1151,13 @@
         "func": "msg.sort = { \"time\": -1 }\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 402.5,
-        "y": 524,
+        "x": 267.5,
+        "y": 594,
         "wires": [
             [
                 "76091bc6.c00cf4"
             ]
         ]
-    },
-    {
-        "id": "c3a108ed.7f9198",
-        "type": "debug",
-        "z": "92d480a1.db57d",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 757.5,
-        "y": 543,
-        "wires": []
-    },
-    {
-        "id": "2ed3ac29.236d1c",
-        "type": "debug",
-        "z": "92d480a1.db57d",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 877.8333282470703,
-        "y": 614.0000152587891,
-        "wires": []
     },
     {
         "id": "c96205bc.05d72",
@@ -2763,41 +2730,6 @@
         "wires": []
     },
     {
-        "id": "ffdaa80c.62e14",
-        "type": "ui_button",
-        "z": "92d480a1.db57d",
-        "name": "",
-        "group": "7b4dfd29.bbf484",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "play audio on zero-1",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "allnodes_playsound",
-        "payloadType": "global",
-        "topic": "zero-1/audio/play",
-        "x": 183.5,
-        "y": 1434,
-        "wires": [
-            [
-                "8e6eb17.c64b3d"
-            ]
-        ]
-    },
-    {
-        "id": "8e6eb17.c64b3d",
-        "type": "subflow:3c0e296d.ea2856",
-        "z": "92d480a1.db57d",
-        "name": "",
-        "x": 381.5,
-        "y": 1436,
-        "wires": []
-    },
-    {
         "id": "408af22.64a9f8c",
         "type": "switch",
         "z": "7f80a2cf.94a544",
@@ -2816,25 +2748,9 @@
         "y": 662,
         "wires": [
             [
-                "2971dca0.73436c",
                 "52b140b0.b149e8"
             ]
         ]
-    },
-    {
-        "id": "2971dca0.73436c",
-        "type": "debug",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1241.5,
-        "y": 678,
-        "wires": []
     },
     {
         "id": "a346432c.43edc8",
@@ -2856,7 +2772,7 @@
                 "p": "payload",
                 "pt": "msg",
                 "to": "allnodes_playsound",
-                "tot": "global"
+                "tot": "flow"
             }
         ],
         "action": "",
@@ -2914,8 +2830,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 419,
-        "y": 952,
+        "x": 307,
+        "y": 903,
         "wires": [
             [
                 "e3fcc45c.4b105"
@@ -2926,14 +2842,304 @@
         "id": "e3fcc45c.4b105",
         "type": "function",
         "z": "7f80a2cf.94a544",
-        "name": "set sound for play button",
-        "func": "\n\nglobal.set('allnodes_playsound', msg.payload);\n\n",
+        "name": "save sound for play button",
+        "func": "\n\nflow.set('allnodes_playsound', msg.payload);\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 582.5,
+        "x": 592.5,
         "y": 951,
         "wires": [
             []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "607a88dd.1c27a",
+        "type": "ui_button",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "group": "7b4dfd29.bbf484",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "play audio on zero-1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "allnodes_playsound",
+        "payloadType": "flow",
+        "topic": "zero-1/audio/play",
+        "x": 321,
+        "y": 1053,
+        "wires": [
+            [
+                "78974ecc.908dd"
+            ]
+        ]
+    },
+    {
+        "id": "78974ecc.908dd",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "x": 519,
+        "y": 1055,
+        "wires": []
+    },
+    {
+        "id": "c7b57ed2.dd7818",
+        "type": "mqtt in",
+        "z": "7f80a2cf.94a544",
+        "name": "Node requests config",
+        "topic": "+/deployment/requestconfig",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 248.8000030517578,
+        "y": 85.19999694824219,
+        "wires": [
+            [
+                "690b96e6.3346d8"
+            ]
+        ]
+    },
+    {
+        "id": "690b96e6.3346d8",
+        "type": "json",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 438.79998779296875,
+        "y": 80.19999694824219,
+        "wires": [
+            [
+                "3bc341d8.98418e"
+            ]
+        ]
+    },
+    {
+        "id": "c689eab7.c3792",
+        "type": "debug",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 867.5,
+        "y": 31.399993896484375,
+        "wires": []
+    },
+    {
+        "id": "f25f893f.c910a8",
+        "type": "mqtt out",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 810.5,
+        "y": 110.39999389648438,
+        "wires": []
+    },
+    {
+        "id": "3bc341d8.98418e",
+        "type": "change",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.config",
+                "pt": "msg",
+                "to": "{\"deployments\":{\"megagame\":{\"ping\":{\"type\":\"ping\"}}},\"hosts\":{\"go\":{\"type\":\"megagame\"}}}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "go/deployment/update_config",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 605.5,
+        "y": 82.59999084472656,
+        "wires": [
+            [
+                "f25f893f.c910a8",
+                "c689eab7.c3792"
+            ]
+        ]
+    },
+    {
+        "id": "bde26575.3e0b68",
+        "type": "ui_dropdown",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "label": "XP remove node",
+        "tooltip": "The selected node will be the one that increases the XP",
+        "place": "Select option",
+        "group": "ff553633.808228",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 1057,
+        "y": 487.0833435058594,
+        "wires": [
+            [
+                "43c57fd5.7f7368"
+            ]
+        ]
+    },
+    {
+        "id": "43c57fd5.7f7368",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "set node chosen to be the decrementor",
+        "func": "\n\nflow.set('xp-decrementor', msg.payload);\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1313,
+        "y": 486.0833435058594,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "551d94f.581126c",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "select the node to decrement the XP",
+        "func": "\nvar def = flow.get('xp-decrementor') || \"\";\n\nvar nodes = []\nfor (const x of msg.payload) {\n    nodes.push(x.name)\n}\n\nreturn {payload: def, options: nodes};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 813,
+        "y": 488.0833435058594,
+        "wires": [
+            [
+                "bde26575.3e0b68"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "30b39734.7b228",
+        "type": "mongodb-node",
+        "z": "92d480a1.db57d",
+        "mongodb": "82a69951.ff1f48",
+        "name": "",
+        "collection": "nodes",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 510.83331298828125,
+        "y": 487.0833435058594,
+        "wires": [
+            [
+                "3424f6ac.a5447a",
+                "551d94f.581126c",
+                "c26090bb.f170d8"
+            ]
+        ]
+    },
+    {
+        "id": "434cd304.1fdaf4",
+        "type": "inject",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 297.83331298828125,
+        "y": 487.0833435058594,
+        "wires": [
+            [
+                "30b39734.7b228"
+            ]
+        ]
+    },
+    {
+        "id": "c734dd39.687f4",
+        "type": "ui_dropdown",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "label": "XP reset node",
+        "tooltip": "The selected node will be the one that increases the XP",
+        "place": "Select option",
+        "group": "ff553633.808228",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 1051.5,
+        "y": 446.0833435058594,
+        "wires": [
+            [
+                "e75dfc60.f6ff9"
+            ]
+        ]
+    },
+    {
+        "id": "e75dfc60.f6ff9",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "set node chosen to be the reset",
+        "func": "\n\nflow.set('xp-reset', msg.payload);\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1287.5,
+        "y": 445.0833435058594,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "c26090bb.f170d8",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "select the node to reset the XP",
+        "func": "\nvar def = flow.get('xp-reset') || \"\";\n\nvar nodes = []\nfor (const x of msg.payload) {\n    nodes.push(x.name)\n}\n\nreturn {payload: def, options: nodes};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 787.5,
+        "y": 447.0833435058594,
+        "wires": [
+            [
+                "c734dd39.687f4"
+            ]
         ],
         "outputLabels": [
             "tagCount"
