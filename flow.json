@@ -138,12 +138,17 @@
             {
                 "name": "colour",
                 "type": "str",
-                "value": "purple"
+                "value": "red"
             },
             {
                 "name": "count",
                 "type": "num",
                 "value": "12"
+            },
+            {
+                "name": "device",
+                "type": "str",
+                "value": "neopixel-level"
             }
         ]
     },
@@ -372,7 +377,7 @@
         "tab": "abfe76fc.26ead",
         "disp": true,
         "width": "12",
-        "collapse": false
+        "collapse": true
     },
     {
         "id": "7b4dfd29.bbf484",
@@ -3368,7 +3373,7 @@
         "type": "function",
         "z": "db41a3ab.552bb8",
         "name": "",
-        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.operation === undefined || msg.operation === \"\") {\n    msg.operation = env.get('operation')\n}\nif (msg.colour === undefined || msg.colour === \"\") {\n    msg.colour = env.get('colour')\n}\nif (msg.count === undefined || msg.count === \"\") {\n    msg.count = env.get('count')\n}\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node\n}\n// change msg.topic to end in \"/audio/play\"\nwords = msg.topic.split(\"/\")\nmsg.topic = words[0]+\"/crickit/play\"\n\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n}\nmsg.orig = msg.payload\nmsg.payload = {\n    \"operation\": msg.operation,\n    \"colour\": msg.colour,\n    \"count\": msg.count\n}\nreturn msg;",
+        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.device === undefined || msg.device === \"\") {\n    msg.device = env.get('device')\n}\nif (msg.operation === undefined || msg.operation === \"\") {\n    msg.operation = env.get('operation')\n}\nif (msg.colour === undefined || msg.colour === \"\") {\n    msg.colour = env.get('colour')\n}\nif (msg.count === undefined || msg.count === \"\") {\n    msg.count = env.get('count')\n}\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node\n}\n// change msg.topic to end in \"/audio/play\"\nwords = msg.topic.split(\"/\")\nmsg.topic = words[0]+\"/\"+msg.device+\"/play\"\n\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n}\nmsg.orig = msg.payload\nmsg.payload = {\n    \"operation\": msg.operation,\n    \"colour\": msg.colour,\n    \"count\": msg.count\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 163.99998474121094,
@@ -3400,6 +3405,13 @@
         "type": "subflow:db41a3ab.552bb8",
         "z": "7f80a2cf.94a544",
         "name": "",
+        "env": [
+            {
+                "name": "operation",
+                "type": "str",
+                "value": "theatrechase"
+            }
+        ],
         "x": 901.1667022705078,
         "y": 580.5000152587891,
         "wires": []
