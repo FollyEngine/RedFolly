@@ -280,7 +280,7 @@
         "type": "ui_tab",
         "z": "",
         "name": "Megagame",
-        "icon": "home",
+        "icon": "fa-robot",
         "order": 2,
         "disabled": false,
         "hidden": false
@@ -365,7 +365,7 @@
         "type": "ui_tab",
         "z": "",
         "name": "All Nodes",
-        "icon": "dashboard",
+        "icon": "home",
         "order": 1,
         "disabled": false,
         "hidden": false
@@ -2830,7 +2830,8 @@
         "wires": [
             [
                 "a346432c.43edc8",
-                "432135a4.71d36c"
+                "432135a4.71d36c",
+                "5733eb6e.ac5ae4"
             ]
         ]
     },
@@ -3367,8 +3368,8 @@
                 "value": "theatrechase"
             }
         ],
-        "x": 901.1667022705078,
-        "y": 580.5000152587891,
+        "x": 919.1666870117188,
+        "y": 574.5,
         "wires": []
     },
     {
@@ -3407,6 +3408,50 @@
         "wires": [
             [
                 "4fd787f5.4e9c6"
+            ]
+        ]
+    },
+    {
+        "id": "dde22df8.79da4",
+        "type": "subflow:db41a3ab.552bb8",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "env": [
+            {
+                "name": "colour",
+                "type": "str",
+                "value": "off"
+            },
+            {
+                "name": "count",
+                "type": "num",
+                "value": "9999"
+            }
+        ],
+        "x": 1077.166748046875,
+        "y": 625.5,
+        "wires": []
+    },
+    {
+        "id": "5733eb6e.ac5ae4",
+        "type": "delay",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 904.1667022705078,
+        "y": 629.5833282470703,
+        "wires": [
+            [
+                "dde22df8.79da4"
             ]
         ]
     }
