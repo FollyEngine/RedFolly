@@ -64,8 +64,8 @@
         "in": [],
         "out": [
             {
-                "x": 1049,
-                "y": 181,
+                "x": 1045,
+                "y": 155,
                 "wires": [
                     {
                         "id": "2fff761a.f9db82",
@@ -181,7 +181,7 @@
         "id": "cdef01bd.4b911",
         "type": "ui_base",
         "theme": {
-            "name": "theme-dark",
+            "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -200,48 +200,49 @@
                 "name": "Untitled Theme 1",
                 "default": "#4B7930",
                 "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
             },
             "themeState": {
                 "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
+                    "default": "#0094CE",
+                    "value": "#0094CE",
                     "edited": false
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#097479",
+                    "value": "#0094CE",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#111111",
+                    "value": "#fafafa",
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#000000",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#0eb8c0",
+                    "value": "#1bbfff",
                     "edited": false
                 },
                 "group-borderColor": {
-                    "value": "#555555",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-backgroundColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "widget-textColor": {
-                    "value": "#eeeeee",
+                    "value": "#111111",
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#097479",
+                    "value": "#0094ce",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "base-font": {
@@ -258,8 +259,8 @@
         "site": {
             "name": "Node-RED Dashboard",
             "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
+            "allowSwipe": "true",
+            "lockMenu": "true",
             "allowTempTheme": "true",
             "dateFormat": "DD/MM/YYYY",
             "sizes": {
@@ -278,9 +279,9 @@
         "id": "66746000.f01c5",
         "type": "ui_tab",
         "z": "",
-        "name": "Home",
+        "name": "Megagame",
         "icon": "home",
-        "order": 1,
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -365,7 +366,7 @@
         "z": "",
         "name": "All Nodes",
         "icon": "dashboard",
-        "order": 2,
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -378,17 +379,6 @@
         "disp": true,
         "width": "12",
         "collapse": true
-    },
-    {
-        "id": "7b4dfd29.bbf484",
-        "type": "ui_group",
-        "z": "",
-        "name": "Play",
-        "tab": "abfe76fc.26ead",
-        "order": 2,
-        "disp": true,
-        "width": "11",
-        "collapse": false
     },
     {
         "id": "dced7457.72aad",
@@ -1125,9 +1115,9 @@
         "group": "b5740beb.c122",
         "name": "ALLNODES",
         "order": 2,
-        "width": "0",
-        "height": "0",
-        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-play-circle\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"click\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
+        "width": "11",
+        "height": "10",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"click\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -2886,8 +2876,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 115,
-        "y": 361.0000305175781,
+        "x": 508,
+        "y": 271.0000305175781,
         "wires": [
             [
                 "e3fcc45c.4b105"
@@ -2902,49 +2892,14 @@
         "func": "\n\nflow.set('allnodes_playsound', msg.payload);\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 333.5,
-        "y": 358.0000305175781,
+        "x": 730.5,
+        "y": 284.0000305175781,
         "wires": [
             []
         ],
         "outputLabels": [
             "tagCount"
         ]
-    },
-    {
-        "id": "607a88dd.1c27a",
-        "type": "ui_button",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "group": "7b4dfd29.bbf484",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "label": "play audio on zero-1",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "allnodes_playsound",
-        "payloadType": "flow",
-        "topic": "zero-1/audio/play",
-        "x": 142,
-        "y": 297.0000305175781,
-        "wires": [
-            [
-                "78974ecc.908dd"
-            ]
-        ]
-    },
-    {
-        "id": "78974ecc.908dd",
-        "type": "subflow:3c0e296d.ea2856",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "x": 340,
-        "y": 299.0000305175781,
-        "wires": []
     },
     {
         "id": "c7b57ed2.dd7818",
@@ -3415,5 +3370,44 @@
         "x": 901.1667022705078,
         "y": 580.5000152587891,
         "wires": []
+    },
+    {
+        "id": "4fd787f5.4e9c6",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "selected debug sound",
+        "func": "\nvar def = flow.get('allnodes_playsound') || \"\";\n\n//var nodes = []\n//for (const x of msg.payload) {\n//    nodes.push(x.name)\n//}\n//return {payload: def, options: nodes};\nreturn {payload: def};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 305.08331298828125,
+        "y": 269.0833435058594,
+        "wires": [
+            [
+                "f5ac33d.1a1add"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "b3b14434.51a408",
+        "type": "inject",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 91.16665649414062,
+        "y": 267.25001525878906,
+        "wires": [
+            [
+                "4fd787f5.4e9c6"
+            ]
+        ]
     }
 ]
