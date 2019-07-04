@@ -117,7 +117,7 @@
         "id": "db41a3ab.552bb8",
         "type": "subflow",
         "name": "neopixels",
-        "info": "### node\n - node name, or `all`\n### devicename\n - normally `neopixel-level` but can be set to `crickit` if talking to that board\n### operation\n - `set`\n - `health`\n - `colourwipe`\n - `theatrechase`\n - `rainbow` \n - `rainbow_cycle`\n### colour\n -  'off': (0,0,0),\n -  'white': (180,180,180),\n -  'red': (255,0,0),\n -  'green': (0,255,0),\n -  'blue': (0,0,255),\n -  'yellow': (255, 150, 0),\n -  'cyan': (0, 255,255),\n -  'purple': (180, 0, 255)\n### count\nhow many pixels to `set` or `health`",
+        "info": "### msg.payload.node\n - node name, or `all`\n### msg.payload.devicename\n - normally `neopixel-level` but can be set to `crickit` if talking to that board\n### msg.payload.operation\n - `set`\n - `health`\n - `colourwipe`\n - `theatrechase`\n - `rainbow` \n - `rainbow_cycle`\n### msg.payload.colour\n -  'off': (0,0,0),\n -  'white': (180,180,180),\n -  'red': (255,0,0),\n -  'green': (0,255,0),\n -  'blue': (0,0,255),\n -  'yellow': (255, 150, 0),\n -  'cyan': (0, 255,255),\n -  'purple': (180, 0, 255)\n### msg.payload.count\nhow many pixels to `set` or `health`",
         "category": "",
         "in": [
             {
@@ -414,6 +414,27 @@
         "name": "Settings",
         "tab": "66746000.f01c5",
         "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4d353402.f708e4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Neopixels",
+        "tab": "fc6a7e4.ab81e",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "cd20b0d7.0930d8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Servos",
+        "tab": "fc6a7e4.ab81e",
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -3341,7 +3362,7 @@
         "type": "function",
         "z": "db41a3ab.552bb8",
         "name": "",
-        "func": "\nif (msg.node === undefined || msg.node === \"\") {\n    msg.node = env.get('node')\n}\nif (msg.device === undefined || msg.device === \"\") {\n    msg.device = env.get('device')\n}\nif (msg.operation === undefined || msg.operation === \"\") {\n    msg.operation = env.get('operation')\n}\nif (msg.colour === undefined || msg.colour === \"\") {\n    msg.colour = env.get('colour')\n}\nif (msg.count === undefined || msg.count === \"\") {\n    msg.count = env.get('count')\n}\n\nif (msg.topic === undefined || msg.topic === \"\") {\n    msg.topic = msg.node\n}\n// change msg.topic to end in \"/audio/play\"\nwords = msg.topic.split(\"/\")\nmsg.topic = words[0]+\"/\"+msg.device+\"/play\"\n\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.sound = msg.payload\n    }\n}\nmsg.orig = msg.payload\nmsg.payload = {\n    \"operation\": msg.operation,\n    \"colour\": msg.colour,\n    \"count\": msg.count\n}\nreturn msg;",
+        "func": "msg.orig = msg.payload\n\nif (typeof(msg.payload) != \"object\") {\n    if (typeof(msg.payload) == \"string\") {\n        msg.payload.sound = msg.payload\n    }\n}\nif (msg.payload.node === undefined || msg.payload.node === \"\") {\n    msg.payload.node = env.get('node')\n}\nif (msg.payload.device === undefined || msg.payload.device === \"\") {\n    msg.payload.device = env.get('device')\n}\nif (msg.payload.operation === undefined || msg.payload.operation === \"\") {\n    msg.payload.operation = env.get('operation')\n}\nif (msg.payload.colour === undefined || msg.payload.colour === \"\") {\n    msg.payload.colour = env.get('colour')\n}\nif (msg.payload.count === undefined || msg.payload.count === \"\") {\n    msg.payload.count = env.get('count')\n}\n\nif (msg.payload.topic === undefined || msg.payload.topic === \"\") {\n    msg.payload.topic = msg.payload.node\n}\nif (msg.topic === undefined || msg.topic === \"\") {\n    // change msg.topic to end in \"/<device>/play\"\n    words = msg.payload.topic.split(\"/\")\n    msg.topic = words[0]+\"/\"+msg.payload.device+\"/play\"\n}\n//msg.payload = {\n//    \"operation\": msg.payload.operation,\n//    \"colour\": msg.payload.colour,\n//    \"count\": msg.payload.count\n//}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 163.99998474121094,
@@ -3476,8 +3497,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 200.0833282470703,
-        "y": 140.08334350585938,
+        "x": 155.0833282470703,
+        "y": 132.08334350585938,
         "wires": [
             [
                 "24b737ff.0ed7b"
@@ -3492,8 +3513,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 350.08331298828125,
-        "y": 142.08334350585938,
+        "x": 345.08331298828125,
+        "y": 131.08334350585938,
         "wires": [
             [
                 "adeed921.e6651"
@@ -3621,7 +3642,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 5,
+        "order": 1,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3679,7 +3700,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 6,
+        "order": 2,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3737,7 +3758,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 7,
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3795,7 +3816,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 8,
+        "order": 4,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3848,7 +3869,7 @@
         "name": "",
         "label": "continuous servo 1",
         "tooltip": "",
-        "group": "ff553633.808228",
+        "group": "cd20b0d7.0930d8",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -3858,8 +3879,8 @@
         "min": "-1.0",
         "max": "1.0",
         "step": "0.01",
-        "x": 366.1666259765625,
-        "y": 486.3333435058594,
+        "x": 216.16664123535156,
+        "y": 403.3333435058594,
         "wires": [
             [
                 "6a5454cc.1b6784",
@@ -3876,8 +3897,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 770.1666259765625,
-        "y": 498.8333435058594,
+        "x": 620.1666412353516,
+        "y": 415.8333435058594,
         "wires": []
     },
     {
@@ -3888,8 +3909,8 @@
         "func": "var m = {\n    topic: 'crickit-1/crickit/servo',\n    payload: {\n    throttle: msg.payload\n    }\n};\nreturn m;",
         "outputs": 1,
         "noerr": 0,
-        "x": 570.1666412353516,
-        "y": 499.3333282470703,
+        "x": 420.1666564941406,
+        "y": 416.3333282470703,
         "wires": [
             [
                 "b67e0779.f0f07"
@@ -3903,7 +3924,7 @@
         "name": "",
         "label": "continuous servo 1",
         "tooltip": "",
-        "group": "ff553633.808228",
+        "group": "cd20b0d7.0930d8",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -3913,8 +3934,8 @@
         "min": "-1.0",
         "max": "1.0",
         "step": "0.01",
-        "x": 368.1666259765625,
-        "y": 552.1665954589844,
+        "x": 218.16664123535156,
+        "y": 469.1665954589844,
         "wires": [
             [
                 "609f8682.9ccb"
@@ -3928,7 +3949,7 @@
         "name": "",
         "label": "position servo 2",
         "tooltip": "",
-        "group": "ff553633.808228",
+        "group": "cd20b0d7.0930d8",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -3938,8 +3959,8 @@
         "min": "0",
         "max": "180",
         "step": "0.1",
-        "x": 350.08331298828125,
-        "y": 613.0833129882812,
+        "x": 200.0833282470703,
+        "y": 530.0833129882812,
         "wires": [
             [
                 "251390ee.6ce5a8",
@@ -3956,8 +3977,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 764.0833129882812,
-        "y": 625.5833129882812,
+        "x": 614.0833282470703,
+        "y": 542.5833129882812,
         "wires": []
     },
     {
@@ -3968,8 +3989,8 @@
         "func": "var m = {\n    topic: 'crickit-1/crickit/servo',\n    payload: {\n        servo: 2,\n        angle: msg.payload\n    }\n};\nreturn m;",
         "outputs": 1,
         "noerr": 0,
-        "x": 564.0833282470703,
-        "y": 626.0832977294922,
+        "x": 414.0833435058594,
+        "y": 543.0832977294922,
         "wires": [
             [
                 "7def144a.345814"
@@ -3983,7 +4004,7 @@
         "name": "",
         "label": "position servo 2",
         "tooltip": "",
-        "group": "ff553633.808228",
+        "group": "cd20b0d7.0930d8",
         "order": 4,
         "width": 0,
         "height": 0,
@@ -3993,11 +4014,157 @@
         "min": "0",
         "max": "180",
         "step": "0.1",
-        "x": 352.08331298828125,
-        "y": 678.9165649414062,
+        "x": 202.0833282470703,
+        "y": 595.9165649414062,
         "wires": [
             [
                 "968e3f84.3abda8"
+            ]
+        ]
+    },
+    {
+        "id": "7873ac1d.f7f3ec",
+        "type": "subflow:db41a3ab.552bb8",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "env": [
+            {
+                "name": "device",
+                "type": "str",
+                "value": "crickit"
+            }
+        ],
+        "x": 966.1666259765625,
+        "y": 812.5,
+        "wires": []
+    },
+    {
+        "id": "dabd17eb.098c48",
+        "type": "ui_button",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "4d353402.f708e4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "rainbow",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "rainbow",
+        "payload": "{\"operation\":\"rainbow\"}",
+        "payloadType": "json",
+        "topic": "crickit-1/crickit/play",
+        "x": 498.16664123535156,
+        "y": 705.7500152587891,
+        "wires": [
+            [
+                "7873ac1d.f7f3ec"
+            ]
+        ]
+    },
+    {
+        "id": "3066f5cb.c9ba82",
+        "type": "ui_button",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "4d353402.f708e4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "theatrechase (yellow)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "theatrechase",
+        "payload": "{\"operation\":\"theatrechase\",\"colour\":\"yellow\"}",
+        "payloadType": "json",
+        "topic": "crickit-1/crickit/play",
+        "x": 545.0833282470703,
+        "y": 768.3333282470703,
+        "wires": [
+            [
+                "7873ac1d.f7f3ec"
+            ]
+        ]
+    },
+    {
+        "id": "97205927.c75198",
+        "type": "ui_button",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "4d353402.f708e4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "colourwipe (purple)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "colourwipe",
+        "payload": "{\"operation\":\"colourwipe\",\"colour\":\"purple\"}",
+        "payloadType": "json",
+        "topic": "crickit-1/crickit/play",
+        "x": 545.0833129882812,
+        "y": 822.0833129882812,
+        "wires": [
+            [
+                "7873ac1d.f7f3ec"
+            ]
+        ]
+    },
+    {
+        "id": "dfbc8052.2bf7e8",
+        "type": "ui_button",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "4d353402.f708e4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "set (white)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "set",
+        "payload": "{\"operation\":\"set\",\"colour\":\"white\",\"count\":32}",
+        "payloadType": "json",
+        "topic": "crickit-1/crickit/play",
+        "x": 508.08331298828125,
+        "y": 913.0833129882812,
+        "wires": [
+            [
+                "7873ac1d.f7f3ec"
+            ]
+        ]
+    },
+    {
+        "id": "45176efb.073248",
+        "type": "ui_button",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "4d353402.f708e4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "set (off)",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "set",
+        "payload": "{\"operation\":\"set\",\"colour\":\"off\",\"count\":999}",
+        "payloadType": "json",
+        "topic": "crickit-1/crickit/play",
+        "x": 516.0833129882812,
+        "y": 970.0833129882812,
+        "wires": [
+            [
+                "7873ac1d.f7f3ec"
             ]
         ]
     }
