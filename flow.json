@@ -3600,21 +3600,6 @@
         ]
     },
     {
-        "id": "c028c3e4.64e348",
-        "type": "debug",
-        "z": "7ee50041.c87b68",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 722.1666259765625,
-        "y": 61.166648864746094,
-        "wires": []
-    },
-    {
         "id": "adeed921.e6651",
         "type": "function",
         "z": "7ee50041.c87b68",
@@ -3626,7 +3611,6 @@
         "y": 140.66665649414062,
         "wires": [
             [
-                "c028c3e4.64e348",
                 "3b85dbc9.f1818c"
             ]
         ]
@@ -3637,7 +3621,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 0,
+        "order": 5,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3695,7 +3679,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 0,
+        "order": 6,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3753,7 +3737,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 0,
+        "order": 7,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3811,7 +3795,7 @@
         "z": "7ee50041.c87b68",
         "name": "",
         "group": "ff553633.808228",
-        "order": 0,
+        "order": 8,
         "width": 0,
         "height": 0,
         "label": "chart",
@@ -3845,6 +3829,176 @@
         "y": 319.41668701171875,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "539789e5.798188",
+        "type": "comment",
+        "z": "7ee50041.c87b68",
+        "name": "touch needs more work on the node-red end",
+        "info": "the rpi crickit board sends the raw values when they change more than 160 out of 1000 \"values\"\n\nso node-red needs to allow the creator to tune the thresholds, and debouncing (the absolute values change depending on what's connected to the sensor)",
+        "x": 220.16665649414062,
+        "y": 53,
+        "wires": []
+    },
+    {
+        "id": "609f8682.9ccb",
+        "type": "ui_slider",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "label": "continuous servo 1",
+        "tooltip": "",
+        "group": "ff553633.808228",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "crickit-1/crickit/servo",
+        "min": "-1.0",
+        "max": "1.0",
+        "step": "0.01",
+        "x": 366.1666259765625,
+        "y": 486.3333435058594,
+        "wires": [
+            [
+                "6a5454cc.1b6784",
+                "6ba6ae94.f537e"
+            ]
+        ]
+    },
+    {
+        "id": "b67e0779.f0f07",
+        "type": "mqtt out",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "topic": "crickit-1/crickit/servo",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 770.1666259765625,
+        "y": 498.8333435058594,
+        "wires": []
+    },
+    {
+        "id": "6a5454cc.1b6784",
+        "type": "function",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "func": "var m = {\n    topic: 'crickit-1/crickit/servo',\n    payload: {\n    throttle: msg.payload\n    }\n};\nreturn m;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570.1666412353516,
+        "y": 499.3333282470703,
+        "wires": [
+            [
+                "b67e0779.f0f07"
+            ]
+        ]
+    },
+    {
+        "id": "6ba6ae94.f537e",
+        "type": "ui_numeric",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "label": "continuous servo 1",
+        "tooltip": "",
+        "group": "ff553633.808228",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "format": "{{value}}",
+        "min": "-1.0",
+        "max": "1.0",
+        "step": "0.01",
+        "x": 368.1666259765625,
+        "y": 552.1665954589844,
+        "wires": [
+            [
+                "609f8682.9ccb"
+            ]
+        ]
+    },
+    {
+        "id": "968e3f84.3abda8",
+        "type": "ui_slider",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "label": "position servo 2",
+        "tooltip": "",
+        "group": "ff553633.808228",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "crickit-1/crickit/servo",
+        "min": "0",
+        "max": "180",
+        "step": "0.1",
+        "x": 350.08331298828125,
+        "y": 613.0833129882812,
+        "wires": [
+            [
+                "251390ee.6ce5a8",
+                "c477ed7e.82a5d"
+            ]
+        ]
+    },
+    {
+        "id": "7def144a.345814",
+        "type": "mqtt out",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "topic": "crickit-1/crickit/servo",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 764.0833129882812,
+        "y": 625.5833129882812,
+        "wires": []
+    },
+    {
+        "id": "251390ee.6ce5a8",
+        "type": "function",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "func": "var m = {\n    topic: 'crickit-1/crickit/servo',\n    payload: {\n        servo: 2,\n        angle: msg.payload\n    }\n};\nreturn m;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 564.0833282470703,
+        "y": 626.0832977294922,
+        "wires": [
+            [
+                "7def144a.345814"
+            ]
+        ]
+    },
+    {
+        "id": "c477ed7e.82a5d",
+        "type": "ui_numeric",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "label": "position servo 2",
+        "tooltip": "",
+        "group": "ff553633.808228",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "180",
+        "step": "0.1",
+        "x": 352.08331298828125,
+        "y": 678.9165649414062,
+        "wires": [
+            [
+                "968e3f84.3abda8"
+            ]
         ]
     }
 ]
