@@ -35,6 +35,13 @@
         "info": ""
     },
     {
+        "id": "7ee50041.c87b68",
+        "type": "tab",
+        "label": "dueling",
+        "disabled": false,
+        "info": "Sven's going to try to re-create the 1819 dueling podiums\nusing 2 crickit board's on rpi's\n\n"
+    },
+    {
         "id": "2b493f5b.793ad8",
         "type": "subflow",
         "name": "RFID read",
@@ -110,7 +117,7 @@
         "id": "db41a3ab.552bb8",
         "type": "subflow",
         "name": "neopixels",
-        "info": "",
+        "info": "### node\n - node name, or `all`\n### devicename\n - normally `neopixel-level` but can be set to `crickit` if talking to that board\n### operation\n - `set`\n - `health`\n - `colourwipe`\n - `theatrechase`\n - `rainbow` \n - `rainbow_cycle`\n### colour\n -  'off': (0,0,0),\n -  'white': (180,180,180),\n -  'red': (255,0,0),\n -  'green': (0,255,0),\n -  'blue': (0,0,255),\n -  'yellow': (255, 150, 0),\n -  'cyan': (0, 255,255),\n -  'purple': (180, 0, 255)\n### count\nhow many pixels to `set` or `health`",
         "category": "",
         "in": [
             {
@@ -128,7 +135,7 @@
             {
                 "name": "node",
                 "type": "str",
-                "value": "crickit-1"
+                "value": "all"
             },
             {
                 "name": "operation",
@@ -143,7 +150,7 @@
             {
                 "name": "count",
                 "type": "num",
-                "value": "12"
+                "value": "7"
             },
             {
                 "name": "device",
@@ -289,8 +296,8 @@
         "id": "ff553633.808228",
         "type": "ui_group",
         "z": "",
-        "name": "Megagame",
-        "tab": "66746000.f01c5",
+        "name": "Touch",
+        "tab": "fc6a7e4.ab81e",
         "order": 1,
         "disp": true,
         "width": "9",
@@ -379,6 +386,37 @@
         "disp": true,
         "width": "12",
         "collapse": true
+    },
+    {
+        "id": "fc6a7e4.ab81e",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Dueling",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "af185d05.4ad048",
+        "type": "ui_group",
+        "z": "",
+        "name": "Nodes",
+        "tab": "abfe76fc.26ead",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "cdde7c2a.e59628",
+        "type": "ui_group",
+        "z": "",
+        "name": "Settings",
+        "tab": "66746000.f01c5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "dced7457.72aad",
@@ -679,7 +717,7 @@
         "label": "Select flow state",
         "tooltip": "This will be passed on to the node status LED",
         "place": "Select option",
-        "group": "ff553633.808228",
+        "group": "b5740beb.c122",
         "order": 1,
         "width": "6",
         "height": "1",
@@ -812,8 +850,8 @@
         "label": "XP add node",
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
-        "group": "ff553633.808228",
-        "order": 2,
+        "group": "cdde7c2a.e59628",
+        "order": 1,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -1114,7 +1152,7 @@
         "z": "7f80a2cf.94a544",
         "group": "b5740beb.c122",
         "name": "ALLNODES",
-        "order": 2,
+        "order": 3,
         "width": "11",
         "height": "10",
         "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"click\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
@@ -2844,7 +2882,7 @@
         "tooltip": "",
         "place": "Select option",
         "group": "b5740beb.c122",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -3006,7 +3044,7 @@
         "label": "XP remove node",
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
-        "group": "ff553633.808228",
+        "group": "cdde7c2a.e59628",
         "order": 2,
         "width": "6",
         "height": "1",
@@ -3106,8 +3144,8 @@
         "label": "XP reset node",
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
-        "group": "ff553633.808228",
-        "order": 2,
+        "group": "cdde7c2a.e59628",
+        "order": 3,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -3213,32 +3251,6 @@
         "wires": [
             []
         ]
-    },
-    {
-        "id": "92f68171.4c06a",
-        "type": "ui_gauge",
-        "z": "2f52aa5f.783a96",
-        "name": "",
-        "group": "ff553633.808228",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "gauge",
-        "label": "units",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "3600",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 303.1000061035156,
-        "y": 569.6000366210938,
-        "wires": []
     },
     {
         "id": "6eaec67c.3e03c8",
@@ -3453,6 +3465,386 @@
             [
                 "dde22df8.79da4"
             ]
+        ]
+    },
+    {
+        "id": "ef27ea3e.49b1c8",
+        "type": "mqtt in",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "topic": "crickit-1/crickit/touch1",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 200.0833282470703,
+        "y": 140.08334350585938,
+        "wires": [
+            [
+                "24b737ff.0ed7b"
+            ]
+        ]
+    },
+    {
+        "id": "24b737ff.0ed7b",
+        "type": "json",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 350.08331298828125,
+        "y": 142.08334350585938,
+        "wires": [
+            [
+                "adeed921.e6651"
+            ]
+        ]
+    },
+    {
+        "id": "cdd74a01.ac3da",
+        "type": "mqtt in",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "topic": "crickit-1/crickit/touch2",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 199.0833282470703,
+        "y": 199.08334350585938,
+        "wires": [
+            [
+                "f572e4fa.623ac8"
+            ]
+        ]
+    },
+    {
+        "id": "f572e4fa.623ac8",
+        "type": "json",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 344.0833282470703,
+        "y": 196.08334350585938,
+        "wires": [
+            [
+                "5d78a7e8.705158"
+            ]
+        ]
+    },
+    {
+        "id": "27b76842.ebd328",
+        "type": "mqtt in",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "topic": "crickit-1/crickit/touch3",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 206.0833282470703,
+        "y": 255.08334350585938,
+        "wires": [
+            [
+                "b590539c.b6d518"
+            ]
+        ]
+    },
+    {
+        "id": "b590539c.b6d518",
+        "type": "json",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 351.0833282470703,
+        "y": 252.08334350585938,
+        "wires": [
+            [
+                "ced8ac6d.184d8"
+            ]
+        ]
+    },
+    {
+        "id": "aafe3c03.2339d",
+        "type": "mqtt in",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "topic": "crickit-1/crickit/touch4",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 205.0833282470703,
+        "y": 314.0833435058594,
+        "wires": [
+            [
+                "c2e82aa8.bdf308"
+            ]
+        ]
+    },
+    {
+        "id": "c2e82aa8.bdf308",
+        "type": "json",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 357.08331298828125,
+        "y": 320.0833435058594,
+        "wires": [
+            [
+                "db3d6a63.a451b"
+            ]
+        ]
+    },
+    {
+        "id": "c028c3e4.64e348",
+        "type": "debug",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 722.1666259765625,
+        "y": 61.166648864746094,
+        "wires": []
+    },
+    {
+        "id": "adeed921.e6651",
+        "type": "function",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.value\n}\nreturn [touch, raw]",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 515.1666259765625,
+        "y": 140.66665649414062,
+        "wires": [
+            [
+                "c028c3e4.64e348",
+                "3b85dbc9.f1818c"
+            ]
+        ]
+    },
+    {
+        "id": "3b85dbc9.f1818c",
+        "type": "ui_chart",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "ff553633.808228",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "1100",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 710.1666412353516,
+        "y": 137,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d78a7e8.705158",
+        "type": "function",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.raw\n}\nreturn [touch, raw]",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 502.08331298828125,
+        "y": 196.08334350585938,
+        "wires": [
+            [
+                "60da3f5e.3d3858"
+            ]
+        ]
+    },
+    {
+        "id": "60da3f5e.3d3858",
+        "type": "ui_chart",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "ff553633.808228",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1100",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 697.0833282470703,
+        "y": 192.41668701171875,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ced8ac6d.184d8",
+        "type": "function",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.raw\n}\nreturn [touch, raw]",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 503.08331298828125,
+        "y": 253.08334350585938,
+        "wires": [
+            [
+                "9d5a1115.5ac6b8"
+            ]
+        ]
+    },
+    {
+        "id": "9d5a1115.5ac6b8",
+        "type": "ui_chart",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "ff553633.808228",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1100",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 698.0833282470703,
+        "y": 249.41668701171875,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db3d6a63.a451b",
+        "type": "function",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.raw\n}\nreturn [touch, raw]",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 495.08331298828125,
+        "y": 323.0833435058594,
+        "wires": [
+            [
+                "b290c5d0.95ad5"
+            ]
+        ]
+    },
+    {
+        "id": "b290c5d0.95ad5",
+        "type": "ui_chart",
+        "z": "7ee50041.c87b68",
+        "name": "",
+        "group": "ff553633.808228",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1100",
+        "removeOlder": "30",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 690.0833282470703,
+        "y": 319.41668701171875,
+        "wires": [
+            []
         ]
     }
 ]
