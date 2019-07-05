@@ -188,7 +188,7 @@
         "id": "cdef01bd.4b911",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "name": "theme-dark",
             "lightTheme": {
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
@@ -212,44 +212,44 @@
             },
             "themeState": {
                 "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
+                    "default": "#097479",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#097479",
                     "edited": false
                 },
                 "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
                     "value": "#111111",
                     "edited": false
                 },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#097479",
                     "edited": false
                 },
                 "widget-borderColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "base-font": {
@@ -391,7 +391,7 @@
         "id": "fc6a7e4.ab81e",
         "type": "ui_tab",
         "z": "",
-        "name": "Dueling",
+        "name": "Crickit-1",
         "icon": "dashboard",
         "order": 3,
         "disabled": false,
@@ -738,7 +738,7 @@
         "label": "Select flow state",
         "tooltip": "This will be passed on to the node status LED",
         "place": "Select option",
-        "group": "b5740beb.c122",
+        "group": "cdde7c2a.e59628",
         "order": 1,
         "width": "6",
         "height": "1",
@@ -872,7 +872,7 @@
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 1,
+        "order": 2,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -1142,7 +1142,7 @@
         "type": "function",
         "z": "7f80a2cf.94a544",
         "name": "store node info",
-        "func": "\n// what we're storing\nvar from = msg.payload.from\nvar now = new Date(Date.now())\nvar ip = msg.payload.ip || \"undef\"\nvar node = {\n    \"name\": from,\n    \"time\": now,\n    \"timestring\": now.toString(),\n    \"ip\": ip,\n}\n\nreturn {query: {\"name\": from}, payload: node};\n",
+        "func": "\n// what we're storing\nvar from = msg.payload.from\nvar now = new Date(Date.now())\nvar ip = msg.payload.ip || \"undef\"\nvar node = {\n    \"name\": from,\n    \"time\": now,\n    \"timestring\": now.toString(),\n    \"ip\": ip,\n    \"git_commit\": msg.payload.git_commit || \"unknown\"\n}\n\nreturn {query: {\"name\": from}, payload: node};\n",
         "outputs": 1,
         "noerr": 0,
         "x": 784.38330078125,
@@ -1153,8 +1153,7 @@
             ]
         ],
         "outputLabels": [
-            "tagCount",
-            ""
+            "tagCount"
         ]
     },
     {
@@ -1176,7 +1175,7 @@
         "order": 3,
         "width": "11",
         "height": "10",
-        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"click\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n </tr>\n</table>",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td><td>git</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"find\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"git-update\"})'\n     target=\"_blank\">\n    </md-button>{{obj.git_commit}}\n   </td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
@@ -1184,7 +1183,8 @@
         "y": 426.26666259765625,
         "wires": [
             [
-                "408af22.64a9f8c"
+                "408af22.64a9f8c",
+                "99c89bfc.d952f"
             ]
         ]
     },
@@ -2838,11 +2838,13 @@
         "type": "switch",
         "z": "7f80a2cf.94a544",
         "name": "",
-        "property": "node",
+        "property": "button",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "nempty"
+                "t": "eq",
+                "v": "find",
+                "vt": "str"
             }
         ],
         "checkall": "true",
@@ -2861,6 +2863,7 @@
         "type": "subflow:3c0e296d.ea2856",
         "z": "7f80a2cf.94a544",
         "name": "",
+        "env": [],
         "x": 922.4999542236328,
         "y": 517,
         "wires": []
@@ -3066,7 +3069,7 @@
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 2,
+        "order": 3,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -3166,7 +3169,7 @@
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 3,
+        "order": 4,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -4100,15 +4103,15 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "colourwipe (purple)",
+        "label": "colourwipe (blue)",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "icon": "colourwipe",
-        "payload": "{\"operation\":\"colourwipe\",\"colour\":\"purple\"}",
+        "payload": "{\"operation\":\"colourwipe\",\"colour\":\"blue\"}",
         "payloadType": "json",
         "topic": "crickit-1/crickit/play",
-        "x": 545.0833129882812,
+        "x": 535.0833129882812,
         "y": 822.0833129882812,
         "wires": [
             [
@@ -4167,5 +4170,77 @@
                 "7873ac1d.f7f3ec"
             ]
         ]
+    },
+    {
+        "id": "99c89bfc.d952f",
+        "type": "switch",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "property": "button",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "git-update",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 739,
+        "y": 423,
+        "wires": [
+            [
+                "557bfb36.c2e3fc"
+            ]
+        ]
+    },
+    {
+        "id": "557bfb36.c2e3fc",
+        "type": "change",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"cmd\":\"pull\"}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "$.node & \"/deployment/git\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 907,
+        "y": 422.0000305175781,
+        "wires": [
+            [
+                "620bf031.24cc9"
+            ]
+        ]
+    },
+    {
+        "id": "620bf031.24cc9",
+        "type": "mqtt out",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 1105,
+        "y": 376,
+        "wires": []
     }
 ]
