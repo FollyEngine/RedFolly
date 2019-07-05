@@ -1175,7 +1175,7 @@
         "order": 3,
         "width": "11",
         "height": "10",
-        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td><td>git</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"find\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"git-update\"})'\n     target=\"_blank\">\n    </md-button>{{obj.git_commit}}\n   </td>\n </tr>\n</table>",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td><td>git</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"find\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-refresh\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"git-update\"})'\n     target=\"_blank\">\n    </md-button>{{obj.git_commit}}\n   </td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
