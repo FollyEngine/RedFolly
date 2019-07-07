@@ -75,10 +75,17 @@
                 "y": 155,
                 "wires": [
                     {
-                        "id": "2fff761a.f9db82",
+                        "id": "2bfb8e99.8f526a",
                         "port": 0
                     }
                 ]
+            }
+        ],
+        "env": [
+            {
+                "name": "StatusColour",
+                "type": "str",
+                "value": ""
             }
         ]
     },
@@ -489,8 +496,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 573.5,
-        "y": 413.3333435058594,
+        "x": 542.5,
+        "y": 172.3333740234375,
         "wires": [
             []
         ]
@@ -575,7 +582,8 @@
         "y": 73.16667938232422,
         "wires": [
             [
-                "708c5338.99400c"
+                "708c5338.99400c",
+                "d7189e24.c310c"
             ]
         ]
     },
@@ -713,20 +721,8 @@
         "y": 182,
         "wires": [
             [
-                "75a34c37.63af6c"
-            ]
-        ]
-    },
-    {
-        "id": "99f854ad.34936",
-        "type": "subflow:7f80a2cf.94a544",
-        "z": "92d480a1.db57d",
-        "x": 313,
-        "y": 373,
-        "wires": [
-            [
-                "3a461e53.479d02",
-                "c96205bc.05d72"
+                "75a34c37.63af6c",
+                "2bfb8e99.8f526a"
             ]
         ]
     },
@@ -735,7 +731,7 @@
         "type": "ui_dropdown",
         "z": "92d480a1.db57d",
         "name": "",
-        "label": "Select flow state",
+        "label": "Select flow status colour",
         "tooltip": "This will be passed on to the node status LED",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
@@ -743,37 +739,11 @@
         "width": "6",
         "height": "1",
         "passthru": true,
-        "options": [
-            {
-                "label": "",
-                "value": "off",
-                "type": "str"
-            },
-            {
-                "label": "",
-                "value": "yellow",
-                "type": "str"
-            },
-            {
-                "label": "",
-                "value": "blue",
-                "type": "str"
-            },
-            {
-                "label": "",
-                "value": "green",
-                "type": "str"
-            },
-            {
-                "label": "",
-                "value": "red",
-                "type": "str"
-            }
-        ],
+        "options": [],
         "payload": "",
         "topic": "",
-        "x": 312.5,
-        "y": 711,
+        "x": 504.5,
+        "y": 712,
         "wires": [
             [
                 "a55b9710.6102b"
@@ -784,12 +754,12 @@
         "id": "a55b9710.6102b",
         "type": "function",
         "z": "92d480a1.db57d",
-        "name": "set flow status - passed to rpi's status",
-        "func": "\n\nflow.set('gamestate', msg.payload);\n\n",
+        "name": "set flow StatusColour - passed to rpi's status",
+        "func": "\n\nflow.set('StatusColour', msg.payload);\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 601,
-        "y": 709,
+        "x": 852,
+        "y": 716,
         "wires": [
             []
         ],
@@ -938,26 +908,6 @@
         "x": 1098,
         "y": 20,
         "wires": []
-    },
-    {
-        "id": "3a461e53.479d02",
-        "type": "function",
-        "z": "92d480a1.db57d",
-        "name": "reply to node ping with gamestate colour",
-        "func": "\n// what we're storing\nvar from = msg.payload.from\n\n// the reply to the node\nvar gamestatus = flow.get('gamestate') || \"yellow\";\nmsg.payload = {\n    \"from\": from,\n    \"status\": gamestatus,\n};\nmsg.topic = from+\"/ping/reply\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 689.8833312988281,
-        "y": 369.8833312988281,
-        "wires": [
-            [
-                "817e15ac.83b7d"
-            ]
-        ],
-        "outputLabels": [
-            "tagCount",
-            ""
-        ]
     },
     {
         "id": "76091bc6.c00cf4",
@@ -1117,7 +1067,8 @@
         "y": 72.98332977294922,
         "wires": [
             [
-                "7d3e6676.6197b"
+                "7d3e6676.6197b",
+                "d7189e24.c310c"
             ]
         ]
     },
@@ -1261,20 +1212,6 @@
                 "76091bc6.c00cf4"
             ]
         ]
-    },
-    {
-        "id": "c96205bc.05d72",
-        "type": "debug",
-        "z": "92d480a1.db57d",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 528.8333435058594,
-        "y": 419,
-        "wires": []
     },
     {
         "id": "45df9f11.cbdb28",
@@ -2837,7 +2774,7 @@
         "id": "408af22.64a9f8c",
         "type": "switch",
         "z": "7f80a2cf.94a544",
-        "name": "",
+        "name": "find node",
         "property": "button",
         "propertyType": "msg",
         "rules": [
@@ -2850,7 +2787,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 548.4999542236328,
+        "x": 558.4999542236328,
         "y": 515,
         "wires": [
             [
@@ -2977,8 +2914,7 @@
         "y": 85.19999694824219,
         "wires": [
             [
-                "690b96e6.3346d8",
-                "c689eab7.c3792"
+                "690b96e6.3346d8"
             ]
         ]
     },
@@ -2997,20 +2933,6 @@
                 "3bc341d8.98418e"
             ]
         ]
-    },
-    {
-        "id": "c689eab7.c3792",
-        "type": "debug",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 867.5,
-        "y": 31.399993896484375,
-        "wires": []
     },
     {
         "id": "f25f893f.c910a8",
@@ -3055,8 +2977,7 @@
         "y": 82.59999084472656,
         "wires": [
             [
-                "f25f893f.c910a8",
-                "c689eab7.c3792"
+                "f25f893f.c910a8"
             ]
         ]
     },
@@ -3443,7 +3364,8 @@
         "y": 267.25001525878906,
         "wires": [
             [
-                "4fd787f5.4e9c6"
+                "4fd787f5.4e9c6",
+                "21611230.9955c6"
             ]
         ]
     },
@@ -4175,7 +4097,7 @@
         "id": "99c89bfc.d952f",
         "type": "switch",
         "z": "7f80a2cf.94a544",
-        "name": "",
+        "name": "git-update",
         "property": "button",
         "propertyType": "msg",
         "rules": [
@@ -4188,7 +4110,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 739,
+        "x": 759,
         "y": 423,
         "wires": [
             [
@@ -4222,8 +4144,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 907,
-        "y": 422.0000305175781,
+        "x": 948,
+        "y": 426,
         "wires": [
             [
                 "620bf031.24cc9"
@@ -4239,8 +4161,179 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 1105,
-        "y": 376,
+        "x": 1119,
+        "y": 427,
         "wires": []
+    },
+    {
+        "id": "d7189e24.c310c",
+        "type": "debug",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 730.5,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "94faa1b0.898318",
+        "type": "ui_dropdown",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "label": "Select global status colour (can be over-ridden by the flow)",
+        "tooltip": "This will be passed on to the node status LED",
+        "place": "Select option",
+        "group": "af185d05.4ad048",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 631,
+        "y": 774,
+        "wires": [
+            [
+                "c602882b.62a8c"
+            ]
+        ]
+    },
+    {
+        "id": "c602882b.62a8c",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "set global StatusColour - passed to rpi's status",
+        "func": "\n\nglobal.set('StatusColour', msg.payload);\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1137.5,
+        "y": 776,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "99f854ad.34936",
+        "type": "subflow:7f80a2cf.94a544",
+        "z": "92d480a1.db57d",
+        "x": 313,
+        "y": 373,
+        "wires": [
+            [
+                "a0804b2c.4999e"
+            ]
+        ]
+    },
+    {
+        "id": "2bfb8e99.8f526a",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "reply to node ping with StatusColour ",
+        "func": "\n// what we're storing\nvar from = msg.payload.from\n\n// the reply to the node\n//var gamestatus = flow.get('gamestate');// ||  global.get('gamestate') || \"yellow\";\n\nvar nodestatus_colour = env.get(\"StatusColour\") ||\n                        global.get('StatusColour') ||\n                        \"yellow\";\n\nmsg.payload = {\n    \"from\": from,\n    \"status\": nodestatus_colour,\n};\nmsg.topic = from+\"/ping/reply\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 827,
+        "y": 169,
+        "wires": [
+            []
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "21611230.9955c6",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "get global StatusColour",
+        "func": "\nvar def = global.get('StatusColour') || \"\";\n\nvar colours = [\n    \"off\",\n    \"red\",\n    \"yellow\",\n    \"green\",\n    \"blue\",\n    \"purple\",\n    ]\n\n\nreturn {payload: def, options: colours};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 266,
+        "y": 749,
+        "wires": [
+            [
+                "94faa1b0.898318"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "fb074edf.a381",
+        "type": "function",
+        "z": "92d480a1.db57d",
+        "name": "get flow StatusColour",
+        "func": "\nvar def = flow.get('StatusColour') || \"\";\n\nvar colours = [\n    \"off\",\n    \"red\",\n    \"yellow\",\n    \"green\",\n    \"blue\",\n    \"purple\",\n    ]\n\n\nreturn {payload: def, options: colours};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 256,
+        "y": 712,
+        "wires": [
+            [
+                "691e4622.bd82b8"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "ac6c31c4.03c208",
+        "type": "inject",
+        "z": "92d480a1.db57d",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 89,
+        "y": 714,
+        "wires": [
+            [
+                "fb074edf.a381"
+            ]
+        ]
+    },
+    {
+        "id": "a0804b2c.4999e",
+        "type": "change",
+        "z": "92d480a1.db57d",
+        "name": "use local flow status colour",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.status",
+                "pt": "msg",
+                "to": "StatusColour",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 687.5,
+        "y": 371,
+        "wires": [
+            [
+                "d7189e24.c310c",
+                "817e15ac.83b7d"
+            ]
+        ]
     }
 ]
