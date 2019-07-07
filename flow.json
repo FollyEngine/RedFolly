@@ -37,9 +37,16 @@
     {
         "id": "7ee50041.c87b68",
         "type": "tab",
-        "label": "dueling",
+        "label": "Crickit test",
         "disabled": false,
         "info": "Sven's going to try to re-create the 1819 dueling podiums\nusing 2 crickit board's on rpi's\n\n"
+    },
+    {
+        "id": "92c9855e.987598",
+        "type": "tab",
+        "label": "Entity creator",
+        "disabled": false,
+        "info": "used to define entites, what attributes they have\nand ohpefully how to edit them"
     },
     {
         "id": "2b493f5b.793ad8",
@@ -71,11 +78,21 @@
         "in": [],
         "out": [
             {
-                "x": 1045,
-                "y": 155,
+                "x": 1240,
+                "y": 167,
                 "wires": [
                     {
                         "id": "2bfb8e99.8f526a",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1311,
+                "y": 771,
+                "wires": [
+                    {
+                        "id": "4bf4923d.4c57e4",
                         "port": 0
                     }
                 ]
@@ -295,7 +312,7 @@
         "z": "",
         "name": "Megagame",
         "icon": "fa-robot",
-        "order": 2,
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -400,19 +417,9 @@
         "z": "",
         "name": "Crickit-1",
         "icon": "dashboard",
-        "order": 3,
+        "order": 4,
         "disabled": false,
         "hidden": false
-    },
-    {
-        "id": "af185d05.4ad048",
-        "type": "ui_group",
-        "z": "",
-        "name": "Nodes",
-        "tab": "abfe76fc.26ead",
-        "disp": true,
-        "width": "6",
-        "collapse": false
     },
     {
         "id": "cdde7c2a.e59628",
@@ -442,6 +449,38 @@
         "name": "Servos",
         "tab": "fc6a7e4.ab81e",
         "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ed67316b.08a148",
+        "type": "ui_group",
+        "z": "",
+        "name": "Configure",
+        "tab": "abfe76fc.26ead",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "7c0edb98.923b7c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Entities",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "231e1ad8.e5f4ae",
+        "type": "ui_group",
+        "z": "",
+        "name": "Entity types",
+        "tab": "7c0edb98.923b7c",
+        "order": 1,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -735,10 +774,10 @@
         "tooltip": "This will be passed on to the node status LED",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 1,
+        "order": 2,
         "width": "6",
         "height": "1",
-        "passthru": true,
+        "passthru": false,
         "options": [],
         "payload": "",
         "topic": "",
@@ -842,7 +881,7 @@
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 2,
+        "order": 3,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -1126,16 +1165,17 @@
         "order": 3,
         "width": "11",
         "height": "10",
-        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td><td>git</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"find\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-refresh\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"git-update\"})'\n     target=\"_blank\">\n    </md-button>{{obj.git_commit}}\n   </td>\n </tr>\n</table>",
+        "format": "<table width=\"100%\">\n <tr><td>node</td><td>ip</td><td>last seen</td><td>git</td><td>config</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"find\"})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n   <td>{{obj.ip}}</td>\n   <td>{{obj.timestring}}</td>\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-refresh\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"git-update\"})'\n     target=\"_blank\">\n    </md-button>{{obj.git_commit}}\n   </td>\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-config\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({node: obj.name, button: \"configure\"})'\n     target=\"_blank\">\n    {{obj.name}}\n    </md-button>\n   </td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 549.2665557861328,
-        "y": 426.26666259765625,
+        "x": 545.2666015625,
+        "y": 315.26666259765625,
         "wires": [
             [
                 "408af22.64a9f8c",
-                "99c89bfc.d952f"
+                "99c89bfc.d952f",
+                "b2779103.f8fdc8"
             ]
         ]
     },
@@ -1149,8 +1189,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 323.14988708496094,
-        "y": 427.51666259765625,
+        "x": 325.1499328613281,
+        "y": 314.51666259765625,
         "wires": [
             [
                 "27c6c35.01d873c"
@@ -1169,8 +1209,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 99.14991760253906,
-        "y": 427.96661376953125,
+        "x": 160.14996337890625,
+        "y": 255.96661376953125,
         "wires": [
             [
                 "391555.27c16aac"
@@ -2787,8 +2827,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 558.4999542236328,
-        "y": 515,
+        "x": 568.5,
+        "y": 440,
         "wires": [
             [
                 "52b140b0.b149e8"
@@ -2801,8 +2841,8 @@
         "z": "7f80a2cf.94a544",
         "name": "",
         "env": [],
-        "x": 922.4999542236328,
-        "y": 517,
+        "x": 932.5,
+        "y": 442,
         "wires": []
     },
     {
@@ -2824,8 +2864,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 716.4999542236328,
-        "y": 514.0000305175781,
+        "x": 726.5,
+        "y": 439.0000305175781,
         "wires": [
             [
                 "a346432c.43edc8",
@@ -2876,8 +2916,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 508,
-        "y": 271.0000305175781,
+        "x": 565,
+        "y": 1081.0000305175781,
         "wires": [
             [
                 "e3fcc45c.4b105"
@@ -2892,8 +2932,8 @@
         "func": "\n\nflow.set('allnodes_playsound', msg.payload);\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 730.5,
-        "y": 284.0000305175781,
+        "x": 787.5,
+        "y": 1094.0000305175781,
         "wires": [
             []
         ],
@@ -2990,7 +3030,7 @@
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 3,
+        "order": 4,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -3090,7 +3130,7 @@
         "tooltip": "The selected node will be the one that increases the XP",
         "place": "Select option",
         "group": "cdde7c2a.e59628",
-        "order": 4,
+        "order": 5,
         "width": "6",
         "height": "1",
         "passthru": false,
@@ -3325,8 +3365,8 @@
                 "value": "theatrechase"
             }
         ],
-        "x": 919.1666870117188,
-        "y": 574.5,
+        "x": 929.1667327880859,
+        "y": 499.5,
         "wires": []
     },
     {
@@ -3337,8 +3377,8 @@
         "func": "\nvar def = flow.get('allnodes_playsound') || \"\";\n\n//var nodes = []\n//for (const x of msg.payload) {\n//    nodes.push(x.name)\n//}\n//return {payload: def, options: nodes};\nreturn {payload: def};",
         "outputs": 1,
         "noerr": 0,
-        "x": 305.08331298828125,
-        "y": 269.0833435058594,
+        "x": 362.08331298828125,
+        "y": 1079.0833435058594,
         "wires": [
             [
                 "f5ac33d.1a1add"
@@ -3360,8 +3400,8 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 91.16665649414062,
-        "y": 267.25001525878906,
+        "x": 148.16665649414062,
+        "y": 1077.250015258789,
         "wires": [
             [
                 "4fd787f5.4e9c6",
@@ -3386,8 +3426,8 @@
                 "value": "9999"
             }
         ],
-        "x": 1077.166748046875,
-        "y": 625.5,
+        "x": 1087.1667938232422,
+        "y": 550.5,
         "wires": []
     },
     {
@@ -3405,8 +3445,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 904.1667022705078,
-        "y": 629.5833282470703,
+        "x": 914.166748046875,
+        "y": 554.5833282470703,
         "wires": [
             [
                 "dde22df8.79da4"
@@ -4110,8 +4150,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 759,
-        "y": 423,
+        "x": 684.0000610351562,
+        "y": 382,
         "wires": [
             [
                 "557bfb36.c2e3fc"
@@ -4144,8 +4184,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 948,
-        "y": 426,
+        "x": 873.0000610351562,
+        "y": 385,
         "wires": [
             [
                 "620bf031.24cc9"
@@ -4161,8 +4201,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 1119,
-        "y": 427,
+        "x": 1044.0000610351562,
+        "y": 386,
         "wires": []
     },
     {
@@ -4188,7 +4228,7 @@
         "label": "Select global status colour (can be over-ridden by the flow)",
         "tooltip": "This will be passed on to the node status LED",
         "place": "Select option",
-        "group": "af185d05.4ad048",
+        "group": "b5740beb.c122",
         "order": 1,
         "width": "6",
         "height": "1",
@@ -4196,8 +4236,8 @@
         "options": [],
         "payload": "",
         "topic": "",
-        "x": 631,
-        "y": 774,
+        "x": 730,
+        "y": 1167,
         "wires": [
             [
                 "c602882b.62a8c"
@@ -4212,8 +4252,8 @@
         "func": "\n\nglobal.set('StatusColour', msg.payload);\n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 1137.5,
-        "y": 776,
+        "x": 1236.5,
+        "y": 1169,
         "wires": [
             []
         ],
@@ -4230,6 +4270,9 @@
         "wires": [
             [
                 "a0804b2c.4999e"
+            ],
+            [
+                "d7189e24.c310c"
             ]
         ]
     },
@@ -4258,8 +4301,8 @@
         "func": "\nvar def = global.get('StatusColour') || \"\";\n\nvar colours = [\n    \"off\",\n    \"red\",\n    \"yellow\",\n    \"green\",\n    \"blue\",\n    \"purple\",\n    ]\n\n\nreturn {payload: def, options: colours};",
         "outputs": 1,
         "noerr": 0,
-        "x": 266,
-        "y": 749,
+        "x": 365,
+        "y": 1142,
         "wires": [
             [
                 "94faa1b0.898318"
@@ -4331,9 +4374,593 @@
         "y": 371,
         "wires": [
             [
-                "d7189e24.c310c",
                 "817e15ac.83b7d"
             ]
+        ]
+    },
+    {
+        "id": "b2779103.f8fdc8",
+        "type": "switch",
+        "z": "7f80a2cf.94a544",
+        "name": "configure",
+        "property": "button",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "configure",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 541,
+        "y": 627,
+        "wires": [
+            [
+                "73a771bd.7abfc8",
+                "c1f7c02d.26edf8"
+            ]
+        ]
+    },
+    {
+        "id": "73a771bd.7abfc8",
+        "type": "ui_text",
+        "z": "7f80a2cf.94a544",
+        "group": "ed67316b.08a148",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "node",
+        "format": "{{msg.node}}",
+        "layout": "row-spread",
+        "x": 1045.5,
+        "y": 613,
+        "wires": []
+    },
+    {
+        "id": "c1f7c02d.26edf8",
+        "type": "change",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"name\": $.node }",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 656,
+        "y": 684,
+        "wires": [
+            [
+                "4c033fcd.cc6848"
+            ]
+        ]
+    },
+    {
+        "id": "4c033fcd.cc6848",
+        "type": "mongodb-node",
+        "z": "7f80a2cf.94a544",
+        "mongodb": "82a69951.ff1f48",
+        "name": "get node",
+        "collection": "nodes",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 826.9999389648438,
+        "y": 687.4166259765625,
+        "wires": [
+            [
+                "61db1666.13275"
+            ]
+        ]
+    },
+    {
+        "id": "bab928a7.119578",
+        "type": "ui_text",
+        "z": "7f80a2cf.94a544",
+        "group": "ed67316b.08a148",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "IP",
+        "format": "{{msg.payload.ip}}",
+        "layout": "row-spread",
+        "x": 1146.5,
+        "y": 690,
+        "wires": []
+    },
+    {
+        "id": "61db1666.13275",
+        "type": "function",
+        "z": "7f80a2cf.94a544",
+        "name": "get first ",
+        "func": "\nif (msg.payload.length > 0) {\n    msg.payload = msg.payload[0];\n}\n\nmsg.topic=msg.payload.name\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 972.5,
+        "y": 712,
+        "wires": [
+            [
+                "bab928a7.119578",
+                "4bf4923d.4c57e4"
+            ]
+        ]
+    },
+    {
+        "id": "4bf4923d.4c57e4",
+        "type": "ui_dropdown",
+        "z": "7f80a2cf.94a544",
+        "name": "",
+        "label": "game",
+        "tooltip": "which game tab this node is being used for",
+        "place": "Select option",
+        "group": "ed67316b.08a148",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "",
+                "value": "NONE",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "megagame",
+                "type": "str"
+            },
+            {
+                "label": "",
+                "value": "crickit",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 1182.5,
+        "y": 755,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "700f4e.94c558b4",
+        "type": "ui_template",
+        "z": "92c9855e.987598",
+        "group": "231e1ad8.e5f4ae",
+        "name": "Types",
+        "order": 2,
+        "width": "6",
+        "height": "9",
+        "format": "<table width=\"100%\">\n <tr><td>name</td><td>desc</td><td>actions</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({_id: obj._id, name: obj.name, button: \"configure\", obj: obj})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n<td>\n    {{obj.description}}\n   </td>\n  <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-remove\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({_id: obj._id, name: obj.name,  button: \"remove\", obj: obj})'\n     target=\"_blank\"></md-button> \n   </td>\n </tr>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 753,
+        "y": 228,
+        "wires": [
+            [
+                "2b329dd5.7b2c5a",
+                "1bfa0901.4bd9ff"
+            ]
+        ]
+    },
+    {
+        "id": "364153cb.8800bc",
+        "type": "mongodb-node",
+        "z": "92c9855e.987598",
+        "mongodb": "82a69951.ff1f48",
+        "name": "",
+        "collection": "entity_definitions",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 515.8833312988281,
+        "y": 228.25,
+        "wires": [
+            [
+                "700f4e.94c558b4",
+                "d365a025.8b05b8"
+            ]
+        ]
+    },
+    {
+        "id": "1d24f0ad.b5e63f",
+        "type": "inject",
+        "z": "92c9855e.987598",
+        "name": "",
+        "topic": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 165.88330078125,
+        "y": 208.699951171875,
+        "wires": [
+            [
+                "413f96e3.daeb68"
+            ]
+        ]
+    },
+    {
+        "id": "df340c8a.535df",
+        "type": "ui_form",
+        "z": "92c9855e.987598",
+        "name": "",
+        "label": "Create New Entity type",
+        "group": "231e1ad8.e5f4ae",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Name",
+                "value": "name",
+                "type": "text",
+                "required": true
+            },
+            {
+                "label": "Description",
+                "value": "description",
+                "type": "text",
+                "required": false
+            }
+        ],
+        "formValue": {
+            "name": "",
+            "description": ""
+        },
+        "payload": "",
+        "submit": "Create",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 142.5,
+        "y": 319,
+        "wires": [
+            [
+                "f8f95fe1.1dc518"
+            ]
+        ]
+    },
+    {
+        "id": "2dcde224.daee86",
+        "type": "function",
+        "z": "92c9855e.987598",
+        "name": "create new entity type",
+        "func": "\n// what we're storing\nvar updatedb = {\n    query: {\"name\": msg.orig.name}, \n    payload: msg.orig,\n    collection: \"entity_definitions\",\n}\n\nreturn updatedb;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 752,
+        "y": 398,
+        "wires": [
+            [
+                "f0761970.27f788"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "f0761970.27f788",
+        "type": "mongodb-node",
+        "z": "92c9855e.987598",
+        "mongodb": "82a69951.ff1f48",
+        "name": "create entity",
+        "collection": "",
+        "operation": "update",
+        "upsert": true,
+        "multi": false,
+        "x": 952.38330078125,
+        "y": 396.88330078125,
+        "wires": [
+            [
+                "3d7d9148.4c2236"
+            ]
+        ]
+    },
+    {
+        "id": "40597bc7.b31ea4",
+        "type": "mongodb-node",
+        "z": "92c9855e.987598",
+        "mongodb": "82a69951.ff1f48",
+        "name": "get entity",
+        "collection": "entity_definitions",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 386,
+        "y": 420,
+        "wires": [
+            [
+                "8233c6ba.b17e2",
+                "7479761d.8a592"
+            ]
+        ]
+    },
+    {
+        "id": "f8f95fe1.1dc518",
+        "type": "change",
+        "z": "92c9855e.987598",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "orig",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"name\": $.payload.name }",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 246,
+        "y": 364,
+        "wires": [
+            [
+                "40597bc7.b31ea4"
+            ]
+        ]
+    },
+    {
+        "id": "8233c6ba.b17e2",
+        "type": "switch",
+        "z": "92c9855e.987598",
+        "name": "doesn't exist",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 553.5,
+        "y": 397,
+        "wires": [
+            [
+                "2dcde224.daee86"
+            ]
+        ]
+    },
+    {
+        "id": "7479761d.8a592",
+        "type": "switch",
+        "z": "92c9855e.987598",
+        "name": "exists",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 540,
+        "y": 448,
+        "wires": [
+            [
+                "93cb7d56.b39d08"
+            ]
+        ]
+    },
+    {
+        "id": "93cb7d56.b39d08",
+        "type": "ui_toast",
+        "z": "92c9855e.987598",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "Sorry, that entity already exists",
+        "name": "",
+        "x": 696.5,
+        "y": 448,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d365a025.8b05b8",
+        "type": "debug",
+        "z": "92c9855e.987598",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1454.5,
+        "y": 266,
+        "wires": []
+    },
+    {
+        "id": "2b329dd5.7b2c5a",
+        "type": "switch",
+        "z": "92c9855e.987598",
+        "name": "configure",
+        "property": "button",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "configure",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 917,
+        "y": 295,
+        "wires": [
+            [
+                "fa6865c9.45d688"
+            ]
+        ]
+    },
+    {
+        "id": "413f96e3.daeb68",
+        "type": "function",
+        "z": "92c9855e.987598",
+        "name": "send an empty msg",
+        "func": "\nreturn {};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 354.5,
+        "y": 170,
+        "wires": [
+            [
+                "364153cb.8800bc"
+            ]
+        ]
+    },
+    {
+        "id": "1bfa0901.4bd9ff",
+        "type": "switch",
+        "z": "92c9855e.987598",
+        "name": "remove",
+        "property": "button",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "remove",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 917,
+        "y": 222,
+        "wires": [
+            [
+                "e6ae376d.46214"
+            ]
+        ]
+    },
+    {
+        "id": "3b29655f.e7427a",
+        "type": "link in",
+        "z": "92c9855e.987598",
+        "name": "",
+        "links": [
+            "3510d57e.89cb9a",
+            "fa6865c9.45d688",
+            "3d7d9148.4c2236"
+        ],
+        "x": 210.5,
+        "y": 150,
+        "wires": [
+            [
+                "413f96e3.daeb68"
+            ]
+        ]
+    },
+    {
+        "id": "3510d57e.89cb9a",
+        "type": "link out",
+        "z": "92c9855e.987598",
+        "name": "refresh-types",
+        "links": [
+            "3b29655f.e7427a"
+        ],
+        "x": 1437.5,
+        "y": 222,
+        "wires": []
+    },
+    {
+        "id": "fa6865c9.45d688",
+        "type": "link out",
+        "z": "92c9855e.987598",
+        "name": "refresh-types",
+        "links": [
+            "3b29655f.e7427a"
+        ],
+        "x": 1159,
+        "y": 298,
+        "wires": []
+    },
+    {
+        "id": "3d7d9148.4c2236",
+        "type": "link out",
+        "z": "92c9855e.987598",
+        "name": "refresh-types",
+        "links": [
+            "3b29655f.e7427a"
+        ],
+        "x": 1172,
+        "y": 396,
+        "wires": []
+    },
+    {
+        "id": "f8290f58.4bfd08",
+        "type": "mongodb-node",
+        "z": "92c9855e.987598",
+        "mongodb": "82a69951.ff1f48",
+        "name": "remove entity",
+        "collection": "entity_definitions",
+        "operation": "delete",
+        "upsert": false,
+        "multi": false,
+        "x": 1281,
+        "y": 221,
+        "wires": [
+            [
+                "3510d57e.89cb9a"
+            ]
+        ]
+    },
+    {
+        "id": "e6ae376d.46214",
+        "type": "function",
+        "z": "92c9855e.987598",
+        "name": "remove entity type",
+        "func": "\n// what we're removing\nvar updatedb = {\n    //payload: {\"_id\": msg.obj._id}, \n    payload: {\"name\": msg.obj.name}, \n    collection: \"entity_definitions\",\n}\n\nreturn updatedb;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1084,
+        "y": 222,
+        "wires": [
+            [
+                "f8290f58.4bfd08"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
         ]
     }
 ]
