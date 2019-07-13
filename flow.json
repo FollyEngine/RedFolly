@@ -49,6 +49,13 @@
         "info": "used to define entites, what attributes they have\nand ohpefully how to edit them"
     },
     {
+        "id": "f65fd73a.ffb538",
+        "type": "tab",
+        "label": "CodeLock",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2b493f5b.793ad8",
         "type": "subflow",
         "name": "RFID read",
@@ -484,6 +491,49 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "a3da29b5.d71078",
+        "type": "ui_group",
+        "z": "",
+        "name": "ABCD Controls",
+        "tab": "4bff639b.e041dc",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "1fa38067.626e",
+        "type": "ui_group",
+        "z": "",
+        "name": "ABCD Game",
+        "tab": "4bff639b.e041dc",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "99ca804b.cd24c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Active Games",
+        "tab": "4bff639b.e041dc",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4bff639b.e041dc",
+        "type": "ui_tab",
+        "z": "",
+        "name": "CodeLock",
+        "icon": "gamepad",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "dced7457.72aad",
@@ -3478,8 +3528,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 345.08331298828125,
-        "y": 131.08334350585938,
+        "x": 416.0832939147949,
+        "y": 134.0833396911621,
         "wires": [
             [
                 "adeed921.e6651"
@@ -3511,8 +3561,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 344.0833282470703,
-        "y": 196.08334350585938,
+        "x": 415.083309173584,
+        "y": 199.0833396911621,
         "wires": [
             [
                 "5d78a7e8.705158"
@@ -3544,8 +3594,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 351.0833282470703,
-        "y": 252.08334350585938,
+        "x": 422.083309173584,
+        "y": 255.0833396911621,
         "wires": [
             [
                 "ced8ac6d.184d8"
@@ -3577,8 +3627,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 357.08331298828125,
-        "y": 320.0833435058594,
+        "x": 428.0832939147949,
+        "y": 323.0833396911621,
         "wires": [
             [
                 "db3d6a63.a451b"
@@ -3593,8 +3643,8 @@
         "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.value\n}\nreturn [touch, raw]",
         "outputs": 1,
         "noerr": 0,
-        "x": 515.1666259765625,
-        "y": 140.66665649414062,
+        "x": 586.1666069030762,
+        "y": 143.66665267944336,
         "wires": [
             [
                 "3b85dbc9.f1818c"
@@ -3637,8 +3687,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 710.1666412353516,
-        "y": 137,
+        "x": 781.1666221618652,
+        "y": 139.99999618530273,
         "wires": [
             []
         ]
@@ -3651,8 +3701,8 @@
         "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.raw\n}\nreturn [touch, raw]",
         "outputs": 1,
         "noerr": 0,
-        "x": 502.08331298828125,
-        "y": 196.08334350585938,
+        "x": 573.0832939147949,
+        "y": 199.0833396911621,
         "wires": [
             [
                 "60da3f5e.3d3858"
@@ -3695,8 +3745,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 697.0833282470703,
-        "y": 192.41668701171875,
+        "x": 768.083309173584,
+        "y": 195.41668319702148,
         "wires": [
             []
         ]
@@ -3709,8 +3759,8 @@
         "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.raw\n}\nreturn [touch, raw]",
         "outputs": 1,
         "noerr": 0,
-        "x": 503.08331298828125,
-        "y": 253.08334350585938,
+        "x": 574.0832939147949,
+        "y": 256.0833396911621,
         "wires": [
             [
                 "9d5a1115.5ac6b8"
@@ -3753,8 +3803,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 698.0833282470703,
-        "y": 249.41668701171875,
+        "x": 769.083309173584,
+        "y": 252.41668319702148,
         "wires": [
             []
         ]
@@ -3767,8 +3817,8 @@
         "func": "var val = 100\nif (msg.payload.value > 500) {\n    val = 1000\n}\nvar touch = {\n    topic: 'Touch',\n    time: msg.payload.time,\n    payload: val\n}\n\nvar raw = {\n    topic: 'Raw',\n    time: msg.payload.time,\n    payload: msg.payload.raw\n}\nreturn [touch, raw]",
         "outputs": 1,
         "noerr": 0,
-        "x": 495.08331298828125,
-        "y": 323.0833435058594,
+        "x": 566.0832939147949,
+        "y": 326.0833396911621,
         "wires": [
             [
                 "b290c5d0.95ad5"
@@ -3811,8 +3861,8 @@
         ],
         "useOldStyle": false,
         "outputs": 1,
-        "x": 690.0833282470703,
-        "y": 319.41668701171875,
+        "x": 761.083309173584,
+        "y": 322.4166831970215,
         "wires": [
             []
         ]
@@ -4961,6 +5011,446 @@
         ],
         "outputLabels": [
             "tagCount"
+        ]
+    },
+    {
+        "id": "524a60d3.e72bc",
+        "type": "Blockly",
+        "z": "33295a88.eaa786",
+        "language": "en",
+        "func": "\nreturn msg;",
+        "workspaceXml": "",
+        "outputs": 1,
+        "name": "",
+        "x": 438.10008239746094,
+        "y": 715.0000104904175,
+        "wires": [
+            [
+                "ec807131.0d01c",
+                "374da5c8.5dbd0a"
+            ]
+        ]
+    },
+    {
+        "id": "ec807131.0d01c",
+        "type": "Blockly",
+        "z": "33295a88.eaa786",
+        "language": "en",
+        "func": "\nreturn msg;",
+        "workspaceXml": "",
+        "outputs": 1,
+        "name": "",
+        "x": 662.1000595092773,
+        "y": 716.0000123977661,
+        "wires": [
+            [
+                "38073be5.2b83b4"
+            ]
+        ]
+    },
+    {
+        "id": "38073be5.2b83b4",
+        "type": "Blockly",
+        "z": "33295a88.eaa786",
+        "language": "en",
+        "func": "\nreturn msg;",
+        "workspaceXml": "",
+        "outputs": 1,
+        "name": "",
+        "x": 875.1000595092773,
+        "y": 721.0000095367432,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "374da5c8.5dbd0a",
+        "type": "Blockly",
+        "z": "33295a88.eaa786",
+        "language": "en",
+        "func": "\nreturn msg;",
+        "workspaceXml": "",
+        "outputs": 1,
+        "name": "",
+        "x": 677.1000595092773,
+        "y": 615.0000095367432,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7747b1.7b23888",
+        "type": "inject",
+        "z": "f65fd73a.ffb538",
+        "name": "A",
+        "topic": "",
+        "payload": "A",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 330,
+        "y": 259.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "ca3fa9b.4b58e58",
+        "type": "inject",
+        "z": "f65fd73a.ffb538",
+        "name": "B",
+        "topic": "",
+        "payload": "B",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 330,
+        "y": 319.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "75de22e6.9f5b1c",
+        "type": "inject",
+        "z": "f65fd73a.ffb538",
+        "name": "C",
+        "topic": "",
+        "payload": "C",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 330,
+        "y": 379.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "a973f5a0.72aef8",
+        "type": "inject",
+        "z": "f65fd73a.ffb538",
+        "name": "D",
+        "topic": "",
+        "payload": "D",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 330,
+        "y": 439.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "a7f244f7.180948",
+        "type": "function",
+        "z": "f65fd73a.ffb538",
+        "name": "StringEvaluator",
+        "func": "const gameArray = flow.get('currentSet') || [];\nconst winnerSet = flow.get('winnerSet');\nlet totalWon = flow.get('totalWin') || 0;\nlet totalLost = flow.get('totalLose') || 0;\nmsg.result = ''; \n//let gameArrayReset = flow.get('reset') || false;\n\ngameArray.push(msg.payload);\n\nflow.set('currentSet', gameArray);\n\nmsg.array = gameArray.join('');\n\nif(gameArray.length === winnerSet.length) {\n    \n    const gameString = gameArray.join('');\n    \n    if(gameString == winnerSet) {\n        msg.result = \"you win\";\n        flow.set('currentSet', []);\n        totalWon++;\n        flow.set('totalWin', totalWon);\n    }\n    else {\n        msg.result = \"you lose\";\n        flow.set('currentSet', []);\n        totalLost++;\n        flow.set('totalLose', totalLost);\n    }\n}\n\nmsg.won = flow.get('totalWin');\nmsg.lost = flow.get('totalLose');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 359.0000047683716,
+        "wires": [
+            [
+                "f75a0604.4027d8",
+                "35d4f963.c29e46",
+                "53f078d8.127e78"
+            ]
+        ]
+    },
+    {
+        "id": "f7545df3.b4833",
+        "type": "ui_text_input",
+        "z": "f65fd73a.ffb538",
+        "name": "winnerStringInput",
+        "label": "Set solution",
+        "tooltip": "",
+        "group": "a3da29b5.d71078",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "",
+        "x": 350,
+        "y": 599.0000047683716,
+        "wires": [
+            [
+                "44f97197.3e399"
+            ]
+        ]
+    },
+    {
+        "id": "414d3624.94c158",
+        "type": "ui_button",
+        "z": "f65fd73a.ffb538",
+        "name": "",
+        "group": "a3da29b5.d71078",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "A",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "A",
+        "payloadType": "str",
+        "topic": "",
+        "x": 330,
+        "y": 279.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "66b149a1.ea4188",
+        "type": "ui_button",
+        "z": "f65fd73a.ffb538",
+        "name": "",
+        "group": "a3da29b5.d71078",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "B",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "B",
+        "payloadType": "str",
+        "topic": "",
+        "x": 330,
+        "y": 339.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "3e006234.ba1c3e",
+        "type": "ui_button",
+        "z": "f65fd73a.ffb538",
+        "name": "",
+        "group": "a3da29b5.d71078",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "C",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "C",
+        "payloadType": "str",
+        "topic": "",
+        "x": 330,
+        "y": 399.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "b1b8cdd2.61db5",
+        "type": "ui_button",
+        "z": "f65fd73a.ffb538",
+        "name": "",
+        "group": "a3da29b5.d71078",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "D",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "D",
+        "payloadType": "str",
+        "topic": "",
+        "x": 330,
+        "y": 459.0000047683716,
+        "wires": [
+            [
+                "a7f244f7.180948"
+            ]
+        ]
+    },
+    {
+        "id": "44f97197.3e399",
+        "type": "function",
+        "z": "f65fd73a.ffb538",
+        "name": "setWinnerString",
+        "func": "let stringInput = msg.payload;\n\nnode.log(stringInput);\n\nflow.set(\"winnerSet\", stringInput);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 599.0000047683716,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f75a0604.4027d8",
+        "type": "ui_text",
+        "z": "f65fd73a.ffb538",
+        "group": "1fa38067.626e",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "your input",
+        "format": "{{msg.array}}",
+        "layout": "row-spread",
+        "x": 800,
+        "y": 279.0000047683716,
+        "wires": []
+    },
+    {
+        "id": "893f2875.aecce8",
+        "type": "ui_button",
+        "z": "f65fd73a.ffb538",
+        "name": "resetButton",
+        "group": "a3da29b5.d71078",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset Game",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 330,
+        "y": 199.00000476837158,
+        "wires": [
+            [
+                "d97aae8.d7df55"
+            ]
+        ]
+    },
+    {
+        "id": "d97aae8.d7df55",
+        "type": "function",
+        "z": "f65fd73a.ffb538",
+        "name": "reset currentSet",
+        "func": "flow.set('currentSet', []);\nmsg.array = '';\nmsg.result = ''; \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 239.00000476837158,
+        "wires": [
+            [
+                "f75a0604.4027d8",
+                "35d4f963.c29e46"
+            ]
+        ]
+    },
+    {
+        "id": "35d4f963.c29e46",
+        "type": "ui_text",
+        "z": "f65fd73a.ffb538",
+        "group": "99ca804b.cd24c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "result",
+        "format": "{{msg.result}}",
+        "layout": "row-spread",
+        "x": 810,
+        "y": 379.0000047683716,
+        "wires": []
+    },
+    {
+        "id": "53f078d8.127e78",
+        "type": "ui_template",
+        "z": "f65fd73a.ffb538",
+        "group": "99ca804b.cd24c",
+        "name": "Stats Table",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <table mat-table>\n    <thead>\n        <tr>\n            <th>Won</th>\n            <th>Lost</th>\n        </tr>\n    </thead>\n        <tbody>\n        <tr>\n            <td ng-bind-html=\"msg.won\"></td>\n            <td ng-bind-html=\"msg.lost\"></td>\n        </tr>\n    </tbody>\n    </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 830,
+        "y": 439.0000047683716,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9609fbe.cef97",
+        "type": "ui_button",
+        "z": "f65fd73a.ffb538",
+        "name": "",
+        "group": "99ca804b.cd24c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset game stats btn",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 360,
+        "y": 519.0000047683716,
+        "wires": [
+            [
+                "d0e85875.20ac98"
+            ]
+        ]
+    },
+    {
+        "id": "d0e85875.20ac98",
+        "type": "function",
+        "z": "f65fd73a.ffb538",
+        "name": "Reset game stats",
+        "func": "flow.set('totalWin', 0);\nflow.set('totalLose', 0);\n\nmsg.won = 0;\nmsg.lost = 0;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 597,
+        "y": 519.0000047683716,
+        "wires": [
+            [
+                "53f078d8.127e78"
+            ]
         ]
     }
 ]
