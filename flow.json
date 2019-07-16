@@ -95,8 +95,8 @@
                 ]
             },
             {
-                "x": 1311,
-                "y": 771,
+                "x": 1305,
+                "y": 832,
                 "wires": [
                     {
                         "id": "4bf4923d.4c57e4",
@@ -414,6 +414,7 @@
         "z": "7f80a2cf.94a544",
         "name": "Nodes",
         "tab": "abfe76fc.26ead",
+        "order": 1,
         "disp": true,
         "width": "12",
         "collapse": true
@@ -485,9 +486,9 @@
         "id": "231e1ad8.e5f4ae",
         "type": "ui_group",
         "z": "",
-        "name": "Entity types",
+        "name": "List",
         "tab": "7c0edb98.923b7c",
-        "order": 1,
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -534,6 +535,28 @@
         "order": 1,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "f66098d.97a68e8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Create",
+        "tab": "7c0edb98.923b7c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "94f997af.79b8d",
+        "type": "ui_group",
+        "z": "",
+        "name": "Configure",
+        "tab": "7c0edb98.923b7c",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "dced7457.72aad",
@@ -4445,30 +4468,13 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 541,
-        "y": 627,
+        "x": 535,
+        "y": 688,
         "wires": [
             [
-                "73a771bd.7abfc8",
                 "c1f7c02d.26edf8"
             ]
         ]
-    },
-    {
-        "id": "73a771bd.7abfc8",
-        "type": "ui_text",
-        "z": "7f80a2cf.94a544",
-        "group": "ed67316b.08a148",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "node",
-        "format": "{{msg.node}}",
-        "layout": "row-spread",
-        "x": 1045.5,
-        "y": 613,
-        "wires": []
     },
     {
         "id": "c1f7c02d.26edf8",
@@ -4489,8 +4495,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 656,
-        "y": 684,
+        "x": 650,
+        "y": 745,
         "wires": [
             [
                 "4c033fcd.cc6848"
@@ -4507,8 +4513,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 826.9999389648438,
-        "y": 687.4166259765625,
+        "x": 820.9999389648438,
+        "y": 748.4166259765625,
         "wires": [
             [
                 "61db1666.13275"
@@ -4527,8 +4533,8 @@
         "label": "IP",
         "format": "{{msg.payload.ip}}",
         "layout": "row-spread",
-        "x": 1146.5,
-        "y": 690,
+        "x": 1166.5,
+        "y": 769,
         "wires": []
     },
     {
@@ -4539,12 +4545,13 @@
         "func": "\nif (msg.payload.length > 0) {\n    msg.payload = msg.payload[0];\n}\n\nmsg.topic=msg.payload.name\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 972.5,
-        "y": 712,
+        "x": 966.5,
+        "y": 773,
         "wires": [
             [
                 "bab928a7.119578",
-                "4bf4923d.4c57e4"
+                "4bf4923d.4c57e4",
+                "e8984e15.ea06d8"
             ]
         ]
     },
@@ -4580,8 +4587,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 1182.5,
-        "y": 755,
+        "x": 1176.5,
+        "y": 816,
         "wires": [
             []
         ]
@@ -4591,16 +4598,16 @@
         "type": "ui_template",
         "z": "92c9855e.987598",
         "group": "231e1ad8.e5f4ae",
-        "name": "Types",
-        "order": 2,
+        "name": "All Entities",
+        "order": 1,
         "width": "6",
         "height": "9",
-        "format": "<table width=\"100%\">\n <tr><td>name</td><td>desc</td><td>actions</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({_id: obj._id, name: obj.name, button: \"configure\", obj: obj})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n<td>\n    {{obj.description}}\n   </td>\n  <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-remove\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({_id: obj._id, name: obj.name,  button: \"remove\", obj: obj})'\n     target=\"_blank\"></md-button> \n   </td>\n </tr>\n</table>",
+        "format": "<table width=\"100%\">\n <tr><td>name</td><td>desc</td><td>actions</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-search\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({_id: obj._id, name: obj.name, button: \"configure\", payload: obj})'\n     target=\"_blank\">\n    {{obj.name}}<br/>\n    </md-button> \n   </td>\n<td>\n    {{obj.description}}\n   </td>\n  <td>\n     <md-button class=\"vibrate filled touched bigfont rounded fa fa-remove\" \n     style=\"background-color:#0000ff\" \n     ng-click='send({_id: obj._id, name: obj.name,  button: \"remove\", payload: obj})'\n     target=\"_blank\"></md-button> \n   </td>\n </tr>\n</table>",
         "storeOutMessages": true,
         "fwdInMessages": false,
         "templateScope": "local",
-        "x": 753,
-        "y": 228,
+        "x": 440,
+        "y": 576,
         "wires": [
             [
                 "2b329dd5.7b2c5a",
@@ -4618,12 +4625,11 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 515.8833312988281,
-        "y": 228.25,
+        "x": 554.88330078125,
+        "y": 422.25,
         "wires": [
             [
-                "700f4e.94c558b4",
-                "d365a025.8b05b8"
+                "700f4e.94c558b4"
             ]
         ]
     },
@@ -4639,8 +4645,8 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 165.88330078125,
-        "y": 208.699951171875,
+        "x": 286.88330078125,
+        "y": 402.699951171875,
         "wires": [
             [
                 "413f96e3.daeb68"
@@ -4653,7 +4659,7 @@
         "z": "92c9855e.987598",
         "name": "",
         "label": "Create New Entity type",
-        "group": "231e1ad8.e5f4ae",
+        "group": "f66098d.97a68e8",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -4679,8 +4685,8 @@
         "submit": "Create",
         "cancel": "cancel",
         "topic": "",
-        "x": 142.5,
-        "y": 319,
+        "x": 236.5,
+        "y": 136,
         "wires": [
             [
                 "f8f95fe1.1dc518"
@@ -4695,8 +4701,8 @@
         "func": "\n// what we're storing\nvar updatedb = {\n    query: {\"name\": msg.orig.name}, \n    payload: msg.orig,\n    collection: \"entity_definitions\",\n}\n\nreturn updatedb;",
         "outputs": 1,
         "noerr": 0,
-        "x": 752,
-        "y": 398,
+        "x": 846,
+        "y": 215,
         "wires": [
             [
                 "f0761970.27f788"
@@ -4716,8 +4722,8 @@
         "operation": "update",
         "upsert": true,
         "multi": false,
-        "x": 952.38330078125,
-        "y": 396.88330078125,
+        "x": 1046.38330078125,
+        "y": 213.88330078125,
         "wires": [
             [
                 "3d7d9148.4c2236"
@@ -4734,8 +4740,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 386,
-        "y": 420,
+        "x": 480,
+        "y": 237,
         "wires": [
             [
                 "8233c6ba.b17e2",
@@ -4769,8 +4775,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 246,
-        "y": 364,
+        "x": 340,
+        "y": 181,
         "wires": [
             [
                 "40597bc7.b31ea4"
@@ -4792,8 +4798,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 553.5,
-        "y": 397,
+        "x": 647.5,
+        "y": 214,
         "wires": [
             [
                 "2dcde224.daee86"
@@ -4815,8 +4821,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 540,
-        "y": 448,
+        "x": 634,
+        "y": 265,
         "wires": [
             [
                 "93cb7d56.b39d08"
@@ -4835,8 +4841,8 @@
         "cancel": "",
         "topic": "Sorry, that entity already exists",
         "name": "",
-        "x": 696.5,
-        "y": 448,
+        "x": 790.5,
+        "y": 265,
         "wires": [
             []
         ]
@@ -4852,8 +4858,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1454.5,
-        "y": 266,
+        "x": 1135.5,
+        "y": 727,
         "wires": []
     },
     {
@@ -4873,11 +4879,15 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 917,
-        "y": 295,
+        "x": 603,
+        "y": 688,
         "wires": [
             [
-                "fa6865c9.45d688"
+                "fa6865c9.45d688",
+                "f9ce95d1.b17018",
+                "457f3145.61224",
+                "2592605e.87b8d",
+                "d365a025.8b05b8"
             ]
         ]
     },
@@ -4889,8 +4899,8 @@
         "func": "\nreturn {};",
         "outputs": 1,
         "noerr": 0,
-        "x": 354.5,
-        "y": 170,
+        "x": 475.5,
+        "y": 364,
         "wires": [
             [
                 "364153cb.8800bc"
@@ -4914,8 +4924,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 917,
-        "y": 222,
+        "x": 644,
+        "y": 637,
         "wires": [
             [
                 "e6ae376d.46214"
@@ -4932,8 +4942,8 @@
             "fa6865c9.45d688",
             "3d7d9148.4c2236"
         ],
-        "x": 210.5,
-        "y": 150,
+        "x": 331.5,
+        "y": 344,
         "wires": [
             [
                 "413f96e3.daeb68"
@@ -4948,8 +4958,8 @@
         "links": [
             "3b29655f.e7427a"
         ],
-        "x": 1437.5,
-        "y": 222,
+        "x": 1164.5,
+        "y": 637,
         "wires": []
     },
     {
@@ -4960,8 +4970,8 @@
         "links": [
             "3b29655f.e7427a"
         ],
-        "x": 1159,
-        "y": 298,
+        "x": 855,
+        "y": 684,
         "wires": []
     },
     {
@@ -4972,8 +4982,8 @@
         "links": [
             "3b29655f.e7427a"
         ],
-        "x": 1172,
-        "y": 396,
+        "x": 1266,
+        "y": 213,
         "wires": []
     },
     {
@@ -4986,8 +4996,8 @@
         "operation": "delete",
         "upsert": false,
         "multi": false,
-        "x": 1281,
-        "y": 221,
+        "x": 1008,
+        "y": 636,
         "wires": [
             [
                 "3510d57e.89cb9a"
@@ -4999,11 +5009,11 @@
         "type": "function",
         "z": "92c9855e.987598",
         "name": "remove entity type",
-        "func": "\n// what we're removing\nvar updatedb = {\n    //payload: {\"_id\": msg.obj._id}, \n    payload: {\"name\": msg.obj.name}, \n    collection: \"entity_definitions\",\n}\n\nreturn updatedb;",
+        "func": "\n// what we're removing\nvar updatedb = {\n    //payload: {\"_id\": msg.obj._id}, \n    payload: {\"name\": msg.payload.name}, \n    collection: \"entity_definitions\",\n}\n\nreturn updatedb;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1084,
-        "y": 222,
+        "x": 811,
+        "y": 637,
         "wires": [
             [
                 "f8290f58.4bfd08"
@@ -5452,5 +5462,89 @@
                 "53f078d8.127e78"
             ]
         ]
+    },
+    {
+        "id": "da8675be.b53be",
+        "type": "comment",
+        "z": "92c9855e.987598",
+        "name": "This will be the data model definition system",
+        "info": "I need this to define not only the entities that Time and the designers will use, but also to define what the hardware nodes can do, what game they're associated with and more.",
+        "x": 276.5,
+        "y": 76,
+        "wires": []
+    },
+    {
+        "id": "e8984e15.ea06d8",
+        "type": "ui_text",
+        "z": "7f80a2cf.94a544",
+        "group": "ed67316b.08a148",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Name",
+        "format": "{{msg.payload.name}}",
+        "layout": "row-spread",
+        "x": 1168,
+        "y": 722,
+        "wires": []
+    },
+    {
+        "id": "7e873102.7bac8",
+        "type": "comment",
+        "z": "7f80a2cf.94a544",
+        "name": "This should become abstracted using the entity types into some form of \"edit entity node\"",
+        "info": "",
+        "x": 705.5,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "457f3145.61224",
+        "type": "ui_text",
+        "z": "92c9855e.987598",
+        "group": "94f997af.79b8d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Description",
+        "format": "{{msg.payload.description}}",
+        "layout": "row-spread",
+        "x": 890.5,
+        "y": 809,
+        "wires": []
+    },
+    {
+        "id": "f9ce95d1.b17018",
+        "type": "ui_text",
+        "z": "92c9855e.987598",
+        "group": "94f997af.79b8d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Name",
+        "format": "{{msg.payload.name}}",
+        "layout": "row-spread",
+        "x": 872,
+        "y": 762,
+        "wires": []
+    },
+    {
+        "id": "2592605e.87b8d",
+        "type": "ui_text",
+        "z": "92c9855e.987598",
+        "group": "94f997af.79b8d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "ID",
+        "format": "{{msg.payload._id}}",
+        "layout": "row-spread",
+        "x": 865,
+        "y": 867,
+        "wires": []
     }
 ]
