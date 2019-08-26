@@ -56,6 +56,13 @@
         "info": ""
     },
     {
+        "id": "678a079b.32abf",
+        "type": "tab",
+        "label": "Forest",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2b493f5b.793ad8",
         "type": "subflow",
         "name": "RFID read",
@@ -446,6 +453,7 @@
         "z": "",
         "name": "Neopixels",
         "tab": "fc6a7e4.ab81e",
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -554,6 +562,38 @@
         "name": "Configure",
         "tab": "7c0edb98.923b7c",
         "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "49836066.dda19",
+        "type": "ui_group",
+        "z": "",
+        "name": "mushroom",
+        "tab": "fb5770b0.a24bf",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "fb5770b0.a24bf",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Forest",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9cf8fddd.626a38",
+        "type": "ui_group",
+        "z": "",
+        "name": "motors",
+        "tab": "fb5770b0.a24bf",
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -3023,8 +3063,8 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 248.8000030517578,
-        "y": 85.19999694824219,
+        "x": 312.79998779296875,
+        "y": 1368.1999969482422,
         "wires": [
             [
                 "690b96e6.3346d8"
@@ -3039,8 +3079,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 438.79998779296875,
-        "y": 80.19999694824219,
+        "x": 502.7999725341797,
+        "y": 1363.1999969482422,
         "wires": [
             [
                 "3bc341d8.98418e"
@@ -3056,8 +3096,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 810.5,
-        "y": 110.39999389648438,
+        "x": 874.4999847412109,
+        "y": 1393.3999938964844,
         "wires": []
     },
     {
@@ -3086,8 +3126,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 605.5,
-        "y": 82.59999084472656,
+        "x": 669.4999847412109,
+        "y": 1365.5999908447266,
         "wires": [
             [
                 "f25f893f.c910a8"
@@ -5546,5 +5586,249 @@
         "x": 865,
         "y": 867,
         "wires": []
+    },
+    {
+        "id": "f4b336a5.dc3f4",
+        "type": "mqtt in",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "+/+/twinkle",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 363.5,
+        "y": 1220,
+        "wires": [
+            [
+                "8bbcd9b2.06ced8"
+            ]
+        ]
+    },
+    {
+        "id": "8bbcd9b2.06ced8",
+        "type": "debug",
+        "z": "678a079b.32abf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1093.5,
+        "y": 1233,
+        "wires": []
+    },
+    {
+        "id": "144cfb72.c4dc45",
+        "type": "ui_colour_picker",
+        "z": "678a079b.32abf",
+        "name": "",
+        "label": "",
+        "group": "49836066.dda19",
+        "format": "rgb",
+        "outformat": "object",
+        "showSwatch": true,
+        "showPicker": true,
+        "showValue": true,
+        "showHue": true,
+        "showAlpha": false,
+        "showLightness": true,
+        "dynOutput": "true",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "x": 391.5,
+        "y": 870,
+        "wires": [
+            [
+                "4aa815a1.564034"
+            ]
+        ]
+    },
+    {
+        "id": "558d0689.369558",
+        "type": "mqtt out",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "all/neopixel/twinkle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 934.5,
+        "y": 903,
+        "wires": []
+    },
+    {
+        "id": "4aa815a1.564034",
+        "type": "change",
+        "z": "678a079b.32abf",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.operation",
+                "pt": "msg",
+                "to": "setrgb",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 645.5,
+        "y": 867,
+        "wires": [
+            [
+                "558d0689.369558"
+            ]
+        ]
+    },
+    {
+        "id": "dc193dbb.b6e5a",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "49836066.dda19",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "All twinkle",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"operation\":\"twinkle\",\"duration\":2000}",
+        "payloadType": "json",
+        "topic": "all.neopixel/twinkle",
+        "x": 392.5,
+        "y": 941,
+        "wires": [
+            [
+                "558d0689.369558"
+            ]
+        ]
+    },
+    {
+        "id": "494c6d91.1f740c",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "49836066.dda19",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "All off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"operation\":\"setrgb\",\"red\":0,\"green\":0,\"blue\":0}",
+        "payloadType": "json",
+        "topic": "all.neopixel/twinkle",
+        "x": 380,
+        "y": 996,
+        "wires": [
+            [
+                "558d0689.369558"
+            ]
+        ]
+    },
+    {
+        "id": "fa04382a.7619e8",
+        "type": "comment",
+        "z": "7f80a2cf.94a544",
+        "name": "send config to go host - wip",
+        "info": "",
+        "x": 156.5,
+        "y": 1291,
+        "wires": []
+    },
+    {
+        "id": "7c232caa.0f0f24",
+        "type": "ui_slider",
+        "z": "678a079b.32abf",
+        "name": "",
+        "label": "motor speed",
+        "tooltip": "",
+        "group": "9cf8fddd.626a38",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "motorb",
+        "min": "-100",
+        "max": "100",
+        "step": 1,
+        "x": 356.5,
+        "y": 1324,
+        "wires": [
+            [
+                "7a0a63c2.d42acc"
+            ]
+        ]
+    },
+    {
+        "id": "57d1e07e.1663c8",
+        "type": "mqtt out",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "all/motor/speed",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 872,
+        "y": 1358,
+        "wires": []
+    },
+    {
+        "id": "7a0a63c2.d42acc",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "",
+        "func": "var m = {\n    payload: {\n    motorb: msg.payload\n    }\n};\nreturn m;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520.5,
+        "y": 1322,
+        "wires": [
+            [
+                "57d1e07e.1663c8",
+                "8bbcd9b2.06ced8"
+            ]
+        ]
+    },
+    {
+        "id": "3764a927.6a4706",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "9cf8fddd.626a38",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "All off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "all.neopixel/twinkle",
+        "x": 374,
+        "y": 1397,
+        "wires": [
+            [
+                "7a0a63c2.d42acc",
+                "7c232caa.0f0f24"
+            ]
+        ]
     }
 ]
