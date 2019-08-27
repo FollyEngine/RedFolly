@@ -5596,8 +5596,8 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 363.5,
-        "y": 1220,
+        "x": 175.5,
+        "y": 452,
         "wires": [
             [
                 "8bbcd9b2.06ced8"
@@ -5614,8 +5614,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1093.5,
-        "y": 1233,
+        "x": 905.5,
+        "y": 465,
         "wires": []
     },
     {
@@ -5633,14 +5633,14 @@
         "showHue": true,
         "showAlpha": false,
         "showLightness": true,
-        "dynOutput": "true",
+        "dynOutput": "false",
         "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
         "topic": "",
-        "x": 391.5,
-        "y": 870,
+        "x": 203.5,
+        "y": 102,
         "wires": [
             [
                 "4aa815a1.564034"
@@ -5656,8 +5656,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 934.5,
-        "y": 903,
+        "x": 746.5,
+        "y": 135,
         "wires": []
     },
     {
@@ -5679,8 +5679,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 645.5,
-        "y": 867,
+        "x": 457.5,
+        "y": 99,
         "wires": [
             [
                 "558d0689.369558"
@@ -5705,8 +5705,8 @@
         "payload": "{\"operation\":\"twinkle\",\"duration\":2000}",
         "payloadType": "json",
         "topic": "all.neopixel/twinkle",
-        "x": 392.5,
-        "y": 941,
+        "x": 204.5,
+        "y": 173,
         "wires": [
             [
                 "558d0689.369558"
@@ -5731,8 +5731,8 @@
         "payload": "{\"operation\":\"setrgb\",\"red\":0,\"green\":0,\"blue\":0}",
         "payloadType": "json",
         "topic": "all.neopixel/twinkle",
-        "x": 380,
-        "y": 996,
+        "x": 192,
+        "y": 228,
         "wires": [
             [
                 "558d0689.369558"
@@ -5766,8 +5766,8 @@
         "min": "-100",
         "max": "100",
         "step": 1,
-        "x": 356.5,
-        "y": 1324,
+        "x": 168.5,
+        "y": 556,
         "wires": [
             [
                 "7a0a63c2.d42acc"
@@ -5783,8 +5783,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 872,
-        "y": 1358,
+        "x": 684,
+        "y": 590,
         "wires": []
     },
     {
@@ -5795,8 +5795,8 @@
         "func": "var m = {\n    payload: {\n    motorb: msg.payload\n    }\n};\nreturn m;",
         "outputs": 1,
         "noerr": 0,
-        "x": 520.5,
-        "y": 1322,
+        "x": 332.5,
+        "y": 554,
         "wires": [
             [
                 "57d1e07e.1663c8",
@@ -5822,8 +5822,8 @@
         "payload": "0",
         "payloadType": "num",
         "topic": "all.neopixel/twinkle",
-        "x": 374,
-        "y": 1397,
+        "x": 186,
+        "y": 629,
         "wires": [
             [
                 "7a0a63c2.d42acc",
