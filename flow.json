@@ -14,6 +14,13 @@
         "info": ""
     },
     {
+        "id": "1798290a.d489b7",
+        "type": "tab",
+        "label": "Void detector",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "9576e77a.d69f68",
         "type": "tab",
         "label": "Flow 1",
@@ -59,6 +66,13 @@
         "id": "678a079b.32abf",
         "type": "tab",
         "label": "Forest",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a9fb438e.5bcb7",
+        "type": "tab",
+        "label": "Totem",
         "disabled": false,
         "info": ""
     },
@@ -196,6 +210,27 @@
                 "value": "neopixel-level"
             }
         ]
+    },
+    {
+        "id": "da62098d.6a3278",
+        "type": "subflow",
+        "name": "Speech Recognition",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 890,
+                "y": 211,
+                "wires": [
+                    {
+                        "id": "8e7e4dc8.ab40b",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": []
     },
     {
         "id": "fa3d25ac.e5f148",
@@ -3055,86 +3090,6 @@
         ]
     },
     {
-        "id": "c7b57ed2.dd7818",
-        "type": "mqtt in",
-        "z": "7f80a2cf.94a544",
-        "name": "Node requests config",
-        "topic": "+/deployment/requestconfig",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "fa3d25ac.e5f148",
-        "x": 312.79998779296875,
-        "y": 1368.1999969482422,
-        "wires": [
-            [
-                "690b96e6.3346d8"
-            ]
-        ]
-    },
-    {
-        "id": "690b96e6.3346d8",
-        "type": "json",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 502.7999725341797,
-        "y": 1363.1999969482422,
-        "wires": [
-            [
-                "3bc341d8.98418e"
-            ]
-        ]
-    },
-    {
-        "id": "f25f893f.c910a8",
-        "type": "mqtt out",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "broker": "fa3d25ac.e5f148",
-        "x": 874.4999847412109,
-        "y": 1393.3999938964844,
-        "wires": []
-    },
-    {
-        "id": "3bc341d8.98418e",
-        "type": "change",
-        "z": "7f80a2cf.94a544",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.config",
-                "pt": "msg",
-                "to": "{\"deployments\":{\"megagame\":{\"ping\":{\"type\":\"ping\"}}},\"hosts\":{\"go\":{\"type\":\"megagame\"}}}",
-                "tot": "json"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "go/deployment/update_config",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 669.4999847412109,
-        "y": 1365.5999908447266,
-        "wires": [
-            [
-                "f25f893f.c910a8"
-            ]
-        ]
-    },
-    {
         "id": "bde26575.3e0b68",
         "type": "ui_dropdown",
         "z": "92d480a1.db57d",
@@ -3416,7 +3371,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "x": 780.1000366210938,
         "y": 241,
         "wires": []
@@ -4665,8 +4621,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 554.88330078125,
-        "y": 422.25,
+        "x": 473.88330078125,
+        "y": 495.25,
         "wires": [
             [
                 "700f4e.94c558b4"
@@ -4685,8 +4641,8 @@
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
-        "x": 286.88330078125,
-        "y": 402.699951171875,
+        "x": 205.88330078125,
+        "y": 475.699951171875,
         "wires": [
             [
                 "413f96e3.daeb68"
@@ -4939,8 +4895,8 @@
         "func": "\nreturn {};",
         "outputs": 1,
         "noerr": 0,
-        "x": 475.5,
-        "y": 364,
+        "x": 394.5,
+        "y": 437,
         "wires": [
             [
                 "364153cb.8800bc"
@@ -4982,8 +4938,8 @@
             "fa6865c9.45d688",
             "3d7d9148.4c2236"
         ],
-        "x": 331.5,
-        "y": 344,
+        "x": 250.5,
+        "y": 417,
         "wires": [
             [
                 "413f96e3.daeb68"
@@ -5740,16 +5696,6 @@
         ]
     },
     {
-        "id": "fa04382a.7619e8",
-        "type": "comment",
-        "z": "7f80a2cf.94a544",
-        "name": "send config to go host - wip",
-        "info": "",
-        "x": 156.5,
-        "y": 1291,
-        "wires": []
-    },
-    {
         "id": "7c232caa.0f0f24",
         "type": "ui_slider",
         "z": "678a079b.32abf",
@@ -5830,5 +5776,299 @@
                 "7c232caa.0f0f24"
             ]
         ]
+    },
+    {
+        "id": "c58938e7.104c78",
+        "type": "mqtt in",
+        "z": "92c9855e.987598",
+        "name": "Node requests config",
+        "topic": "+/deployment/requestconfig",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "fa3d25ac.e5f148",
+        "x": 607,
+        "y": 1197,
+        "wires": [
+            [
+                "8a6e03fd.c62bd",
+                "25b35de6.4e413a"
+            ]
+        ]
+    },
+    {
+        "id": "e3784f0a.154b68",
+        "type": "mqtt out",
+        "z": "92c9855e.987598",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 1089.7000122070312,
+        "y": 1220.2000274658203,
+        "wires": []
+    },
+    {
+        "id": "25b35de6.4e413a",
+        "type": "change",
+        "z": "92c9855e.987598",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.config",
+                "pt": "msg",
+                "to": "{\"deployments\":{\"megagame\":{\"ping\":{\"type\":\"ping\"}},\"tiki\":{\"ping\":{\"type\":\"ping\"}}},\"hosts\":{\"go\":{\"type\":\"megagame\"},\"yoga260\":{\"type\":\"tiki\"},\"void-detector\":{\"type\":\"tiki\"}}}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "yoga260/deployment/update_config",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 838.6999969482422,
+        "y": 1269.3999938964844,
+        "wires": [
+            [
+                "e3784f0a.154b68",
+                "8a6e03fd.c62bd"
+            ]
+        ]
+    },
+    {
+        "id": "ca57e0a0.dd9a28",
+        "type": "comment",
+        "z": "92c9855e.987598",
+        "name": "send config to go host - wip",
+        "info": "",
+        "x": 325.70001220703125,
+        "y": 1194.8000030517578,
+        "wires": []
+    },
+    {
+        "id": "8a6e03fd.c62bd",
+        "type": "debug",
+        "z": "92c9855e.987598",
+        "name": "test",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1125.2000122070312,
+        "y": 1397.8000030517578,
+        "wires": []
+    },
+    {
+        "id": "d6c33881.408c78",
+        "type": "mqtt in",
+        "z": "1798290a.d489b7",
+        "name": "",
+        "topic": "+/rfid/scan",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 157,
+        "y": 115,
+        "wires": [
+            [
+                "cf7a792c.dfccf"
+            ]
+        ]
+    },
+    {
+        "id": "cf7a792c.dfccf",
+        "type": "json",
+        "z": "1798290a.d489b7",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 381,
+        "y": 173,
+        "wires": [
+            [
+                "61eff6d5.7a28b",
+                "36b72c87.d2dd5c"
+            ]
+        ]
+    },
+    {
+        "id": "36b72c87.d2dd5c",
+        "type": "debug",
+        "z": "1798290a.d489b7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 815,
+        "y": 128,
+        "wires": []
+    },
+    {
+        "id": "61eff6d5.7a28b",
+        "type": "mqtt out",
+        "z": "1798290a.d489b7",
+        "name": "",
+        "topic": "all/audio/midi",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 847,
+        "y": 222,
+        "wires": []
+    },
+    {
+        "id": "1dc2caa4.80d445",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/speech_recognition_test/touch.wav"
+            }
+        ],
+        "x": 753.5,
+        "y": 206,
+        "wires": []
+    },
+    {
+        "id": "6f220ed2.01334",
+        "type": "mqtt in",
+        "z": "da62098d.6a3278",
+        "name": "",
+        "topic": "+/speech-recognition/phrase_matched",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 305.5,
+        "y": 209,
+        "wires": [
+            [
+                "b2e7a9ad.ccd348"
+            ]
+        ]
+    },
+    {
+        "id": "b2e7a9ad.ccd348",
+        "type": "json",
+        "z": "da62098d.6a3278",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 579,
+        "y": 208,
+        "wires": [
+            [
+                "8e7e4dc8.ab40b"
+            ]
+        ]
+    },
+    {
+        "id": "69a0d6b9.045958",
+        "type": "subflow:da62098d.6a3278",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [],
+        "x": 288.5,
+        "y": 207,
+        "wires": [
+            [
+                "78c8a588.79356c"
+            ]
+        ]
+    },
+    {
+        "id": "78c8a588.79356c",
+        "type": "switch",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "property": "payload.phrase",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 1,
+        "x": 512.5,
+        "y": 255,
+        "wires": [
+            [
+                "1dc2caa4.80d445"
+            ]
+        ]
+    },
+    {
+        "id": "8e7e4dc8.ab40b",
+        "type": "switch",
+        "z": "da62098d.6a3278",
+        "name": "",
+        "property": "payload.phrase",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 753.5,
+        "y": 209,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3c1198d.8ce608",
+        "type": "comment",
+        "z": "a9fb438e.5bcb7",
+        "name": "Really basic flow for the totem (just testing)",
+        "info": "Currently all we want is to have lights and sounds triggered by a speech recognition service that runs on the pi",
+        "x": 473.5,
+        "y": 85,
+        "wires": []
+    },
+    {
+        "id": "9d1860f9.6af88",
+        "type": "subflow:db41a3ab.552bb8",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            }
+        ],
+        "x": 753.5,
+        "y": 258,
+        "wires": []
     }
 ]
