@@ -21,6 +21,20 @@
         "info": ""
     },
     {
+        "id": "678a079b.32abf",
+        "type": "tab",
+        "label": "Forest",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "92c9855e.987598",
+        "type": "tab",
+        "label": "Entity creator",
+        "disabled": false,
+        "info": "used to define entites, what attributes they have\nand ohpefully how to edit them"
+    },
+    {
         "id": "9576e77a.d69f68",
         "type": "tab",
         "label": "Flow 1",
@@ -49,23 +63,9 @@
         "info": "Sven's going to try to re-create the 1819 dueling podiums\nusing 2 crickit board's on rpi's\n\n"
     },
     {
-        "id": "92c9855e.987598",
-        "type": "tab",
-        "label": "Entity creator",
-        "disabled": false,
-        "info": "used to define entites, what attributes they have\nand ohpefully how to edit them"
-    },
-    {
         "id": "f65fd73a.ffb538",
         "type": "tab",
         "label": "CodeLock",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "678a079b.32abf",
-        "type": "tab",
-        "label": "Forest",
         "disabled": false,
         "info": ""
     },
@@ -106,8 +106,8 @@
         "in": [],
         "out": [
             {
-                "x": 1240,
-                "y": 167,
+                "x": 1205,
+                "y": 158,
                 "wires": [
                     {
                         "id": "2bfb8e99.8f526a",
@@ -116,8 +116,8 @@
                 ]
             },
             {
-                "x": 1305,
-                "y": 832,
+                "x": 1220,
+                "y": 815,
                 "wires": [
                     {
                         "id": "4bf4923d.4c57e4",
@@ -632,6 +632,17 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "31275bd9.20d97c",
+        "type": "ui_group",
+        "z": "",
+        "name": "touch",
+        "tab": "fb5770b0.a24bf",
+        "order": 3,
+        "disp": true,
+        "width": "9",
+        "collapse": true
     },
     {
         "id": "dced7457.72aad",
@@ -2252,8 +2263,11 @@
         "z": "9576e77a.d69f68",
         "name": "",
         "active": false,
-        "console": "false",
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
         "complete": "payload",
+        "targetType": "msg",
         "x": 1264.8957977294922,
         "y": 1901.2222900390625,
         "wires": []
@@ -2731,7 +2745,7 @@
                 "value": "/home/pi/convictshope/HeroTwinkle/short-twinkle.wav"
             }
         ],
-        "x": 550.25,
+        "x": 547.25,
         "y": 1013,
         "wires": []
     },
@@ -2934,7 +2948,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 355.5,
+        "x": 352.5,
         "y": 1251,
         "wires": [
             [
@@ -4464,8 +4478,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 535,
-        "y": 688,
+        "x": 450,
+        "y": 671,
         "wires": [
             [
                 "c1f7c02d.26edf8"
@@ -4491,8 +4505,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
-        "y": 745,
+        "x": 565,
+        "y": 728,
         "wires": [
             [
                 "4c033fcd.cc6848"
@@ -4509,8 +4523,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 820.9999389648438,
-        "y": 748.4166259765625,
+        "x": 735.9999389648438,
+        "y": 731.4166259765625,
         "wires": [
             [
                 "61db1666.13275"
@@ -4529,8 +4543,8 @@
         "label": "IP",
         "format": "{{msg.payload.ip}}",
         "layout": "row-spread",
-        "x": 1166.5,
-        "y": 769,
+        "x": 1081.5,
+        "y": 752,
         "wires": []
     },
     {
@@ -4541,8 +4555,8 @@
         "func": "\nif (msg.payload.length > 0) {\n    msg.payload = msg.payload[0];\n}\n\nmsg.topic=msg.payload.name\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 966.5,
-        "y": 773,
+        "x": 881.5,
+        "y": 756,
         "wires": [
             [
                 "bab928a7.119578",
@@ -4583,8 +4597,8 @@
         ],
         "payload": "",
         "topic": "",
-        "x": 1176.5,
-        "y": 816,
+        "x": 1091.5,
+        "y": 799,
         "wires": [
             []
         ]
@@ -4936,7 +4950,8 @@
         "links": [
             "3510d57e.89cb9a",
             "fa6865c9.45d688",
-            "3d7d9148.4c2236"
+            "3d7d9148.4c2236",
+            "49d5c25a.8616a4"
         ],
         "x": 250.5,
         "y": 417,
@@ -4978,8 +4993,8 @@
         "links": [
             "3b29655f.e7427a"
         ],
-        "x": 1266,
-        "y": 213,
+        "x": 1161,
+        "y": 240,
         "wires": []
     },
     {
@@ -5223,8 +5238,8 @@
         "payload": "A",
         "payloadType": "str",
         "topic": "",
-        "x": 330,
-        "y": 279.0000047683716,
+        "x": 328,
+        "y": 289,
         "wires": [
             [
                 "a7f244f7.180948"
@@ -5481,8 +5496,8 @@
         "label": "Name",
         "format": "{{msg.payload.name}}",
         "layout": "row-spread",
-        "x": 1168,
-        "y": 722,
+        "x": 1083,
+        "y": 705,
         "wires": []
     },
     {
@@ -5491,8 +5506,8 @@
         "z": "7f80a2cf.94a544",
         "name": "This should become abstracted using the entity types into some form of \"edit entity node\"",
         "info": "",
-        "x": 705.5,
-        "y": 660,
+        "x": 620.5,
+        "y": 643,
         "wires": []
     },
     {
@@ -5552,8 +5567,8 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 175.5,
-        "y": 452,
+        "x": 183.5,
+        "y": 330,
         "wires": [
             [
                 "8bbcd9b2.06ced8"
@@ -5565,13 +5580,14 @@
         "type": "debug",
         "z": "678a079b.32abf",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
-        "x": 905.5,
-        "y": 465,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 913.5,
+        "y": 343,
         "wires": []
     },
     {
@@ -5712,8 +5728,8 @@
         "min": "-100",
         "max": "100",
         "step": 1,
-        "x": 168.5,
-        "y": 556,
+        "x": 176.5,
+        "y": 434,
         "wires": [
             [
                 "7a0a63c2.d42acc"
@@ -5729,8 +5745,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 684,
-        "y": 590,
+        "x": 692,
+        "y": 468,
         "wires": []
     },
     {
@@ -5741,8 +5757,8 @@
         "func": "var m = {\n    payload: {\n    motorb: msg.payload\n    }\n};\nreturn m;",
         "outputs": 1,
         "noerr": 0,
-        "x": 332.5,
-        "y": 554,
+        "x": 340.5,
+        "y": 432,
         "wires": [
             [
                 "57d1e07e.1663c8",
@@ -5768,8 +5784,8 @@
         "payload": "0",
         "payloadType": "num",
         "topic": "all.neopixel/twinkle",
-        "x": 186,
-        "y": 629,
+        "x": 194,
+        "y": 507,
         "wires": [
             [
                 "7a0a63c2.d42acc",
@@ -5939,15 +5955,10 @@
                 "name": "node",
                 "type": "str",
                 "value": "two"
-            },
-            {
-                "name": "sound",
-                "type": "str",
-                "value": "/home/pi/speech_recognition_test/touch.wav"
             }
         ],
-        "x": 753.5,
-        "y": 206,
+        "x": 1231.5,
+        "y": 131,
         "wires": []
     },
     {
@@ -5989,36 +6000,12 @@
         "z": "a9fb438e.5bcb7",
         "name": "",
         "env": [],
-        "x": 288.5,
-        "y": 207,
+        "x": 144.5,
+        "y": 279,
         "wires": [
             [
-                "78c8a588.79356c"
-            ]
-        ]
-    },
-    {
-        "id": "78c8a588.79356c",
-        "type": "switch",
-        "z": "a9fb438e.5bcb7",
-        "name": "",
-        "property": "payload.phrase",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 1,
-        "x": 512.5,
-        "y": 255,
-        "wires": [
-            [
-                "1dc2caa4.80d445"
+                "ed57403e.a58fb",
+                "502ceeab.39051"
             ]
         ]
     },
@@ -6051,12 +6038,27 @@
         "z": "a9fb438e.5bcb7",
         "name": "Really basic flow for the totem (just testing)",
         "info": "Currently all we want is to have lights and sounds triggered by a speech recognition service that runs on the pi",
-        "x": 473.5,
-        "y": 85,
+        "x": 226.5,
+        "y": 124,
         "wires": []
     },
     {
-        "id": "9d1860f9.6af88",
+        "id": "ed57403e.a58fb",
+        "type": "debug",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.phrase",
+        "targetType": "msg",
+        "x": 143.5,
+        "y": 351,
+        "wires": []
+    },
+    {
+        "id": "fb361b54.10f4b8",
         "type": "subflow:db41a3ab.552bb8",
         "z": "a9fb438e.5bcb7",
         "name": "",
@@ -6067,8 +6069,1255 @@
                 "value": "two"
             }
         ],
-        "x": 753.5,
-        "y": 258,
+        "x": 1220,
+        "y": 97,
+        "wires": []
+    },
+    {
+        "id": "3d055b41.0d9c64",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Create-neopixel-msg-rainbow",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"set\",\n        colour: \"green\",\n        count: 99\n    },\n    topic: \"two/neopixel-level/play\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1001.5,
+        "y": 97,
+        "wires": [
+            [
+                "fb361b54.10f4b8",
+                "1dc2caa4.80d445"
+            ]
+        ]
+    },
+    {
+        "id": "c9e8658.5bf0798",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Create-neopixel-msg-red",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"set\",\n        colour: \"red\",\n        count: 99\n    },\n    topic: \"two/neopixel-level/play\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1355,
+        "y": 731,
+        "wires": [
+            [
+                "76c9de98.88dc9",
+                "c76b4d88.420f4"
+            ]
+        ]
+    },
+    {
+        "id": "c76b4d88.420f4",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster12.mp3"
+            }
+        ],
+        "x": 1570,
+        "y": 692,
+        "wires": []
+    },
+    {
+        "id": "502ceeab.39051",
+        "type": "switch",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "property": "payload.phrase",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "1",
+                "vt": "num",
+                "v2": "2",
+                "v2t": "num"
+            },
+            {
+                "t": "eq",
+                "v": "97",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "98",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "99",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 338,
+        "y": 292,
+        "wires": [
+            [
+                "17b6da77.30f846"
+            ],
+            [],
+            [],
+            [
+                "2fbc9ced.468794",
+                "78d45aa2.201b54",
+                "3b1462fa.2a2f0e"
+            ]
+        ]
+    },
+    {
+        "id": "76c9de98.88dc9",
+        "type": "subflow:db41a3ab.552bb8",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            }
+        ],
+        "x": 1561,
+        "y": 735,
+        "wires": []
+    },
+    {
+        "id": "2fbc9ced.468794",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Create-neopixel-msg-off",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"set\",\n        colour: \"off\",\n        count: 99\n    },\n    topic: \"two/neopixel-level/play\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 979,
+        "y": 447,
+        "wires": [
+            [
+                "2b4d7a62.73f0e6",
+                "a9a32a38.34c518"
+            ]
+        ]
+    },
+    {
+        "id": "2b4d7a62.73f0e6",
+        "type": "subflow:db41a3ab.552bb8",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "colour",
+                "type": "str",
+                "value": "cyan"
+            },
+            {
+                "name": "count",
+                "type": "num",
+                "value": "99"
+            }
+        ],
+        "x": 1184,
+        "y": 448,
+        "wires": []
+    },
+    {
+        "id": "a9a32a38.34c518",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            }
+        ],
+        "x": 1196,
+        "y": 482,
+        "wires": []
+    },
+    {
+        "id": "63d01ef7.fb39e",
+        "type": "comment",
+        "z": "a9fb438e.5bcb7",
+        "name": "OWARI I AM HERE - MAIN TRIGGER",
+        "info": "",
+        "x": 920.5,
+        "y": 658,
+        "wires": []
+    },
+    {
+        "id": "a91fa8fb.e48808",
+        "type": "comment",
+        "z": "a9fb438e.5bcb7",
+        "name": "FOLLY GAMES - TEST TRIGGER",
+        "info": "",
+        "x": 1005,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d86cfc0f.ca50f",
+        "type": "comment",
+        "z": "a9fb438e.5bcb7",
+        "name": "TOTEM PLEASE RESET ALL PUZZLES - RESET TRIGGER",
+        "info": "",
+        "x": 1088,
+        "y": 408,
+        "wires": []
+    },
+    {
+        "id": "6dd10031.e277f",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Create-neopixel-msg",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"set\",\n        colour: \"off\",\n        count: 99\n    },\n    topic: \"two/neopixel-level/play\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 976,
+        "y": 292,
+        "wires": [
+            [
+                "5d2cb47e.2db5ac",
+                "6843a6b2.13d178"
+            ]
+        ]
+    },
+    {
+        "id": "5d2cb47e.2db5ac",
+        "type": "subflow:db41a3ab.552bb8",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "colour",
+                "type": "str",
+                "value": "off"
+            },
+            {
+                "name": "count",
+                "type": "num",
+                "value": "99"
+            }
+        ],
+        "x": 1178,
+        "y": 293,
+        "wires": []
+    },
+    {
+        "id": "6843a6b2.13d178",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 1189,
+        "y": 333,
+        "wires": []
+    },
+    {
+        "id": "91361f49.20f83",
+        "type": "comment",
+        "z": "a9fb438e.5bcb7",
+        "name": "nope",
+        "info": "",
+        "x": 923,
+        "y": 256,
+        "wires": []
+    },
+    {
+        "id": "6fb85df4.1bc714",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 642.5,
+        "y": 113,
+        "wires": [
+            [
+                "3d055b41.0d9c64",
+                "97663af0.4bc0b8"
+            ]
+        ]
+    },
+    {
+        "id": "e4c59ace.f27208",
+        "type": "mqtt out",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "topic": "all/neopixel/twinkle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 1252,
+        "y": 179,
+        "wires": []
+    },
+    {
+        "id": "97663af0.4bc0b8",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Set-string-light-red",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"setrgb\",\n        r: 0,\n        g: 255,\n        b: 0,\n        a: 1\n    },\n    topic: \"all.neopixel/twinkle\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1028,
+        "y": 178,
+        "wires": [
+            [
+                "e4c59ace.f27208"
+            ]
+        ]
+    },
+    {
+        "id": "d8091b4.a8c0fe8",
+        "type": "mqtt out",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "topic": "all/neopixel/twinkle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 1216,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "78d45aa2.201b54",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Set-string-light-red",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"setrgb\",\n        r: 0,\n        g: 0,\n        b: 0,\n        a: 1\n    },\n    topic: \"all.neopixel/twinkle\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 965,
+        "y": 521,
+        "wires": [
+            [
+                "d8091b4.a8c0fe8"
+            ]
+        ]
+    },
+    {
+        "id": "320dcf2f.71aef",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "Inject Reset",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 226,
+        "y": 690,
+        "wires": [
+            [
+                "2fbc9ced.468794",
+                "78d45aa2.201b54",
+                "3b1462fa.2a2f0e"
+            ]
+        ]
+    },
+    {
+        "id": "8b2c760b.246c58",
+        "type": "mqtt out",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "topic": "all/neopixel/twinkle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 1593,
+        "y": 777,
+        "wires": []
+    },
+    {
+        "id": "317967f6.98e4c8",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "Set-string-light-red",
+        "func": "var newmsg = {\n    payload: {\n        operation: \"setrgb\",\n        r: 255,\n        g: 0,\n        b: 0,\n        a: 1\n    },\n    topic: \"all.neopixel/twinkle\"\n};\nreturn newmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1335,
+        "y": 774,
+        "wires": [
+            [
+                "8b2c760b.246c58"
+            ]
+        ]
+    },
+    {
+        "id": "ceef654e.cde488",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1127,
+        "y": 712,
+        "wires": [
+            [
+                "c9e8658.5bf0798",
+                "317967f6.98e4c8"
+            ]
+        ]
+    },
+    {
+        "id": "2a023f32.2cae7",
+        "type": "subflow:2b493f5b.793ad8",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [],
+        "x": 152.5,
+        "y": 870,
+        "wires": [
+            [
+                "df7ee2e7.5675e",
+                "4aaf30c2.a1d3e"
+            ]
+        ]
+    },
+    {
+        "id": "df7ee2e7.5675e",
+        "type": "debug",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.tag",
+        "targetType": "msg",
+        "x": 234,
+        "y": 967,
+        "wires": []
+    },
+    {
+        "id": "316743e1.ab712c",
+        "type": "switch",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "property": "payload.tag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "D39284D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "23E0D5D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "639681D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "13BDD9D1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 508.5,
+        "y": 871,
+        "wires": [
+            [
+                "73f1575.7a922a8",
+                "63959854.cbefd8"
+            ],
+            [
+                "73f1575.7a922a8",
+                "63959854.cbefd8"
+            ],
+            [
+                "73f1575.7a922a8",
+                "63959854.cbefd8"
+            ],
+            [
+                "73f1575.7a922a8",
+                "63959854.cbefd8"
+            ]
+        ]
+    },
+    {
+        "id": "4aaf30c2.a1d3e",
+        "type": "delay",
+        "z": "a9fb438e.5bcb7",
+        "name": "RFID-repeat filter",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 335.5,
+        "y": 871,
+        "wires": [
+            [
+                "316743e1.ab712c"
+            ]
+        ]
+    },
+    {
+        "id": "73f1575.7a922a8",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "RfidMultiLockWithSequence",
+        "func": "context.data = context.data || {};\n\nif (!context.data.hasOwnProperty(\"sequence\")) {\n    context.data.sequence = [];\n}\n\nif (msg.payload == \"RESET\")\n{\n    context.data = null;\n    msg.payload = 0;\n    return msg;\n}\n\nswitch(msg.payload.tag) {\n    case \"D39284D1\":\n        if(context.data.rfid1 !== true) {\n            context.data.sequence.push(1);\n            context.data.rfid1 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"23E0D5D1\":\n        if(context.data.rfid2 !== true){\n            context.data.sequence.push(2);\n            context.data.rfid2 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"639681D1\":\n        if(context.data.rfid3 !== true){\n            context.data.sequence.push(3);\n            context.data.rfid3 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"13BDD9D1\":\n        if(context.data.rfid4 !== true){\n            context.data.sequence.push(4);\n            context.data.rfid4 = true;\n        }\n        msg.payload = 0;\n        break;\n    default:\n        msg.payload = 0;\n        break;\n}\n\nmsg.sequence = context.data.sequence\n\nif (context.data.rfid1 === true && context.data.rfid2 === true && context.data.rfid3 === true && context.data.rfid4 === true) {\n    if (context.data.sequence[0] == 1 && context.data.sequence[1] == 2 && context.data.sequence[2] == 3 && context.data.sequence[3] == 4) {\n        msg.payload = 1\n    } else {\n        msg.payload = 2\n    }\n    context.data=null;\n} else {\n    msg.payload = 0;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 742.5,
+        "y": 876,
+        "wires": [
+            [
+                "b27a12a4.f0599",
+                "4fdee3b8.fcd19c",
+                "7c3112ea.6f14ec",
+                "23e2135f.3e334c"
+            ]
+        ]
+    },
+    {
+        "id": "71587290.7d1c3c",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster22.mp3"
+            }
+        ],
+        "x": 1377,
+        "y": 850,
+        "wires": []
+    },
+    {
+        "id": "b27a12a4.f0599",
+        "type": "switch",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1100.5,
+        "y": 875,
+        "wires": [
+            [
+                "ed88e38c.88ff1"
+            ],
+            [
+                "196a89d2.7b3866"
+            ]
+        ]
+    },
+    {
+        "id": "4fdee3b8.fcd19c",
+        "type": "debug",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 994,
+        "y": 916,
+        "wires": []
+    },
+    {
+        "id": "7c3112ea.6f14ec",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "RfidAndVoiceMultiLock",
+        "func": "context.data = context.data || {};\n\nif (msg.payload == \"RESET\")\n{\n    context.data = null;\n    msg.payload = 0;\n    return msg;\n}\n\nswitch(msg.payload) {\n    case 1:\n    case 2:\n        context.data.tag = true;\n        msg.payload = 0;\n        break;\n    case 100:\n        if (context.data.tag === true) {\n            context.data.voice = true;\n        }\n        msg.payload = 0;\n        break;\n    default:\n        msg.payload = 0;\n        break;\n}\n\nif (context.data.tag === true && context.data.voice === true) {\n    context.data=null;\n    msg.payload = 1;\n} else {\n    msg.payload = 0;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 955,
+        "y": 755,
+        "wires": [
+            [
+                "c1a863aa.414f1"
+            ]
+        ]
+    },
+    {
+        "id": "17b6da77.30f846",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "func": "msg.payload=100\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 765.5,
+        "y": 707,
+        "wires": [
+            [
+                "7c3112ea.6f14ec",
+                "8a5d9335.bcc25"
+            ]
+        ]
+    },
+    {
+        "id": "c1a863aa.414f1",
+        "type": "switch",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1128,
+        "y": 754,
+        "wires": [
+            [
+                "c9e8658.5bf0798",
+                "317967f6.98e4c8"
+            ]
+        ]
+    },
+    {
+        "id": "8a5d9335.bcc25",
+        "type": "debug",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 950.5,
+        "y": 716,
+        "wires": []
+    },
+    {
+        "id": "63959854.cbefd8",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 723.5,
+        "y": 968,
+        "wires": []
+    },
+    {
+        "id": "ed88e38c.88ff1",
+        "type": "delay",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1230.5,
+        "y": 851,
+        "wires": [
+            [
+                "71587290.7d1c3c"
+            ]
+        ]
+    },
+    {
+        "id": "23e2135f.3e334c",
+        "type": "debug",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sequence",
+        "targetType": "msg",
+        "x": 1002,
+        "y": 961,
+        "wires": []
+    },
+    {
+        "id": "2ada88ce.d34418",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster7.mp3"
+            }
+        ],
+        "x": 1378,
+        "y": 898,
+        "wires": []
+    },
+    {
+        "id": "196a89d2.7b3866",
+        "type": "delay",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1231.5,
+        "y": 899,
+        "wires": [
+            [
+                "2ada88ce.d34418"
+            ]
+        ]
+    },
+    {
+        "id": "d9574930.621b28",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 781,
+        "y": 292,
+        "wires": [
+            [
+                "6dd10031.e277f"
+            ]
+        ]
+    },
+    {
+        "id": "639349fd.549b68",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "Inject Failue",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 732,
+        "y": 818,
+        "wires": [
+            [
+                "7c3112ea.6f14ec",
+                "b27a12a4.f0599"
+            ]
+        ]
+    },
+    {
+        "id": "3b1462fa.2a2f0e",
+        "type": "function",
+        "z": "a9fb438e.5bcb7",
+        "name": "create_reset_msg",
+        "func": "msg.payload=\"RESET\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 506,
+        "y": 739,
+        "wires": [
+            [
+                "7c3112ea.6f14ec",
+                "73f1575.7a922a8"
+            ]
+        ]
+    },
+    {
+        "id": "5d4a49c8.c9dc08",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "Inject Success",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 728,
+        "y": 778,
+        "wires": [
+            [
+                "7c3112ea.6f14ec",
+                "b27a12a4.f0599"
+            ]
+        ]
+    },
+    {
+        "id": "cd3bc30e.11c5d",
+        "type": "inject",
+        "z": "a9fb438e.5bcb7",
+        "name": "Inject Correct voice",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 543,
+        "y": 685,
+        "wires": [
+            [
+                "17b6da77.30f846"
+            ]
+        ]
+    },
+    {
+        "id": "64edeb71.6081ec",
+        "type": "mqtt in",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "+/+/touch",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "fa3d25ac.e5f148",
+        "x": 140,
+        "y": 575,
+        "wires": [
+            [
+                "264c0a8c.186b86"
+            ]
+        ]
+    },
+    {
+        "id": "264c0a8c.186b86",
+        "type": "json",
+        "z": "678a079b.32abf",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 189,
+        "y": 618,
+        "wires": [
+            [
+                "8f3ae2ab.3c046"
+            ]
+        ]
+    },
+    {
+        "id": "db7e7cbc.b3716",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "create new entity type",
+        "func": "\n// what we're storing\nvar updatedb = {\n    query: {\"name\": msg.topic}, \n    payload: { },\n    collection: \"touch_info\",\n    orig: msg.orig,\n}\nif (msg.payload.length > 0) {\n    updatedb.payload = msg.payload[0];\n    updatedb.query = {\"_id\": updatedb.payload._id};\n}\nupdatedb.payload.name = msg.topic;\nupdatedb.payload.device = msg.orig.device;\nupdatedb.payload.time = msg.orig.time;\n\nfor (var key in msg.orig) {\n   if (msg.orig.hasOwnProperty(key)) {\n      //var value = validation_messages[key];\n      updatedb.payload[key] = msg.orig[key];\n   }\n}\n\nreturn updatedb;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 777.5,
+        "y": 707,
+        "wires": [
+            [
+                "55094531.b212fc"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "55094531.b212fc",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "update entity",
+        "collection": "",
+        "operation": "update",
+        "upsert": false,
+        "multi": false,
+        "x": 983.88330078125,
+        "y": 705.88330078125,
+        "wires": [
+            [
+                "d032a9ed.26dbf8"
+            ]
+        ]
+    },
+    {
+        "id": "d9477417.2c2d3",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "get entity",
+        "collection": "touch_info",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 344.5,
+        "y": 656,
+        "wires": [
+            [
+                "7122dee4.52994",
+                "4e8c804f.fa298"
+            ]
+        ]
+    },
+    {
+        "id": "8f3ae2ab.3c046",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "",
+        "func": "\nmsg.orig = msg.payload;\nmsg.name = msg.topic;\nmsg.payload = msg.name;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 210,
+        "y": 660,
+        "wires": [
+            [
+                "d9477417.2c2d3"
+            ]
+        ]
+    },
+    {
+        "id": "2f775805.10706",
+        "type": "catch",
+        "z": "678a079b.32abf",
+        "name": "",
+        "scope": null,
+        "x": 587,
+        "y": 867,
+        "wires": [
+            [
+                "7344dba9.08186c"
+            ]
+        ]
+    },
+    {
+        "id": "7344dba9.08186c",
+        "type": "debug",
+        "z": "678a079b.32abf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 716.0000152587891,
+        "y": 871.3333129882812,
+        "wires": []
+    },
+    {
+        "id": "4e8c804f.fa298",
+        "type": "switch",
+        "z": "678a079b.32abf",
+        "name": "doesn't exist",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 576,
+        "y": 658,
+        "wires": [
+            [
+                "3c0811f8.bef326"
+            ]
+        ]
+    },
+    {
+        "id": "7122dee4.52994",
+        "type": "switch",
+        "z": "678a079b.32abf",
+        "name": "exists",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 586.5,
+        "y": 699,
+        "wires": [
+            [
+                "db7e7cbc.b3716"
+            ]
+        ]
+    },
+    {
+        "id": "3c0811f8.bef326",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "create new entity type",
+        "func": "\n// what we're storing\nvar updatedb = {\n    query: {\"name\": msg.topic}, \n    payload: { },\n    collection: \"touch_info\",\n    orig: msg.orig,\n}\nif (msg.payload.length > 0) {\n    updatedb.payload = msg.payload[0];\n    updatedb.query = {\"_id\": updatedb.payload._id};\n}\nupdatedb.payload.name = msg.topic;\nupdatedb.payload.device = msg.orig.device;\nupdatedb.payload.time = msg.orig.time;\n\nfor (var key in msg.orig) {\n   if (msg.orig.hasOwnProperty(key)) {\n      //var value = validation_messages[key];\n      updatedb.payload[key] = msg.orig[key];\n   }\n}\n\nreturn updatedb;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 784,
+        "y": 656,
+        "wires": [
+            [
+                "f5cf91e2.a94e58"
+            ]
+        ],
+        "outputLabels": [
+            "tagCount"
+        ]
+    },
+    {
+        "id": "f5cf91e2.a94e58",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "create entity",
+        "collection": "touch_info",
+        "operation": "insert",
+        "upsert": true,
+        "multi": false,
+        "x": 990.38330078125,
+        "y": 654.88330078125,
+        "wires": [
+            [
+                "d032a9ed.26dbf8"
+            ]
+        ]
+    },
+    {
+        "id": "cc1ba7c4.3558",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "remote entity",
+        "collection": "touch_info",
+        "operation": "delete",
+        "upsert": true,
+        "multi": false,
+        "x": 943,
+        "y": 591,
+        "wires": [
+            [
+                "d032a9ed.26dbf8"
+            ]
+        ]
+    },
+    {
+        "id": "f163747c.c3781",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "31275bd9.20d97c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "remove all",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 773,
+        "y": 590,
+        "wires": [
+            [
+                "cc1ba7c4.3558"
+            ]
+        ]
+    },
+    {
+        "id": "d26177df.656018",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "get entity",
+        "collection": "touch_info",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 1277,
+        "y": 670,
+        "wires": [
+            [
+                "49bee9bf.5e2df8",
+                "d8315596.af9b48"
+            ]
+        ]
+    },
+    {
+        "id": "49bee9bf.5e2df8",
+        "type": "ui_template",
+        "z": "678a079b.32abf",
+        "group": "31275bd9.20d97c",
+        "name": "touch1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<table width=\"100%\">\n <tr><td>name</td><td>0</td><td>3</td><td>5</td><td>6</td></tr>\n <tr ng-repeat=\"(i, obj) in msg.payload\">\n   <td>{{obj.name}}</td>\n   <td>{{obj.touch0}}</td>\n   <td>{{obj.touch3}}</td>\n   <td>{{obj.touch5}}</td>\n   <td>{{obj.touch6}}</td>\n </tr>\n</table>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1303,
+        "y": 718,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d032a9ed.26dbf8",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "",
+        "func": "msg.payload = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1184,
+        "y": 633,
+        "wires": [
+            [
+                "d26177df.656018",
+                "832fca35.dd8538"
+            ]
+        ]
+    },
+    {
+        "id": "832fca35.dd8538",
+        "type": "debug",
+        "z": "678a079b.32abf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1415,
+        "y": 632,
+        "wires": []
+    },
+    {
+        "id": "d8315596.af9b48",
+        "type": "debug",
+        "z": "678a079b.32abf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1456,
+        "y": 682,
         "wires": []
     }
 ]
