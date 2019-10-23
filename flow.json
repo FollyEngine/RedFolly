@@ -8267,7 +8267,7 @@
         "type": "ui_slider",
         "z": "678a079b.32abf",
         "name": "",
-        "label": "servo angle (4)",
+        "label": "servo angle (5)",
         "tooltip": "",
         "group": "3b2912cb.f335b6",
         "order": 3,
@@ -8314,6 +8314,60 @@
         "broker": "fa3d25ac.e5f148",
         "x": 751.5,
         "y": 1575,
+        "wires": []
+    },
+    {
+        "id": "210aff90.be662",
+        "type": "ui_slider",
+        "z": "678a079b.32abf",
+        "name": "",
+        "label": "servo angle (6)",
+        "tooltip": "",
+        "group": "3b2912cb.f335b6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "motorb",
+        "min": "0",
+        "max": "180",
+        "step": 1,
+        "x": 369,
+        "y": 1659,
+        "wires": [
+            [
+                "3fd467a2.73a438"
+            ]
+        ]
+    },
+    {
+        "id": "3fd467a2.73a438",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "",
+        "func": "var m = {\n    payload: {\n    angle: msg.payload\n    }\n};\nreturn m;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 517,
+        "y": 1658,
+        "wires": [
+            [
+                "d6b9675b.8cc63"
+            ]
+        ]
+    },
+    {
+        "id": "d6b9675b.8cc63",
+        "type": "mqtt out",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "esp8266-4c11aedd798/servo/angle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 760.5,
+        "y": 1656,
         "wires": []
     }
 ]
