@@ -7765,13 +7765,15 @@
         "payload": "90",
         "payloadType": "num",
         "topic": "",
-        "x": 182.5,
-        "y": 1282,
+        "x": 154.5,
+        "y": 1384,
         "wires": [
             [
                 "7a3d6237.e41cfc",
                 "134bb45b.b17764",
-                "df52dd4b.718108"
+                "df52dd4b.718108",
+                "ae2d8571.d060f8",
+                "9c331198.0d6a5"
             ]
         ]
     },
@@ -8204,6 +8206,114 @@
         "broker": "fa3d25ac.e5f148",
         "x": 766.5,
         "y": 1418,
+        "wires": []
+    },
+    {
+        "id": "ae2d8571.d060f8",
+        "type": "ui_slider",
+        "z": "678a079b.32abf",
+        "name": "",
+        "label": "servo angle (4)",
+        "tooltip": "",
+        "group": "3b2912cb.f335b6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "motorb",
+        "min": "0",
+        "max": "180",
+        "step": 1,
+        "x": 369,
+        "y": 1496,
+        "wires": [
+            [
+                "12f69a46.5bbc6e"
+            ]
+        ]
+    },
+    {
+        "id": "12f69a46.5bbc6e",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "",
+        "func": "var m = {\n    payload: {\n    angle: msg.payload\n    }\n};\nreturn m;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 517,
+        "y": 1495,
+        "wires": [
+            [
+                "9b677077.fbcf2"
+            ]
+        ]
+    },
+    {
+        "id": "9b677077.fbcf2",
+        "type": "mqtt out",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "esp8266-4c11aedd78/servo/angle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 750.5,
+        "y": 1493,
+        "wires": []
+    },
+    {
+        "id": "9c331198.0d6a5",
+        "type": "ui_slider",
+        "z": "678a079b.32abf",
+        "name": "",
+        "label": "servo angle (4)",
+        "tooltip": "",
+        "group": "3b2912cb.f335b6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "motorb",
+        "min": "0",
+        "max": "180",
+        "step": 1,
+        "x": 360,
+        "y": 1578,
+        "wires": [
+            [
+                "fe5d796.90a6208"
+            ]
+        ]
+    },
+    {
+        "id": "fe5d796.90a6208",
+        "type": "function",
+        "z": "678a079b.32abf",
+        "name": "",
+        "func": "var m = {\n    payload: {\n    angle: msg.payload\n    }\n};\nreturn m;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 508,
+        "y": 1577,
+        "wires": [
+            [
+                "ac634d8a.f57d28"
+            ]
+        ]
+    },
+    {
+        "id": "ac634d8a.f57d28",
+        "type": "mqtt out",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "esp8266-4c11aedd310/servo/angle",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 751.5,
+        "y": 1575,
         "wires": []
     }
 ]
