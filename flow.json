@@ -7789,7 +7789,8 @@
         "y": 1283,
         "wires": [
             [
-                "d1685b79.c8286"
+                "d1685b79.c8286",
+                "79017a73.2077d4"
             ]
         ]
     },
@@ -8368,6 +8369,21 @@
         "broker": "fa3d25ac.e5f148",
         "x": 760.5,
         "y": 1656,
+        "wires": []
+    },
+    {
+        "id": "79017a73.2077d4",
+        "type": "debug",
+        "z": "678a079b.32abf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 812.5,
+        "y": 1213,
         "wires": []
     }
 ]
