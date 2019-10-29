@@ -84,6 +84,13 @@
         "info": ""
     },
     {
+        "id": "bb99a256.da3bb",
+        "type": "tab",
+        "label": "Jars",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "2b493f5b.793ad8",
         "type": "subflow",
         "name": "RFID read",
@@ -658,6 +665,17 @@
         "name": "Servos",
         "tab": "fb5770b0.a24bf",
         "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "919403e1.6784c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Audio",
+        "tab": "fb5770b0.a24bf",
+        "order": 5,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -5596,8 +5614,8 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 183.5,
-        "y": 330,
+        "x": 748.5000076293945,
+        "y": 170.99998950958252,
         "wires": [
             [
                 "8bbcd9b2.06ced8"
@@ -5609,14 +5627,14 @@
         "type": "debug",
         "z": "678a079b.32abf",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 913.5,
-        "y": 343,
+        "x": 947.5,
+        "y": 200.99999332427979,
         "wires": []
     },
     {
@@ -5640,8 +5658,8 @@
         "height": 0,
         "passthru": true,
         "topic": "",
-        "x": 203.5,
-        "y": 102,
+        "x": 148.50001525878906,
+        "y": 44.999996185302734,
         "wires": [
             [
                 "4aa815a1.564034"
@@ -5657,8 +5675,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 746.5,
-        "y": 135,
+        "x": 691.5000152587891,
+        "y": 77.99999618530273,
         "wires": []
     },
     {
@@ -5680,8 +5698,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 457.5,
-        "y": 99,
+        "x": 402.50001525878906,
+        "y": 41.999996185302734,
         "wires": [
             [
                 "558d0689.369558"
@@ -5706,8 +5724,8 @@
         "payload": "{\"operation\":\"twinkle\",\"duration\":2000}",
         "payloadType": "json",
         "topic": "all.neopixel/twinkle",
-        "x": 204.5,
-        "y": 173,
+        "x": 251.50003051757812,
+        "y": 90.00000190734863,
         "wires": [
             [
                 "558d0689.369558"
@@ -5732,8 +5750,8 @@
         "payload": "{\"operation\":\"setrgb\",\"red\":0,\"green\":0,\"blue\":0}",
         "payloadType": "json",
         "topic": "all.neopixel/twinkle",
-        "x": 192,
-        "y": 228,
+        "x": 414.00002670288086,
+        "y": 129,
         "wires": [
             [
                 "558d0689.369558"
@@ -5757,8 +5775,8 @@
         "min": "-100",
         "max": "100",
         "step": 1,
-        "x": 176.5,
-        "y": 434,
+        "x": 264.5000228881836,
+        "y": 239.99998664855957,
         "wires": [
             [
                 "7a0a63c2.d42acc"
@@ -5774,8 +5792,8 @@
         "qos": "",
         "retain": "",
         "broker": "fa3d25ac.e5f148",
-        "x": 692,
-        "y": 468,
+        "x": 780.0000228881836,
+        "y": 273.99998664855957,
         "wires": []
     },
     {
@@ -5786,8 +5804,8 @@
         "func": "var m = {\n    payload: {\n    motorb: msg.payload\n    }\n};\nreturn m;",
         "outputs": 1,
         "noerr": 0,
-        "x": 340.5,
-        "y": 432,
+        "x": 428.5000228881836,
+        "y": 237.99998664855957,
         "wires": [
             [
                 "57d1e07e.1663c8",
@@ -5813,8 +5831,8 @@
         "payload": "0",
         "payloadType": "num",
         "topic": "all.neopixel/twinkle",
-        "x": 194,
-        "y": 507,
+        "x": 282.0000228881836,
+        "y": 312.99998664855957,
         "wires": [
             [
                 "7a0a63c2.d42acc",
@@ -6047,9 +6065,7 @@
         "propertyType": "msg",
         "rules": [
             {
-                "t": "gt",
-                "v": "0",
-                "vt": "str"
+                "t": "nempty"
             }
         ],
         "checkall": "true",
@@ -6556,7 +6572,7 @@
         "type": "debug",
         "z": "a9fb438e.5bcb7",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -6647,7 +6663,7 @@
         "type": "function",
         "z": "a9fb438e.5bcb7",
         "name": "RfidMultiLockWithSequence",
-        "func": "context.data = context.data || {};\n\nif (!context.data.hasOwnProperty(\"sequence\")) {\n    context.data.sequence = [];\n}\n\nif (msg.payload == \"RESET\")\n{\n    context.data = null;\n    msg.payload = 0;\n    return msg;\n}\n\nswitch(msg.payload.tag) {\n    case \"D39284D1\":\n        if(context.data.rfid1 !== true) {\n            context.data.sequence.push(1);\n            context.data.rfid1 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"23E0D5D1\":\n        if(context.data.rfid2 !== true){\n            context.data.sequence.push(2);\n            context.data.rfid2 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"639681D1\":\n        if(context.data.rfid3 !== true){\n            context.data.sequence.push(3);\n            context.data.rfid3 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"13BDD9D1\":\n        if(context.data.rfid4 !== true){\n            context.data.sequence.push(4);\n            context.data.rfid4 = true;\n        }\n        msg.payload = 0;\n        break;\n    default:\n        msg.payload = 0;\n        break;\n}\n\nmsg.sequence = context.data.sequence\n\nif (context.data.rfid1 === true && context.data.rfid2 === true && context.data.rfid3 === true && context.data.rfid4 === true) {\n    if (context.data.sequence[0] == 1 && context.data.sequence[1] == 2 && context.data.sequence[2] == 3 && context.data.sequence[3] == 4) {\n        msg.payload = 1\n    } else {\n        msg.payload = 2\n    }\n    context.data=null;\n} else {\n    msg.payload = 0;\n}\n\nreturn msg;",
+        "func": "context.data = context.data || {};\n\nif (!context.data.hasOwnProperty(\"sequence\")) {\n    context.data.sequence = [];\n}\n\nif (msg.payload == \"RESET\")\n{\n    context.data = null;\n    msg.payload = 0;\n    return msg;\n}\n\nswitch(msg.payload.tag) {\n    case \"D39284D1\":\n        if(context.data.rfid1 !== true) {\n            context.data.sequence.push(1);\n            context.data.rfid1 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"23E0D5D1\":\n        if(context.data.rfid2 !== true){\n            context.data.sequence.push(2);\n            context.data.rfid2 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"639681D1\":\n        if(context.data.rfid3 !== true){\n            context.data.sequence.push(3);\n            context.data.rfid3 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"13BDD9D1\":\n        if(context.data.rfid4 !== true){\n            context.data.sequence.push(4);\n            context.data.rfid4 = true;\n        }\n        msg.payload = 0;\n        break;\n    default:\n        msg.payload = 0;\n        break;\n}\n\nmsg.sequence = context.data.sequence\n\nif (context.data.rfid1 === true && context.data.rfid2 === true && context.data.rfid3 === true && context.data.rfid4 === true) {\n    if (context.data.sequence[0] == 1 && context.data.sequence[1] == 2 && context.data.sequence[2] == 3 && context.data.sequence[3] == 4) {\n        msg.payload = 1\n    } else {\n        msg.payload = 2\n    }\n    context.data = null;\n} else {\n    msg.payload = 0;\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 742.5,
@@ -7014,11 +7030,13 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "fa3d25ac.e5f148",
-        "x": 140,
-        "y": 575,
+        "x": 199,
+        "y": 495,
         "wires": [
             [
-                "264c0a8c.186b86"
+                "264c0a8c.186b86",
+                "834f4547.ea9ed8",
+                "b5f398f3.2104d8"
             ]
         ]
     },
@@ -7030,8 +7048,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 189,
-        "y": 618,
+        "x": 195,
+        "y": 556,
         "wires": [
             [
                 "8f3ae2ab.3c046"
@@ -7046,8 +7064,8 @@
         "func": "// what we're storing\nvar updatedb = {\n    query: {\"name\": msg.topic}, \n    payload: { },\n    collection: \"touch_info\",\n    orig: msg.orig,\n}\nif (msg.payload.length > 0) {\n    updatedb.payload = msg.payload[0];\n    updatedb.query = {\"_id\": updatedb.payload._id};\n}\nupdatedb.payload.name = msg.topic;\nupdatedb.payload.device = msg.orig.device;\nupdatedb.payload.time = msg.orig.time;\n\nfor (var key in msg.orig) {\n   if (msg.orig.hasOwnProperty(key)) {\n      //var value = validation_messages[key];\n      updatedb.payload[key] = msg.orig[key];\n   }\n}\n\nreturn updatedb;",
         "outputs": 1,
         "noerr": 0,
-        "x": 777.5,
-        "y": 707,
+        "x": 678.5,
+        "y": 644,
         "wires": [
             [
                 "55094531.b212fc"
@@ -7067,8 +7085,8 @@
         "operation": "update",
         "upsert": false,
         "multi": false,
-        "x": 983.88330078125,
-        "y": 705.88330078125,
+        "x": 878.88330078125,
+        "y": 643.88330078125,
         "wires": [
             [
                 "d032a9ed.26dbf8"
@@ -7085,8 +7103,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 344.5,
-        "y": 656,
+        "x": 333.5,
+        "y": 609,
         "wires": [
             [
                 "7122dee4.52994",
@@ -7102,8 +7120,8 @@
         "func": "\nmsg.orig = msg.payload;\nmsg.name = msg.topic;\nmsg.payload = msg.name;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 210,
-        "y": 660,
+        "x": 194,
+        "y": 609,
         "wires": [
             [
                 "d9477417.2c2d3"
@@ -7116,8 +7134,8 @@
         "z": "678a079b.32abf",
         "name": "",
         "scope": null,
-        "x": 587,
-        "y": 867,
+        "x": 1175,
+        "y": 309,
         "wires": [
             [
                 "7344dba9.08186c"
@@ -7135,8 +7153,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 716.0000152587891,
-        "y": 871.3333129882812,
+        "x": 1298,
+        "y": 312.33331298828125,
         "wires": []
     },
     {
@@ -7154,8 +7172,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 576,
-        "y": 658,
+        "x": 484,
+        "y": 600,
         "wires": [
             [
                 "3c0811f8.bef326"
@@ -7177,8 +7195,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 586.5,
-        "y": 699,
+        "x": 474.5,
+        "y": 644,
         "wires": [
             [
                 "db7e7cbc.b3716"
@@ -7193,8 +7211,8 @@
         "func": "\n// what we're storing\nvar updatedb = {\n    query: {\"name\": msg.topic}, \n    payload: { },\n    collection: \"touch_info\",\n    orig: msg.orig,\n}\nif (msg.payload.length > 0) {\n    updatedb.payload = msg.payload[0];\n    updatedb.query = {\"_id\": updatedb.payload._id};\n}\nupdatedb.payload.name = msg.topic;\nupdatedb.payload.device = msg.orig.device;\nupdatedb.payload.time = msg.orig.time;\n\nfor (var key in msg.orig) {\n   if (msg.orig.hasOwnProperty(key)) {\n      //var value = validation_messages[key];\n      updatedb.payload[key] = msg.orig[key];\n   }\n}\n\nreturn updatedb;",
         "outputs": 1,
         "noerr": 0,
-        "x": 784,
-        "y": 656,
+        "x": 680,
+        "y": 600,
         "wires": [
             [
                 "f5cf91e2.a94e58"
@@ -7214,8 +7232,8 @@
         "operation": "insert",
         "upsert": true,
         "multi": false,
-        "x": 990.38330078125,
-        "y": 654.88330078125,
+        "x": 877.38330078125,
+        "y": 599.88330078125,
         "wires": [
             [
                 "d032a9ed.26dbf8"
@@ -7232,8 +7250,8 @@
         "operation": "delete",
         "upsert": true,
         "multi": false,
-        "x": 943,
-        "y": 591,
+        "x": 876,
+        "y": 552,
         "wires": [
             [
                 "d032a9ed.26dbf8"
@@ -7258,8 +7276,8 @@
         "payload": "{}",
         "payloadType": "json",
         "topic": "",
-        "x": 773,
-        "y": 590,
+        "x": 706,
+        "y": 551,
         "wires": [
             [
                 "cc1ba7c4.3558"
@@ -7276,8 +7294,8 @@
         "operation": "find",
         "upsert": false,
         "multi": false,
-        "x": 1277,
-        "y": 670,
+        "x": 1098,
+        "y": 645,
         "wires": [
             [
                 "49bee9bf.5e2df8",
@@ -7298,8 +7316,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 1303,
-        "y": 718,
+        "x": 1234,
+        "y": 659,
         "wires": [
             []
         ]
@@ -7312,8 +7330,8 @@
         "func": "msg.payload = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1184,
-        "y": 633,
+        "x": 1058,
+        "y": 599,
         "wires": [
             [
                 "d26177df.656018",
@@ -7331,8 +7349,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1415,
-        "y": 632,
+        "x": 1248,
+        "y": 578,
         "wires": []
     },
     {
@@ -7345,8 +7363,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1456,
-        "y": 682,
+        "x": 1252,
+        "y": 617,
         "wires": []
     },
     {
@@ -7631,8 +7649,8 @@
         "operation": "update",
         "upsert": false,
         "multi": false,
-        "x": 1518,
-        "y": 1103,
+        "x": 1566,
+        "y": 1104,
         "wires": [
             [
                 "5bb4f79.36ee308"
@@ -7650,8 +7668,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1671,
-        "y": 1100,
+        "x": 1720,
+        "y": 1104,
         "wires": []
     },
     {
@@ -7773,7 +7791,8 @@
                 "134bb45b.b17764",
                 "df52dd4b.718108",
                 "ae2d8571.d060f8",
-                "9c331198.0d6a5"
+                "9c331198.0d6a5",
+                "210aff90.be662"
             ]
         ]
     },
@@ -7789,8 +7808,7 @@
         "y": 1283,
         "wires": [
             [
-                "d1685b79.c8286",
-                "79017a73.2077d4"
+                "d1685b79.c8286"
             ]
         ]
     },
@@ -8372,7 +8390,643 @@
         "wires": []
     },
     {
-        "id": "79017a73.2077d4",
+        "id": "d7612d20.c4103",
+        "type": "mqtt out",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 595.5142288208008,
+        "y": 1757.096477508545,
+        "wires": []
+    },
+    {
+        "id": "ccd049fd.6aa6f8",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "919403e1.6784c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "play node1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"sound\":\"forest/bed monster memory.wav\"}",
+        "payloadType": "json",
+        "topic": "node1/audio/play",
+        "x": 331.19883728027344,
+        "y": 1758.059700012207,
+        "wires": [
+            [
+                "d7612d20.c4103"
+            ]
+        ]
+    },
+    {
+        "id": "daf88041.24f01",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "919403e1.6784c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "play six",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"sound\":\"forest/bed monster memory.wav\"}",
+        "payloadType": "json",
+        "topic": "six/audio/play",
+        "x": 742.0142250061035,
+        "y": 1850.0964756011963,
+        "wires": [
+            [
+                "d7612d20.c4103"
+            ]
+        ]
+    },
+    {
+        "id": "96c14af0.a68298",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "919403e1.6784c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "play zero-1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"sound\":\"forest/bed monster memory.wav\"}",
+        "payloadType": "json",
+        "topic": "zero-1/audio/play",
+        "x": 334.01422119140625,
+        "y": 1806.0964946746826,
+        "wires": [
+            [
+                "d7612d20.c4103"
+            ]
+        ]
+    },
+    {
+        "id": "88f8257b.741d28",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "919403e1.6784c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "play zero-3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"sound\":\"forest/bed monster memory.wav\"}",
+        "payloadType": "json",
+        "topic": "zero-3/audio/play",
+        "x": 341.0142364501953,
+        "y": 1891.0965127944946,
+        "wires": [
+            [
+                "d7612d20.c4103"
+            ]
+        ]
+    },
+    {
+        "id": "5ade669e.62ff98",
+        "type": "ui_button",
+        "z": "678a079b.32abf",
+        "name": "",
+        "group": "919403e1.6784c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "play zero-2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"sound\":\"forest/bed monster memory.wav\"}",
+        "payloadType": "json",
+        "topic": "zero-2/audio/play",
+        "x": 334.0142288208008,
+        "y": 1847.0964269638062,
+        "wires": [
+            [
+                "d7612d20.c4103"
+            ]
+        ]
+    },
+    {
+        "id": "67ab54fd.d4c8dc",
+        "type": "subflow:2b493f5b.793ad8",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [],
+        "x": 200,
+        "y": 292,
+        "wires": [
+            [
+                "964d218c.9f93a",
+                "b3cf91a6.f9451"
+            ]
+        ]
+    },
+    {
+        "id": "964d218c.9f93a",
+        "type": "debug",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.tag",
+        "targetType": "msg",
+        "x": 281.5,
+        "y": 389,
+        "wires": []
+    },
+    {
+        "id": "f6d40a0e.6d3b48",
+        "type": "switch",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "property": "payload.tag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "73C5E8D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "E35ED4D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "531DEED1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "43D782D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "43B2EED1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "939882D1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "03F3DFD1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "73C4D6D1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 8,
+        "x": 556,
+        "y": 293,
+        "wires": [
+            [
+                "195304b9.78285b",
+                "eecb101d.93016"
+            ],
+            [
+                "195304b9.78285b",
+                "7ab44812.3f20c8"
+            ],
+            [
+                "195304b9.78285b",
+                "1358aab6.8f4605"
+            ],
+            [
+                "195304b9.78285b",
+                "ca33abd4.e2fd18"
+            ],
+            [
+                "cc3ef62a.def898"
+            ],
+            [
+                "a047314c.f497d"
+            ],
+            [
+                "bede3fa5.90bf6"
+            ],
+            [
+                "d46f4596.1818e8"
+            ]
+        ]
+    },
+    {
+        "id": "b3cf91a6.f9451",
+        "type": "delay",
+        "z": "bb99a256.da3bb",
+        "name": "RFID-repeat filter",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 383,
+        "y": 293,
+        "wires": [
+            [
+                "f6d40a0e.6d3b48"
+            ]
+        ]
+    },
+    {
+        "id": "195304b9.78285b",
+        "type": "function",
+        "z": "bb99a256.da3bb",
+        "name": "RfidMultiLockWithJarSequence",
+        "func": "context.data = context.data || {};\nvar reset = false;\nvar jars = [\n    \"73C5E8D1\",\n    \"E35ED4D1\",\n    \"531DEED1\",\n    \"43D782D1\"\n    ]\nif (!context.data.hasOwnProperty(\"jarSequence\")) {\n    context.data.jarSequence = [];\n}\n\nif (msg.payload == \"RESET\")\n{\n    reset = true;\n}\nswitch(msg.payload.tag) {\n    //17\n    case jars[0]:\n        if(context.data.tableRFID1 !== true) {\n            context.data.jarSequence.push(1);\n            context.data.tableRFID1 = true;\n        }\n        msg.payload = 0;\n        break;\n        //24\n    case jars[1]:\n        if(context.data.tableRFID2 !== true){\n            context.data.jarSequence.push(2);\n            context.data.tableRFID2 = true;\n        }\n        msg.payload = 0;\n        break;\n        //43\n    case jars[2]:\n        if(context.data.tableRFID3 !== true){\n            context.data.jarSequence.push(3);\n            context.data.tableRFID3 = true;\n        }\n        msg.payload = 0;\n        break;\n        //45\n    case jars[3]:\n        if(context.data.tableRFID4 !== true){\n            context.data.jarSequence.push(4);\n            context.data.tableRFID4 = true;\n        }\n        msg.payload = 0;\n        break;\n    default:\n        msg.payload = 0;\n        break;\n}\n\nmsg.jarSequence = context.data.jarSequence\n\nif (context.data.tableRFID1 === true && context.data.tableRFID2 === true && context.data.tableRFID3 === true && context.data.tableRFID4 === true) {\n    if (context.data.jarSequence[0] == 1 && context.data.jarSequence[1] == 2 && context.data.jarSequence[2] == 3 && context.data.jarSequence[3] == 4) {\n        msg.payload = \"correct\"\n    } else {\n        msg.payload = \"incorrect\"\n    }\n    context.data=null;\n} else {\n    msg.payload = 0;\n}\nif(reset){\n    context.data.jarSequence = [];\n    msg.payload = 0;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 807,
+        "y": 143,
+        "wires": [
+            [
+                "f95882a7.8f2d6",
+                "497b06a1.78a008"
+            ]
+        ]
+    },
+    {
+        "id": "f95882a7.8f2d6",
+        "type": "debug",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1166.5,
+        "y": 102,
+        "wires": []
+    },
+    {
+        "id": "eecb101d.93016",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 959,
+        "y": 299,
+        "wires": []
+    },
+    {
+        "id": "7ab44812.3f20c8",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 963,
+        "y": 352,
+        "wires": []
+    },
+    {
+        "id": "1358aab6.8f4605",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 969,
+        "y": 416,
+        "wires": []
+    },
+    {
+        "id": "ca33abd4.e2fd18",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 969,
+        "y": 470,
+        "wires": []
+    },
+    {
+        "id": "cc3ef62a.def898",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 961,
+        "y": 598,
+        "wires": []
+    },
+    {
+        "id": "a047314c.f497d",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 958,
+        "y": 652,
+        "wires": []
+    },
+    {
+        "id": "bede3fa5.90bf6",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 960,
+        "y": 704,
+        "wires": []
+    },
+    {
+        "id": "d46f4596.1818e8",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 960,
+        "y": 747,
+        "wires": []
+    },
+    {
+        "id": "c6f7aadf.08a278",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "51",
+        "info": "",
+        "x": 1083.5,
+        "y": 596,
+        "wires": []
+    },
+    {
+        "id": "8cd21039.89139",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "82",
+        "info": "",
+        "x": 1079,
+        "y": 649,
+        "wires": []
+    },
+    {
+        "id": "7c155477.24fd3c",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "97",
+        "info": "",
+        "x": 1083,
+        "y": 704,
+        "wires": []
+    },
+    {
+        "id": "67821ee.77c38e",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "112",
+        "info": "",
+        "x": 1081,
+        "y": 752,
+        "wires": []
+    },
+    {
+        "id": "ee16c41d.85b678",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "17",
+        "info": "",
+        "x": 1080,
+        "y": 299,
+        "wires": []
+    },
+    {
+        "id": "84abe919.5008d8",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "24",
+        "info": "",
+        "x": 1083,
+        "y": 352,
+        "wires": []
+    },
+    {
+        "id": "e66e4719.c05078",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "43",
+        "info": "",
+        "x": 1089,
+        "y": 417,
+        "wires": []
+    },
+    {
+        "id": "789e0435.3e98cc",
+        "type": "comment",
+        "z": "bb99a256.da3bb",
+        "name": "112",
+        "info": "",
+        "x": 1090,
+        "y": 468,
+        "wires": []
+    },
+    {
+        "id": "497b06a1.78a008",
+        "type": "switch",
+        "z": "bb99a256.da3bb",
+        "name": "correct/incorrect",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "correct",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "incorrect",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1131.5,
+        "y": 190,
+        "wires": [
+            [
+                "20d041cd.e35a7e"
+            ],
+            [
+                "debf1d9a.43a85"
+            ]
+        ]
+    },
+    {
+        "id": "20d041cd.e35a7e",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 1318,
+        "y": 157,
+        "wires": []
+    },
+    {
+        "id": "debf1d9a.43a85",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "bb99a256.da3bb",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster23.mp3"
+            }
+        ],
+        "x": 1316,
+        "y": 229,
+        "wires": []
+    },
+    {
+        "id": "834f4547.ea9ed8",
         "type": "debug",
         "z": "678a079b.32abf",
         "name": "",
@@ -8382,8 +9036,342 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 812.5,
-        "y": 1213,
+        "x": 344,
+        "y": 537,
         "wires": []
+    },
+    {
+        "id": "21715e6a.9addf2",
+        "type": "comment",
+        "z": "678a079b.32abf",
+        "name": "Touch Input for the Ticklish tree",
+        "info": "",
+        "x": 249,
+        "y": 424,
+        "wires": []
+    },
+    {
+        "id": "b5f398f3.2104d8",
+        "type": "change",
+        "z": "678a079b.32abf",
+        "name": "set db query",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"name\":\"Gardenstate\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 356,
+        "y": 495,
+        "wires": [
+            [
+                "884f2176.b3da6"
+            ]
+        ]
+    },
+    {
+        "id": "884f2176.b3da6",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "Get garden state from db",
+        "collection": "entity_definitions",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 555,
+        "y": 495,
+        "wires": [
+            [
+                "1c9a5aa5.cfed85"
+            ]
+        ]
+    },
+    {
+        "id": "1c9a5aa5.cfed85",
+        "type": "switch",
+        "z": "678a079b.32abf",
+        "name": "Garden State Value Switch",
+        "property": "payload[0].value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 812,
+        "y": 495,
+        "wires": [
+            [
+                "2288b0a7.bd10a"
+            ],
+            [
+                "5d406755.f3b138"
+            ]
+        ]
+    },
+    {
+        "id": "2288b0a7.bd10a",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "678a079b.32abf",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "six"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/garden_sounds/tree_laugh_1.wav"
+            }
+        ],
+        "x": 1109,
+        "y": 429,
+        "wires": []
+    },
+    {
+        "id": "5d406755.f3b138",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "678a079b.32abf",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "six"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/garden_sounds/tree_humph_1.wav"
+            }
+        ],
+        "x": 1113,
+        "y": 506,
+        "wires": []
+    },
+    {
+        "id": "dbe4ff25.6d65f",
+        "type": "comment",
+        "z": "678a079b.32abf",
+        "name": "Tickle sound dependent on switch",
+        "info": "",
+        "x": 805,
+        "y": 426,
+        "wires": []
+    },
+    {
+        "id": "812ca267.94bb1",
+        "type": "inject",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 897.5,
+        "y": 378,
+        "wires": [
+            [
+                "2288b0a7.bd10a"
+            ]
+        ]
+    },
+    {
+        "id": "77f613ed.c28e6c",
+        "type": "comment",
+        "z": "678a079b.32abf",
+        "name": "Speech Input for the shushing flower",
+        "info": "",
+        "x": 175,
+        "y": 806,
+        "wires": []
+    },
+    {
+        "id": "63405808.2892a8",
+        "type": "change",
+        "z": "678a079b.32abf",
+        "name": "set db query",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"name\":\"Gardenstate\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 272,
+        "y": 877,
+        "wires": [
+            [
+                "8ade8b3d.46b698"
+            ]
+        ]
+    },
+    {
+        "id": "8ade8b3d.46b698",
+        "type": "mongodb-node",
+        "z": "678a079b.32abf",
+        "mongodb": "82a69951.ff1f48",
+        "name": "Get garden state from db",
+        "collection": "entity_definitions",
+        "operation": "find",
+        "upsert": false,
+        "multi": false,
+        "x": 471,
+        "y": 877,
+        "wires": [
+            [
+                "eefb600e.dc945"
+            ]
+        ]
+    },
+    {
+        "id": "eefb600e.dc945",
+        "type": "switch",
+        "z": "678a079b.32abf",
+        "name": "Garden State Value Switch",
+        "property": "payload[0].value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 728,
+        "y": 877,
+        "wires": [
+            [
+                "26967e86.40b8b2"
+            ],
+            [
+                "cfccf80f.733878"
+            ]
+        ]
+    },
+    {
+        "id": "26967e86.40b8b2",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "678a079b.32abf",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/garden_sounds/shush.wav"
+            }
+        ],
+        "x": 1025,
+        "y": 811,
+        "wires": []
+    },
+    {
+        "id": "cfccf80f.733878",
+        "type": "subflow:3c0e296d.ea2856",
+        "z": "678a079b.32abf",
+        "name": "",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/garden_sounds/shushing.wav"
+            }
+        ],
+        "x": 1029,
+        "y": 888,
+        "wires": []
+    },
+    {
+        "id": "64da0d1b.9d2404",
+        "type": "comment",
+        "z": "678a079b.32abf",
+        "name": "sound dependent on switch",
+        "info": "",
+        "x": 701,
+        "y": 808,
+        "wires": []
+    },
+    {
+        "id": "271fbd18.eb1b72",
+        "type": "inject",
+        "z": "678a079b.32abf",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 813.5,
+        "y": 760,
+        "wires": [
+            [
+                "26967e86.40b8b2"
+            ]
+        ]
+    },
+    {
+        "id": "98480bfa.a84cc8",
+        "type": "subflow:da62098d.6a3278",
+        "z": "678a079b.32abf",
+        "name": "",
+        "env": [],
+        "x": 99,
+        "y": 877,
+        "wires": [
+            [
+                "63405808.2892a8"
+            ]
+        ]
     }
 ]
