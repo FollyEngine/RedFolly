@@ -695,104 +695,6 @@
         "willPayload": ""
     },
     {
-        "id": "6ddacde4.8923dc",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-dark",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "reset": false
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#000000",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#0eb8c0",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#555555",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#eeeeee",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "true",
-            "lockMenu": "true",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
         "id": "ed185782.bd0178",
         "type": "ui_tab",
         "z": "",
@@ -872,7 +774,7 @@
         "id": "60a15bd7.b87fd4",
         "type": "mongodb-config",
         "z": "",
-        "hostname": "localhost",
+        "hostname": "mongo",
         "port": "27017",
         "db": "local",
         "name": ""
@@ -1108,10 +1010,11 @@
         "type": "mqtt-broker",
         "z": "",
         "name": "mqtt.folly.site",
-        "broker": "localhost",
-        "port": "1883",
+        "broker": "mqtt.folly.site",
+        "port": "8883",
+        "tls": "",
         "clientid": "",
-        "usetls": false,
+        "usetls": true,
         "compatmode": true,
         "keepalive": "60",
         "cleansession": true,
@@ -1127,104 +1030,6 @@
         "willQos": "0",
         "willRetain": "true",
         "willPayload": ""
-    },
-    {
-        "id": "367ad232.7d4006",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-dark",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "reset": false
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#097479",
-                    "value": "#097479",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#000000",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#0eb8c0",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#555555",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#eeeeee",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#097479",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#333333",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "true",
-            "lockMenu": "true",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
     },
     {
         "id": "87fc79f.edb4388",
@@ -1306,7 +1111,7 @@
         "id": "788cee09.d64d1",
         "type": "mongodb-config",
         "z": "",
-        "hostname": "localhost",
+        "hostname": "mongo",
         "port": "27017",
         "db": "local",
         "name": ""
@@ -7013,8 +6818,8 @@
         "func": "var newmsg = {\n    payload: {\n        operation: \"set\",\n        colour: \"red\",\n        count: 99\n    },\n    topic: \"two/neopixel-level/play\"\n};\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1355,
-        "y": 731,
+        "x": 1973,
+        "y": 636,
         "wires": [
             [
                 "58f5b494.dff84c",
@@ -7026,7 +6831,7 @@
         "id": "2b0dd5b7.d5fa4a",
         "type": "subflow:2e99692c.076a7e",
         "z": "ab1febba.03f0b8",
-        "name": "",
+        "name": "audio ritual begins",
         "env": [
             {
                 "name": "node",
@@ -7039,8 +6844,8 @@
                 "value": "/home/pi/monster_sounds/Monster12.mp3"
             }
         ],
-        "x": 1570,
-        "y": 692,
+        "x": 2244,
+        "y": 620,
         "wires": []
     },
     {
@@ -7104,8 +6909,8 @@
                 "value": "two"
             }
         ],
-        "x": 1561,
-        "y": 735,
+        "x": 2210,
+        "y": 556,
         "wires": []
     },
     {
@@ -7362,13 +7167,14 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 226,
+        "x": 212,
         "y": 690,
         "wires": [
             [
                 "36556a38.3ad2f6",
                 "55e585e4.316f0c",
-                "22ccbf73.c97e4"
+                "22ccbf73.c97e4",
+                "b9263e25.3a08e"
             ]
         ]
     },
@@ -7381,8 +7187,8 @@
         "qos": "",
         "retain": "",
         "broker": "8f313a3c.9e2c2",
-        "x": 1593,
-        "y": 777,
+        "x": 2247,
+        "y": 686,
         "wires": []
     },
     {
@@ -7393,8 +7199,8 @@
         "func": "var newmsg = {\n    payload: {\n        operation: \"setrgb\",\n        r: 255,\n        g: 0,\n        b: 0,\n        a: 1\n    },\n    topic: \"all.neopixel/twinkle\"\n};\nreturn newmsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1335,
-        "y": 774,
+        "x": 1973,
+        "y": 688,
         "wires": [
             [
                 "2c201949.0459d6"
@@ -7413,8 +7219,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 1127,
-        "y": 712,
+        "x": 1687,
+        "y": 593,
         "wires": [
             [
                 "4f03db9c.e574b4",
@@ -7428,8 +7234,8 @@
         "z": "ab1febba.03f0b8",
         "name": "",
         "env": [],
-        "x": 152.5,
-        "y": 870,
+        "x": 130.5,
+        "y": 1000,
         "wires": [
             [
                 "6e15e176.2d84f",
@@ -7448,8 +7254,8 @@
         "tostatus": false,
         "complete": "payload.tag",
         "targetType": "msg",
-        "x": 234,
-        "y": 967,
+        "x": 212,
+        "y": 1097,
         "wires": []
     },
     {
@@ -7484,25 +7290,13 @@
         "checkall": "false",
         "repair": false,
         "outputs": 4,
-        "x": 508.5,
-        "y": 871,
+        "x": 572.5,
+        "y": 1328,
         "wires": [
-            [
-                "a0f02764.1056a8",
-                "9fc40bb6.40785"
-            ],
-            [
-                "a0f02764.1056a8",
-                "9fc40bb6.40785"
-            ],
-            [
-                "a0f02764.1056a8",
-                "9fc40bb6.40785"
-            ],
-            [
-                "a0f02764.1056a8",
-                "9fc40bb6.40785"
-            ]
+            [],
+            [],
+            [],
+            []
         ]
     },
     {
@@ -7520,11 +7314,11 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
-        "x": 335.5,
-        "y": 871,
+        "x": 366.5,
+        "y": 998,
         "wires": [
             [
-                "ddf21796.0aa1f"
+                "f3fd9f19.22be9"
             ]
         ]
     },
@@ -7536,22 +7330,17 @@
         "func": "context.data = context.data || {};\n\nif (!context.data.hasOwnProperty(\"sequence\")) {\n    context.data.sequence = [];\n}\n\nif (msg.payload == \"RESET\")\n{\n    context.data = null;\n    msg.payload = 0;\n    return msg;\n}\n\nswitch(msg.payload.tag) {\n    case \"D39284D1\":\n        if(context.data.rfid1 !== true) {\n            context.data.sequence.push(1);\n            context.data.rfid1 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"23E0D5D1\":\n        if(context.data.rfid2 !== true){\n            context.data.sequence.push(2);\n            context.data.rfid2 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"639681D1\":\n        if(context.data.rfid3 !== true){\n            context.data.sequence.push(3);\n            context.data.rfid3 = true;\n        }\n        msg.payload = 0;\n        break;\n    case \"13BDD9D1\":\n        if(context.data.rfid4 !== true){\n            context.data.sequence.push(4);\n            context.data.rfid4 = true;\n        }\n        msg.payload = 0;\n        break;\n    default:\n        msg.payload = 0;\n        break;\n}\n\nmsg.sequence = context.data.sequence\n\nif (context.data.rfid1 === true && context.data.rfid2 === true && context.data.rfid3 === true && context.data.rfid4 === true) {\n    if (context.data.sequence[0] == 1 && context.data.sequence[1] == 2 && context.data.sequence[2] == 3 && context.data.sequence[3] == 4) {\n        msg.payload = 1\n    } else {\n        msg.payload = 2\n    }\n    context.data.sequence = null;\n} else {\n    msg.payload = 0;\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 742.5,
-        "y": 876,
+        "x": 841.5,
+        "y": 1439,
         "wires": [
-            [
-                "15c1b4f5.00326b",
-                "35d3a14d.28768e",
-                "9236ed45.5ded8",
-                "fac3d9dd.2bd5e"
-            ]
+            []
         ]
     },
     {
         "id": "e6f6c410.bfee48",
         "type": "subflow:2e99692c.076a7e",
         "z": "ab1febba.03f0b8",
-        "name": "",
+        "name": "audio correct object",
         "env": [
             {
                 "name": "node",
@@ -7564,15 +7353,15 @@
                 "value": "/home/pi/monster_sounds/Monster22.mp3"
             }
         ],
-        "x": 1377,
-        "y": 850,
+        "x": 1651,
+        "y": 961,
         "wires": []
     },
     {
         "id": "15c1b4f5.00326b",
         "type": "switch",
         "z": "ab1febba.03f0b8",
-        "name": "",
+        "name": "correct object output 1",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -7585,16 +7374,32 @@
                 "t": "eq",
                 "v": "2",
                 "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
-        "x": 1100.5,
-        "y": 875,
+        "outputs": 4,
+        "x": 1233.5,
+        "y": 979,
         "wires": [
             [
                 "3c95438a.fa020c"
+            ],
+            [
+                "a2ade8c5.d6b9b"
+            ],
+            [
+                "a2ade8c5.d6b9b"
             ],
             [
                 "a2ade8c5.d6b9b"
@@ -7612,8 +7417,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 994,
-        "y": 916,
+        "x": 1113,
+        "y": 1448,
         "wires": []
     },
     {
@@ -7653,7 +7458,7 @@
         "id": "90eff795.c76a28",
         "type": "switch",
         "z": "ab1febba.03f0b8",
-        "name": "",
+        "name": "OWARI I AM HERE or no?",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -7666,12 +7471,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1128,
+        "x": 1205,
         "y": 754,
         "wires": [
             [
-                "4f03db9c.e574b4",
-                "9fc50c5f.ed253"
+                "ec17eb97.0ba948"
             ]
         ]
     },
@@ -7685,15 +7489,15 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 950.5,
-        "y": 716,
+        "x": 939.5,
+        "y": 704,
         "wires": []
     },
     {
         "id": "9fc40bb6.40785",
         "type": "subflow:2e99692c.076a7e",
         "z": "ab1febba.03f0b8",
-        "name": "",
+        "name": "audio recognise object",
         "env": [
             {
                 "name": "node",
@@ -7706,8 +7510,8 @@
                 "value": "/home/pi/monster_sounds/Monster23.mp3"
             }
         ],
-        "x": 723.5,
-        "y": 968,
+        "x": 876.5,
+        "y": 989,
         "wires": []
     },
     {
@@ -7725,8 +7529,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 1230.5,
-        "y": 851,
+        "x": 1458.5,
+        "y": 960,
         "wires": [
             [
                 "e6f6c410.bfee48"
@@ -7744,15 +7548,15 @@
         "tostatus": false,
         "complete": "sequence",
         "targetType": "msg",
-        "x": 1002,
-        "y": 961,
+        "x": 1121,
+        "y": 1493,
         "wires": []
     },
     {
         "id": "838adbe8.81d04",
         "type": "subflow:2e99692c.076a7e",
         "z": "ab1febba.03f0b8",
-        "name": "",
+        "name": "audio incorrect object",
         "env": [
             {
                 "name": "node",
@@ -7765,8 +7569,8 @@
                 "value": "/home/pi/monster_sounds/Monster7.mp3"
             }
         ],
-        "x": 1378,
-        "y": 898,
+        "x": 1655,
+        "y": 1032,
         "wires": []
     },
     {
@@ -7784,8 +7588,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 1231.5,
-        "y": 899,
+        "x": 1464.5,
+        "y": 1036,
         "wires": [
             [
                 "838adbe8.81d04"
@@ -7824,8 +7628,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 732,
-        "y": 818,
+        "x": 725,
+        "y": 908,
         "wires": [
             [
                 "9236ed45.5ded8",
@@ -7841,12 +7645,11 @@
         "func": "msg.payload=\"RESET\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 506,
-        "y": 739,
+        "x": 449,
+        "y": 755,
         "wires": [
             [
-                "9236ed45.5ded8",
-                "a0f02764.1056a8"
+                "9236ed45.5ded8"
             ]
         ]
     },
@@ -7862,8 +7665,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 728,
-        "y": 778,
+        "x": 726,
+        "y": 842,
         "wires": [
             [
                 "9236ed45.5ded8",
@@ -8114,7 +7917,7 @@
         "id": "dc56756.2a99c88",
         "type": "mongodb-node",
         "z": "8c5f11d4.d0087",
-        "mongodb": "788cee09.d64d1",
+        "mongodb": "82a69951.ff1f48",
         "name": "remote entity",
         "collection": "touch_info",
         "operation": "delete",
@@ -8619,7 +8422,7 @@
         "label": "servo angle (1)",
         "tooltip": "",
         "group": "a3ce7655.c9a408",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -8642,7 +8445,7 @@
         "z": "8c5f11d4.d0087",
         "name": "",
         "group": "a3ce7655.c9a408",
-        "order": 3,
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -8704,7 +8507,7 @@
         "topic": "AR/unity",
         "qos": "2",
         "datatype": "auto",
-        "broker": "8f313a3c.9e2c2",
+        "broker": "fa3d25ac.e5f148",
         "x": 236.5,
         "y": 151,
         "wires": [
@@ -8792,11 +8595,11 @@
         "type": "mqtt out",
         "z": "befd7418.87d0a8",
         "name": "",
-        "topic": "AR/unity",
+        "topic": "+/AR/unity",
         "qos": "",
         "retain": "",
-        "broker": "8f313a3c.9e2c2",
-        "x": 647.5,
+        "broker": "fa3d25ac.e5f148",
+        "x": 657.5,
         "y": 255,
         "wires": []
     },
@@ -8850,8 +8653,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 682.5,
-        "y": 409,
+        "x": 671.5,
+        "y": 431,
         "wires": [
             [
                 "c71630a4.a81768"
@@ -8912,8 +8715,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 666,
-        "y": 562,
+        "x": 673,
+        "y": 509,
         "wires": [
             [
                 "991ce07e.c2a78"
@@ -8942,8 +8745,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 871.5,
-        "y": 363,
+        "x": 813.5,
+        "y": 435,
         "wires": []
     },
     {
@@ -8957,8 +8760,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 865.5,
-        "y": 438,
+        "x": 811.5,
+        "y": 470,
         "wires": []
     },
     {
@@ -8972,8 +8775,8 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 802.5,
-        "y": 552,
+        "x": 811.5,
+        "y": 507,
         "wires": []
     },
     {
@@ -8981,7 +8784,7 @@
         "type": "debug",
         "z": "befd7418.87d0a8",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -9052,7 +8855,7 @@
         "label": "servo angle (3)",
         "tooltip": "",
         "group": "a3ce7655.c9a408",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -9106,7 +8909,7 @@
         "label": "servo angle (4)",
         "tooltip": "",
         "group": "a3ce7655.c9a408",
-        "order": 3,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -9160,7 +8963,7 @@
         "label": "servo angle (5)",
         "tooltip": "",
         "group": "a3ce7655.c9a408",
-        "order": 3,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -9214,7 +9017,7 @@
         "label": "servo angle (6)",
         "tooltip": "",
         "group": "a3ce7655.c9a408",
-        "order": 3,
+        "order": 7,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -10736,6 +10539,460 @@
             [
                 "6e252090.b7c55"
             ]
+        ]
+    },
+    {
+        "id": "1c23987d.416d98",
+        "type": "inject",
+        "z": "befd7418.87d0a8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 287.5,
+        "y": 571,
+        "wires": [
+            [
+                "b9b3d73f.2d39b8"
+            ]
+        ]
+    },
+    {
+        "id": "b9b3d73f.2d39b8",
+        "type": "mqtt out",
+        "z": "befd7418.87d0a8",
+        "name": "",
+        "topic": "AR/unity",
+        "qos": "",
+        "retain": "",
+        "broker": "fa3d25ac.e5f148",
+        "x": 464,
+        "y": 552,
+        "wires": []
+    },
+    {
+        "id": "30ad8b7f.e95894",
+        "type": "comment",
+        "z": "ab1febba.03f0b8",
+        "name": "",
+        "info": "creating a variable for the ritual\nsaying OWARI I AM HERE starts the ritual\nplay start of ritual sound\n-when we can talk to qlab this should also trigger soundtrack to change\n\nNext step in the ritual is for the RFID to be scanned\nThis trigger correct or incorrect sound\n\nAfter RFID tag success, ritual moves into second phase\ndifferent sounds triggered by OWARI I AM HERE",
+        "x": 1435.5,
+        "y": 867,
+        "wires": []
+    },
+    {
+        "id": "b9263e25.3a08e",
+        "type": "change",
+        "z": "ab1febba.03f0b8",
+        "name": "Make gobal variable ritual=A",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ritual",
+                "pt": "global",
+                "to": "A",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 271.5,
+        "y": 836,
+        "wires": [
+            [
+                "94bc4cd4.95a7e"
+            ]
+        ]
+    },
+    {
+        "id": "f3fd9f19.22be9",
+        "type": "switch",
+        "z": "ab1febba.03f0b8",
+        "name": "ritual 1. not started 2. started",
+        "property": "ritual",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "B",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 609.5,
+        "y": 998,
+        "wires": [
+            [
+                "9fc40bb6.40785"
+            ],
+            [
+                "1746744e.c5eeac"
+            ]
+        ]
+    },
+    {
+        "id": "ec17eb97.0ba948",
+        "type": "switch",
+        "z": "ab1febba.03f0b8",
+        "name": "ritual state A or C",
+        "property": "ritual",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "A",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "C",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1452.5,
+        "y": 754,
+        "wires": [
+            [
+                "a9676192.53cc"
+            ],
+            [
+                "95f81945.59ba48"
+            ]
+        ]
+    },
+    {
+        "id": "1746744e.c5eeac",
+        "type": "change",
+        "z": "ab1febba.03f0b8",
+        "name": "set ritual to state C",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ritual",
+                "pt": "global",
+                "to": "C",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 901.5,
+        "y": 1081,
+        "wires": [
+            [
+                "15c1b4f5.00326b"
+            ]
+        ]
+    },
+    {
+        "id": "95f81945.59ba48",
+        "type": "subflow:2e99692c.076a7e",
+        "z": "ab1febba.03f0b8",
+        "name": "second set of monster sounds",
+        "env": [
+            {
+                "name": "node",
+                "type": "str",
+                "value": "two"
+            },
+            {
+                "name": "sound",
+                "type": "str",
+                "value": "/home/pi/monster_sounds/Monster7.mp3"
+            }
+        ],
+        "x": 1737,
+        "y": 821,
+        "wires": [],
+        "info": "play randomly from a group of monster sounds"
+    },
+    {
+        "id": "94bc4cd4.95a7e",
+        "type": "debug",
+        "z": "ab1febba.03f0b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 492.5,
+        "y": 838,
+        "wires": []
+    },
+    {
+        "id": "a9676192.53cc",
+        "type": "change",
+        "z": "ab1febba.03f0b8",
+        "name": "change ritual to state B",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ritual",
+                "pt": "global",
+                "to": "B",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1676.5,
+        "y": 734,
+        "wires": [
+            [
+                "4f03db9c.e574b4",
+                "9fc50c5f.ed253",
+                "5dae234b.52937c"
+            ]
+        ]
+    },
+    {
+        "id": "3fd3e8a2.5a3878",
+        "type": "inject",
+        "z": "befd7418.87d0a8",
+        "name": "touch 1",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 291.5,
+        "y": 778,
+        "wires": [
+            [
+                "d8220931.0a7bd8",
+                "749b4ba2.94cb34"
+            ]
+        ]
+    },
+    {
+        "id": "57596b1a.798804",
+        "type": "inject",
+        "z": "befd7418.87d0a8",
+        "name": "touch 2",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 293,
+        "y": 834,
+        "wires": [
+            [
+                "94491dab.1b756",
+                "749b4ba2.94cb34"
+            ]
+        ]
+    },
+    {
+        "id": "584a45bb.60f8fc",
+        "type": "inject",
+        "z": "befd7418.87d0a8",
+        "name": "touch 3",
+        "topic": "",
+        "payload": "3",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 295,
+        "y": 889,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8a5ffaf.95072",
+        "type": "inject",
+        "z": "befd7418.87d0a8",
+        "name": "touch 4",
+        "topic": "",
+        "payload": "4",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 296,
+        "y": 948,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5dae234b.52937c",
+        "type": "delay",
+        "z": "ab1febba.03f0b8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1952,
+        "y": 765,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8220931.0a7bd8",
+        "type": "subflow:2e99692c.076a7e",
+        "z": "befd7418.87d0a8",
+        "name": "",
+        "x": 517.5,
+        "y": 733,
+        "wires": []
+    },
+    {
+        "id": "94491dab.1b756",
+        "type": "subflow:2e99692c.076a7e",
+        "z": "befd7418.87d0a8",
+        "name": "",
+        "x": 511.5,
+        "y": 854,
+        "wires": []
+    },
+    {
+        "id": "749b4ba2.94cb34",
+        "type": "join",
+        "z": "befd7418.87d0a8",
+        "name": "if both touched black out lights",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 714.5,
+        "y": 789,
+        "wires": [
+            [
+                "88dd95c9.bf00e8"
+            ]
+        ]
+    },
+    {
+        "id": "88dd95c9.bf00e8",
+        "type": "switch",
+        "z": "befd7418.87d0a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 944.5,
+        "y": 788,
+        "wires": [
+            [
+                "c9215524.b1df88"
+            ]
+        ]
+    },
+    {
+        "id": "c9215524.b1df88",
+        "type": "change",
+        "z": "befd7418.87d0a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1116.5,
+        "y": 847,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85a7f750.f2ed28",
+        "type": "inject",
+        "z": "befd7418.87d0a8",
+        "name": "lights back on",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 1038.5,
+        "y": 696,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54a2b339.9ef48c",
+        "type": "dmxusbpro",
+        "z": "68cc6e3.f67a09",
+        "name": "",
+        "port": "",
+        "DMX_starting_address": 1,
+        "x": 257.5,
+        "y": 658,
+        "wires": [
+            []
         ]
     }
 ]
