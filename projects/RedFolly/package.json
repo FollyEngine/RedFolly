@@ -2,11 +2,15 @@
     "name": "RedFolly",
     "description": "The Node-Red version of our Games",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+      "node-red-dashboard": "^2.23.2",
+      "node-red-node-pi-gpiod": "^0.0.13",
+      "node-red-contrib-dmxusbpro": "^1.0.4"
+    },
     "node-red": {
-        "settings": {
-            "flowFile": "flow.json",
-            "credentialsFile": "flow_cred.json"
-        }
+      "settings": {
+        "flowFile": "flow.json",
+        "credentialsFile": "flow_cred.json"
+      }
     }
 }
