@@ -2,13 +2,13 @@ name: Docker
 
 on:
   push:
-    # Publish `master` as Docker `latest` image.
+    # Publish `follyengine` as Docker `latest` image.
     branches:
-      - master
+      - follyengine
 
     # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
+    # tags:
+    #   - v*
 
 env:
   DOCKER_BUILDKIT: 1
@@ -39,6 +39,6 @@ jobs:
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64,linux/arm/v7 \
-            --tag follyengine/nodered \
+            --tag follyengine/nodered:latest \
             --output "type=image,push=true" \
             .
