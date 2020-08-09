@@ -13,9 +13,11 @@ run: build
 		--name mynodered \
 		-v $(PWD):/data/ \
 		-v /etc/wpa_supplicant:/etc/wpa_supplicant \
+		-v /var/run/wpa_supplicant:/var/run/wpa_supplicant \
 		-e FLOWS=/data/flow.json \
 		-e NODE_RED_ENABLE_PROJECTS=true \
 		--net=host \
+		--user=root \
 		$(IMAGE)
 
 build:

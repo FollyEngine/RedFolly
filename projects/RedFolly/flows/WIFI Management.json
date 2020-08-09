@@ -397,9 +397,11 @@
     "type": "function",
     "z": "536dcc6d.5fb21c",
     "name": "updateWpasupplicant",
-    "func": "var template = `sudo tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=IT\n\n${msg.payload}\nEOF\\n\n`\n\nmsg.payload = template\n\nreturn msg;",
+    "func": "var template = `tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=AU\n\n${msg.payload}\nEOF\\n\n`\n\nmsg.payload = template\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
+    "initialize": "",
+    "finalize": "",
     "x": 1200,
     "y": 199,
     "wires": [
@@ -419,14 +421,16 @@
     "timer": "",
     "oldrc": false,
     "name": "updateConf",
-    "x": 690,
-    "y": 300,
+    "x": 790,
+    "y": 260,
     "wires": [
       [
-        "a9695a79.ed68c8",
-        "3eaf3e20.b78d32"
+        "4f8e1f28.056ce",
+        "5652924.6b320ec"
       ],
-      [],
+      [
+        "b0810590.93068"
+      ],
       []
     ]
   },
@@ -434,20 +438,22 @@
     "id": "a9695a79.ed68c8",
     "type": "exec",
     "z": "536dcc6d.5fb21c",
-    "command": "sudo wpa_cli -i wlan0 reconfigure",
-    "addpay": false,
+    "command": "",
+    "addpay": true,
     "append": "",
     "useSpawn": "false",
     "timer": "",
     "oldrc": false,
     "name": "reconfigure",
-    "x": 870,
-    "y": 320,
+    "x": 910,
+    "y": 340,
     "wires": [
       [
         "3eaf3e20.b78d32"
       ],
-      [],
+      [
+        "b0810590.93068"
+      ],
       []
     ]
   },
@@ -745,5 +751,39 @@
     "x": 940,
     "y": 540,
     "wires": []
+  },
+  {
+    "id": "b0810590.93068",
+    "type": "debug",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1130,
+    "y": 400,
+    "wires": []
+  },
+  {
+    "id": "5652924.6b320ec",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "func": "msg.payload = \"wpa_cli -i \"+flow.get(\"device\")+\" reconfigure\"\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 740,
+    "y": 340,
+    "wires": [
+      [
+        "a9695a79.ed68c8"
+      ]
+    ]
   }
 ]
