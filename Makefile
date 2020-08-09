@@ -17,7 +17,6 @@ run: build
 		-e FLOWS=/data/flow.json \
 		-e NODE_RED_ENABLE_PROJECTS=true \
 		--net=host \
-		--user=root \
 		$(IMAGE)
 
 build:

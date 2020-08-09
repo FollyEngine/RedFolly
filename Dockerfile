@@ -45,3 +45,7 @@ ENV NODE_RED_ENABLE_PROJECTS=true
 # You should add extra nodes via your package.json file but you can also add them here:
 #WORKDIR /usr/src/node-red
 #RUN npm install node-red-node-smooth
+
+# to enable the WIFI config we need to be root
+# probably also true to use the rpi-io
+USER root
