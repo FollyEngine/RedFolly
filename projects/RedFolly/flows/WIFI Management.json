@@ -10,15 +10,15 @@
     "id": "55380153.f50d18",
     "type": "exec",
     "z": "536dcc6d.5fb21c",
-    "command": "sudo iwlist wlan0 scan | grep ESSID | sed 's/ESSID://g;s/\"//g;s/^ *//;s/ *$//'",
-    "addpay": false,
+    "command": "",
+    "addpay": true,
     "append": "",
     "useSpawn": "false",
     "timer": "",
     "oldrc": false,
     "name": "scan",
-    "x": 830,
-    "y": 280,
+    "x": 470,
+    "y": 220,
     "wires": [
       [
         "c3656aea.289318"
@@ -35,8 +35,8 @@
     "func": "var ssids = msg.payload.split('\\n').filter(s => !!s)\n\nssids = [...new Set(ssids)];\n\nmsg.options = ssids\nmsg.payload = null\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 1170,
-    "y": 360,
+    "x": 630,
+    "y": 140,
     "wires": [
       [
         "e0d2f641.c7f6a"
@@ -68,10 +68,10 @@
     "y": 40,
     "wires": [
       [
-        "55380153.f50d18",
         "25d55a20.babfd6",
         "8f8df13.4cb929",
-        "b325b9d7.2a0a6"
+        "b325b9d7.2a0a6",
+        "c0d6c34e.25dbc8"
       ]
     ]
   },
@@ -92,8 +92,8 @@
     "options": [],
     "payload": "",
     "topic": "",
-    "x": 1330,
-    "y": 360,
+    "x": 790,
+    "y": 140,
     "wires": [
       [
         "ca8c9f7e.f249"
@@ -122,8 +122,8 @@
     "y": 260,
     "wires": [
       [
-        "55380153.f50d18",
-        "b325b9d7.2a0a6"
+        "b325b9d7.2a0a6",
+        "c0d6c34e.25dbc8"
       ]
     ]
   },
@@ -162,9 +162,9 @@
     "y": 180,
     "wires": [
       [
-        "55380153.f50d18",
         "25d55a20.babfd6",
-        "b325b9d7.2a0a6"
+        "b325b9d7.2a0a6",
+        "c0d6c34e.25dbc8"
       ]
     ]
   },
@@ -179,19 +179,15 @@
     "timer": "",
     "oldrc": false,
     "name": "getInfo",
-    "x": 450,
-    "y": 500,
+    "x": 570,
+    "y": 460,
     "wires": [
       [
         "bb4a70a3.75288",
-        "18c13b39.e5003d"
+        "4f8e1f28.056ce"
       ],
-      [
-        "18c13b39.e5003d"
-      ],
-      [
-        "18c13b39.e5003d"
-      ]
+      [],
+      []
     ]
   },
   {
@@ -204,12 +200,11 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 560,
-    "y": 440,
+    "x": 680,
+    "y": 400,
     "wires": [
       [
-        "6acfc734.29d58",
-        "18c13b39.e5003d"
+        "6acfc734.29d58"
       ]
     ]
   },
@@ -240,8 +235,8 @@
     "checkall": "true",
     "repair": false,
     "outputs": 3,
-    "x": 630,
-    "y": 500,
+    "x": 750,
+    "y": 460,
     "wires": [
       [
         "6176c0f1.b9b96"
@@ -266,8 +261,8 @@
     "label": "IP",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 770,
-    "y": 460,
+    "x": 890,
+    "y": 420,
     "wires": []
   },
   {
@@ -282,8 +277,8 @@
     "label": "ipv6",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 770,
-    "y": 500,
+    "x": 890,
+    "y": 460,
     "wires": []
   },
   {
@@ -298,8 +293,8 @@
     "label": "tailscale",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 780,
-    "y": 540,
+    "x": 900,
+    "y": 500,
     "wires": []
   },
   {
@@ -336,8 +331,8 @@
     "submit": "UPDATE",
     "cancel": "RESET",
     "topic": "",
-    "x": 1180,
-    "y": 426,
+    "x": 640,
+    "y": 206,
     "wires": [
       [
         "dc7ef16d.ce6908"
@@ -352,8 +347,8 @@
     "func": "\nmsg.payload = {ssid: msg.payload}\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 1470,
-    "y": 373,
+    "x": 930,
+    "y": 153,
     "wires": [
       [
         "87bd3ec.af19ac"
@@ -368,8 +363,8 @@
     "func": "var data = msg.payload\n\nvar command = `wpa_passphrase \"${data.ssid}\" \"${data.password}\" | sed '/#psk=\".*\"/d'`\n \nmsg.payload = command\n\nreturn msg",
     "outputs": 1,
     "noerr": 0,
-    "x": 1380,
-    "y": 426,
+    "x": 840,
+    "y": 206,
     "wires": [
       [
         "d1a2b473.3f006"
@@ -387,8 +382,8 @@
     "timer": "",
     "oldrc": false,
     "name": "",
-    "x": 1541,
-    "y": 426,
+    "x": 1001,
+    "y": 206,
     "wires": [
       [
         "bd5d7071.bc4a78"
@@ -405,8 +400,8 @@
     "func": "var template = `sudo tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=IT\n\n${msg.payload}\nEOF\\n\n`\n\nmsg.payload = template\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 1740,
-    "y": 419,
+    "x": 1200,
+    "y": 199,
     "wires": [
       [
         "3150df6d.fd9cc8"
@@ -424,11 +419,12 @@
     "timer": "",
     "oldrc": false,
     "name": "updateConf",
-    "x": 1330,
-    "y": 539,
+    "x": 690,
+    "y": 300,
     "wires": [
       [
-        "a9695a79.ed68c8"
+        "a9695a79.ed68c8",
+        "3eaf3e20.b78d32"
       ],
       [],
       []
@@ -445,8 +441,8 @@
     "timer": "",
     "oldrc": false,
     "name": "reconfigure",
-    "x": 1510,
-    "y": 526,
+    "x": 870,
+    "y": 320,
     "wires": [
       [
         "3eaf3e20.b78d32"
@@ -463,8 +459,8 @@
     "func": "\nmsg.payload = msg.payload.trim() === 'OK' ? \"Wifi configuration updated successfully\" : \"Error while updating wifi configuration\"\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
-    "x": 1710,
-    "y": 513,
+    "x": 1070,
+    "y": 274,
     "wires": [
       [
         "d9386bd6.27b728"
@@ -485,8 +481,8 @@
     "raw": false,
     "topic": "",
     "name": "",
-    "x": 1780,
-    "y": 579,
+    "x": 1140,
+    "y": 340,
     "wires": []
   },
   {
@@ -690,29 +686,64 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 340,
-    "y": 420,
+    "x": 460,
+    "y": 380,
     "wires": [
       [
-        "14970b96.4b2bd4",
-        "18c13b39.e5003d"
+        "14970b96.4b2bd4"
       ]
     ]
   },
   {
-    "id": "18c13b39.e5003d",
-    "type": "debug",
+    "id": "c0d6c34e.25dbc8",
+    "type": "function",
     "z": "536dcc6d.5fb21c",
+    "name": "iwlist $device scan",
+    "func": "\nmsg.payload = \"iwlist \"+flow.get(\"device\")+\" scan |\"+\n    \" grep ESSID | sed 's/.*ESSID:\\\"\\\\(.*\\\\)\\\".*/\\\\1/g'\"\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 390,
+    "y": 140,
+    "wires": [
+      [
+        "55380153.f50d18"
+      ]
+    ]
+  },
+  {
+    "id": "4f8e1f28.056ce",
+    "type": "file in",
+    "z": "536dcc6d.5fb21c",
+    "name": "/etc/wpa_supplicant/wpa_supplicant.conf",
+    "filename": "/etc/wpa_supplicant/wpa_supplicant.conf",
+    "format": "utf8",
+    "chunk": false,
+    "sendError": false,
+    "encoding": "none",
+    "x": 640,
+    "y": 540,
+    "wires": [
+      [
+        "7f81f078.9c83c8"
+      ]
+    ]
+  },
+  {
+    "id": "7f81f078.9c83c8",
+    "type": "ui_text",
+    "z": "536dcc6d.5fb21c",
+    "group": "570fea41.3f7ebc",
+    "order": 5,
+    "width": "6",
+    "height": "5",
     "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 610,
-    "y": 560,
+    "label": "wpa_supplicant conf",
+    "format": "{{msg.payload || '---'}}",
+    "layout": "row-spread",
+    "x": 940,
+    "y": 540,
     "wires": []
   }
 ]
