@@ -686,6 +686,21 @@
      "file": "/usr/src/node-red/node_modules/node-red-dashboard/nodes/ui_spacer.js"
     }
    }
+  },
+  "node-red-contrib-flow-manager": {
+   "name": "node-red-contrib-flow-manager",
+   "version": "0.5.2",
+   "local": false,
+   "nodes": {
+    "flow-manager": {
+     "name": "flow-manager",
+     "types": [],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-flow-manager",
+     "file": "/usr/src/node-red/node_modules/node-red-contrib-flow-manager/flow-manager.js"
+    }
+   }
   }
  },
  "_credentialSecret": "c90fd3d57981b5a30c74072d400d48b9a2edb20dcc5483d0ddddaac9b53da700",

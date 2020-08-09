@@ -11,7 +11,8 @@ run: build
 		-p 1880:1880 \
 		-e PORT=1880 \
 		--name mynodered \
-		-v $(CWD):/data/ \
+		-v $(PWD):/data/ \
+		-v /etc/wpa_supplicant:/etc/wpa_supplicant \
 		-e FLOWS=/data/flow.json \
 		-e NODE_RED_ENABLE_PROJECTS=true \
 		--net=host \

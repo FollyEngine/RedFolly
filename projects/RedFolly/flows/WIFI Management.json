@@ -69,9 +69,9 @@
     "wires": [
       [
         "55380153.f50d18",
-        "14970b96.4b2bd4",
         "25d55a20.babfd6",
-        "8f8df13.4cb929"
+        "8f8df13.4cb929",
+        "b325b9d7.2a0a6"
       ]
     ]
   },
@@ -83,7 +83,7 @@
     "label": "Wifi",
     "tooltip": "",
     "place": "Select a WIFI",
-    "group": "24d45800.415ec8",
+    "group": "eca98165.f686d8",
     "order": 2,
     "width": 0,
     "height": 0,
@@ -105,7 +105,7 @@
     "type": "ui_button",
     "z": "536dcc6d.5fb21c",
     "name": "",
-    "group": "24d45800.415ec8",
+    "group": "eca98165.f686d8",
     "order": 1,
     "width": 0,
     "height": 0,
@@ -118,11 +118,12 @@
     "payload": "true",
     "payloadType": "bool",
     "topic": "",
-    "x": 690,
-    "y": 300,
+    "x": 130,
+    "y": 260,
     "wires": [
       [
-        "55380153.f50d18"
+        "55380153.f50d18",
+        "b325b9d7.2a0a6"
       ]
     ]
   },
@@ -132,8 +133,8 @@
     "z": "536dcc6d.5fb21c",
     "name": "onTab",
     "events": "all",
-    "x": 550,
-    "y": 20,
+    "x": 110,
+    "y": 140,
     "wires": [
       [
         "16a864e.6599e9b"
@@ -157,13 +158,13 @@
     "checkall": "true",
     "repair": false,
     "outputs": 1,
-    "x": 690,
-    "y": 20,
+    "x": 130,
+    "y": 180,
     "wires": [
       [
         "55380153.f50d18",
-        "14970b96.4b2bd4",
-        "25d55a20.babfd6"
+        "25d55a20.babfd6",
+        "b325b9d7.2a0a6"
       ]
     ]
   },
@@ -171,21 +172,26 @@
     "id": "14970b96.4b2bd4",
     "type": "exec",
     "z": "536dcc6d.5fb21c",
-    "command": "ifconfig wlan0",
-    "addpay": false,
+    "command": "",
+    "addpay": true,
     "append": "",
     "useSpawn": "false",
     "timer": "",
     "oldrc": false,
     "name": "getInfo",
-    "x": 430,
-    "y": 340,
+    "x": 450,
+    "y": 500,
     "wires": [
       [
-        "bb4a70a3.75288"
+        "bb4a70a3.75288",
+        "18c13b39.e5003d"
       ],
-      [],
-      []
+      [
+        "18c13b39.e5003d"
+      ],
+      [
+        "18c13b39.e5003d"
+      ]
     ]
   },
   {
@@ -193,14 +199,17 @@
     "type": "function",
     "z": "536dcc6d.5fb21c",
     "name": "parseInfo",
-    "func": "var ip = msg.payload.match(/inet ([0-9\\.]+)/)[1]\nvar mask = msg.payload.match(/netmask ([0-9\\.]+)/)[1]\nvar broadcast = msg.payload.match(/broadcast ([0-9\\.]+)/)[1]\n\n\nnode.send({topic: 'ip', payload: ip})\nnode.send({topic: 'mask', payload: mask})\nnode.send({topic: 'broadcast', payload: broadcast})",
+    "func": "var ip = msg.payload.match(/inet ([0-9\\.]+)/)[1]\nnode.send({topic: 'ip', payload: ip})\n\nvar ipv6 = msg.payload.match(/inet6 ([a-f0-9\\:\\.]+)/)[1]\nnode.send({topic: 'ipv6', payload: ipv6})\n\nnode.send({topic: 'tailscale', payload: \"todo\"})\n",
     "outputs": 1,
     "noerr": 0,
-    "x": 600,
-    "y": 400,
+    "initialize": "",
+    "finalize": "",
+    "x": 560,
+    "y": 440,
     "wires": [
       [
-        "6acfc734.29d58"
+        "6acfc734.29d58",
+        "18c13b39.e5003d"
       ]
     ]
   },
@@ -219,20 +228,20 @@
       },
       {
         "t": "eq",
-        "v": "mask",
+        "v": "ipv6",
         "vt": "str"
       },
       {
         "t": "eq",
-        "v": "broadcast",
+        "v": "tailscale",
         "vt": "str"
       }
     ],
     "checkall": "true",
     "repair": false,
     "outputs": 3,
-    "x": 750,
-    "y": 400,
+    "x": 630,
+    "y": 500,
     "wires": [
       [
         "6176c0f1.b9b96"
@@ -249,7 +258,7 @@
     "id": "6176c0f1.b9b96",
     "type": "ui_text",
     "z": "536dcc6d.5fb21c",
-    "group": "1b627eec.9662e9",
+    "group": "570fea41.3f7ebc",
     "order": 3,
     "width": 0,
     "height": 0,
@@ -257,40 +266,40 @@
     "label": "IP",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 890,
-    "y": 380,
+    "x": 770,
+    "y": 460,
     "wires": []
   },
   {
     "id": "1f8ed440.1b6d8c",
     "type": "ui_text",
     "z": "536dcc6d.5fb21c",
-    "group": "1b627eec.9662e9",
+    "group": "570fea41.3f7ebc",
     "order": 4,
     "width": 0,
     "height": 0,
     "name": "",
-    "label": "Netmask",
+    "label": "ipv6",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 900,
-    "y": 420,
+    "x": 770,
+    "y": 500,
     "wires": []
   },
   {
     "id": "465c0a12.6b5fb4",
     "type": "ui_text",
     "z": "536dcc6d.5fb21c",
-    "group": "1b627eec.9662e9",
+    "group": "570fea41.3f7ebc",
     "order": 5,
     "width": 0,
     "height": 0,
     "name": "",
-    "label": "Broadcast",
+    "label": "tailscale",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 900,
-    "y": 460,
+    "x": 780,
+    "y": 540,
     "wires": []
   },
   {
@@ -299,7 +308,7 @@
     "z": "536dcc6d.5fb21c",
     "name": "",
     "label": "Update",
-    "group": "24d45800.415ec8",
+    "group": "eca98165.f686d8",
     "order": 3,
     "width": 0,
     "height": 0,
@@ -485,7 +494,7 @@
     "type": "ui_button",
     "z": "536dcc6d.5fb21c",
     "name": "",
-    "group": "1b627eec.9662e9",
+    "group": "90e71fd9.6730c8",
     "order": 1,
     "width": "0",
     "height": "0",
@@ -498,8 +507,8 @@
     "payload": "Menu",
     "payloadType": "str",
     "topic": "",
-    "x": 410,
-    "y": 20,
+    "x": 90,
+    "y": 100,
     "wires": [
       [
         "2b5e9b79.aa89cc"
@@ -517,8 +526,8 @@
     "timer": "",
     "oldrc": false,
     "name": "getCurrentSSID",
-    "x": 960,
-    "y": 120,
+    "x": 440,
+    "y": 40,
     "wires": [
       [
         "90d3b8a9.760a68"
@@ -531,7 +540,7 @@
     "id": "44982780.a38538",
     "type": "ui_text",
     "z": "536dcc6d.5fb21c",
-    "group": "1b627eec.9662e9",
+    "group": "570fea41.3f7ebc",
     "order": 2,
     "width": 0,
     "height": 0,
@@ -539,8 +548,8 @@
     "label": "SSID",
     "format": "{{msg.payload || '---'}}",
     "layout": "row-spread",
-    "x": 1010,
-    "y": 260,
+    "x": 770,
+    "y": 40,
     "wires": []
   },
   {
@@ -551,8 +560,8 @@
     "func": "var ssid = msg.payload.match(/ESSID:\"([^\"]+)\"/)[1]\n\n\nnode.send({topic: 'ssid', payload: ssid})\n",
     "outputs": 1,
     "noerr": 0,
-    "x": 980,
-    "y": 200,
+    "x": 620,
+    "y": 40,
     "wires": [
       [
         "44982780.a38538"
@@ -590,8 +599,8 @@
     "noerr": 0,
     "initialize": "",
     "finalize": "",
-    "x": 470,
-    "y": 680,
+    "x": 430,
+    "y": 620,
     "wires": [
       [
         "27e1cb34.e56fdc"
@@ -606,7 +615,7 @@
     "label": "Device",
     "tooltip": "",
     "place": "Select a Device",
-    "group": "24d45800.415ec8",
+    "group": "90e71fd9.6730c8",
     "order": 2,
     "width": 0,
     "height": 0,
@@ -621,10 +630,12 @@
     ],
     "payload": "",
     "topic": "",
-    "x": 630,
+    "x": 590,
     "y": 620,
     "wires": [
-      []
+      [
+        "53c52bcf.108d94"
+      ]
     ]
   },
   {
@@ -632,12 +643,12 @@
     "type": "ui_button",
     "z": "536dcc6d.5fb21c",
     "name": "",
-    "group": "24d45800.415ec8",
+    "group": "90e71fd9.6730c8",
     "order": 1,
     "width": 0,
     "height": 0,
     "passthru": false,
-    "label": "devices",
+    "label": "refresh devices",
     "tooltip": "",
     "color": "",
     "bgcolor": "",
@@ -645,12 +656,63 @@
     "payload": "true",
     "payloadType": "bool",
     "topic": "",
-    "x": 140,
+    "x": 120,
     "y": 640,
     "wires": [
       [
         "8f8df13.4cb929"
       ]
     ]
+  },
+  {
+    "id": "53c52bcf.108d94",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "save device",
+    "func": "\nflow.set(\"device\", msg.payload);\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 730,
+    "y": 620,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b325b9d7.2a0a6",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "ipconfig $device",
+    "func": "\nmsg.payload = \"ip a show \" + flow.get(\"device\");\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 340,
+    "y": 420,
+    "wires": [
+      [
+        "14970b96.4b2bd4",
+        "18c13b39.e5003d"
+      ]
+    ]
+  },
+  {
+    "id": "18c13b39.e5003d",
+    "type": "debug",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 610,
+    "y": 560,
+    "wires": []
   }
 ]
