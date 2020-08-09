@@ -1,0 +1,656 @@
+[
+  {
+    "id": "536dcc6d.5fb21c",
+    "type": "tab",
+    "label": "WIFI Management",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "55380153.f50d18",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "sudo iwlist wlan0 scan | grep ESSID | sed 's/ESSID://g;s/\"//g;s/^ *//;s/ *$//'",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "scan",
+    "x": 830,
+    "y": 280,
+    "wires": [
+      [
+        "c3656aea.289318"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "c3656aea.289318",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "parseOptions",
+    "func": "var ssids = msg.payload.split('\\n').filter(s => !!s)\n\nssids = [...new Set(ssids)];\n\nmsg.options = ssids\nmsg.payload = null\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 1170,
+    "y": 360,
+    "wires": [
+      [
+        "e0d2f641.c7f6a"
+      ]
+    ]
+  },
+  {
+    "id": "19b4ca37.09314e",
+    "type": "inject",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 130,
+    "y": 40,
+    "wires": [
+      [
+        "55380153.f50d18",
+        "14970b96.4b2bd4",
+        "25d55a20.babfd6",
+        "8f8df13.4cb929"
+      ]
+    ]
+  },
+  {
+    "id": "e0d2f641.c7f6a",
+    "type": "ui_dropdown",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "label": "Wifi",
+    "tooltip": "",
+    "place": "Select a WIFI",
+    "group": "24d45800.415ec8",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "passthru": false,
+    "multiple": false,
+    "options": [],
+    "payload": "",
+    "topic": "",
+    "x": 1330,
+    "y": 360,
+    "wires": [
+      [
+        "ca8c9f7e.f249"
+      ]
+    ]
+  },
+  {
+    "id": "6c13006a.6ba7a",
+    "type": "ui_button",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "group": "24d45800.415ec8",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "passthru": false,
+    "label": "Scan",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "icon": "",
+    "payload": "true",
+    "payloadType": "bool",
+    "topic": "",
+    "x": 690,
+    "y": 300,
+    "wires": [
+      [
+        "55380153.f50d18"
+      ]
+    ]
+  },
+  {
+    "id": "2b5e9b79.aa89cc",
+    "type": "ui_ui_control",
+    "z": "536dcc6d.5fb21c",
+    "name": "onTab",
+    "events": "all",
+    "x": 550,
+    "y": 20,
+    "wires": [
+      [
+        "16a864e.6599e9b"
+      ]
+    ]
+  },
+  {
+    "id": "16a864e.6599e9b",
+    "type": "switch",
+    "z": "536dcc6d.5fb21c",
+    "name": "ifWifi",
+    "property": "name",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "Wifi",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 690,
+    "y": 20,
+    "wires": [
+      [
+        "55380153.f50d18",
+        "14970b96.4b2bd4",
+        "25d55a20.babfd6"
+      ]
+    ]
+  },
+  {
+    "id": "14970b96.4b2bd4",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "ifconfig wlan0",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "getInfo",
+    "x": 430,
+    "y": 340,
+    "wires": [
+      [
+        "bb4a70a3.75288"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "bb4a70a3.75288",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "parseInfo",
+    "func": "var ip = msg.payload.match(/inet ([0-9\\.]+)/)[1]\nvar mask = msg.payload.match(/netmask ([0-9\\.]+)/)[1]\nvar broadcast = msg.payload.match(/broadcast ([0-9\\.]+)/)[1]\n\n\nnode.send({topic: 'ip', payload: ip})\nnode.send({topic: 'mask', payload: mask})\nnode.send({topic: 'broadcast', payload: broadcast})",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 600,
+    "y": 400,
+    "wires": [
+      [
+        "6acfc734.29d58"
+      ]
+    ]
+  },
+  {
+    "id": "6acfc734.29d58",
+    "type": "switch",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "property": "topic",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "ip",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "mask",
+        "vt": "str"
+      },
+      {
+        "t": "eq",
+        "v": "broadcast",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 3,
+    "x": 750,
+    "y": 400,
+    "wires": [
+      [
+        "6176c0f1.b9b96"
+      ],
+      [
+        "1f8ed440.1b6d8c"
+      ],
+      [
+        "465c0a12.6b5fb4"
+      ]
+    ]
+  },
+  {
+    "id": "6176c0f1.b9b96",
+    "type": "ui_text",
+    "z": "536dcc6d.5fb21c",
+    "group": "1b627eec.9662e9",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "IP",
+    "format": "{{msg.payload || '---'}}",
+    "layout": "row-spread",
+    "x": 890,
+    "y": 380,
+    "wires": []
+  },
+  {
+    "id": "1f8ed440.1b6d8c",
+    "type": "ui_text",
+    "z": "536dcc6d.5fb21c",
+    "group": "1b627eec.9662e9",
+    "order": 4,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "Netmask",
+    "format": "{{msg.payload || '---'}}",
+    "layout": "row-spread",
+    "x": 900,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "465c0a12.6b5fb4",
+    "type": "ui_text",
+    "z": "536dcc6d.5fb21c",
+    "group": "1b627eec.9662e9",
+    "order": 5,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "Broadcast",
+    "format": "{{msg.payload || '---'}}",
+    "layout": "row-spread",
+    "x": 900,
+    "y": 460,
+    "wires": []
+  },
+  {
+    "id": "87bd3ec.af19ac",
+    "type": "ui_form",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "label": "Update",
+    "group": "24d45800.415ec8",
+    "order": 3,
+    "width": 0,
+    "height": 0,
+    "options": [
+      {
+        "label": "SSID",
+        "value": "ssid",
+        "type": "text",
+        "required": true,
+        "rows": null
+      },
+      {
+        "label": "Password",
+        "value": "password",
+        "type": "password",
+        "required": true,
+        "rows": null
+      }
+    ],
+    "formValue": {
+      "ssid": "",
+      "password": ""
+    },
+    "payload": "",
+    "submit": "UPDATE",
+    "cancel": "RESET",
+    "topic": "",
+    "x": 1180,
+    "y": 426,
+    "wires": [
+      [
+        "dc7ef16d.ce6908"
+      ]
+    ]
+  },
+  {
+    "id": "ca8c9f7e.f249",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "func": "\nmsg.payload = {ssid: msg.payload}\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 1470,
+    "y": 373,
+    "wires": [
+      [
+        "87bd3ec.af19ac"
+      ]
+    ]
+  },
+  {
+    "id": "dc7ef16d.ce6908",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "getPassphrase",
+    "func": "var data = msg.payload\n\nvar command = `wpa_passphrase \"${data.ssid}\" \"${data.password}\" | sed '/#psk=\".*\"/d'`\n \nmsg.payload = command\n\nreturn msg",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 1380,
+    "y": 426,
+    "wires": [
+      [
+        "d1a2b473.3f006"
+      ]
+    ]
+  },
+  {
+    "id": "d1a2b473.3f006",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "",
+    "addpay": true,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "",
+    "x": 1541,
+    "y": 426,
+    "wires": [
+      [
+        "bd5d7071.bc4a78"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "bd5d7071.bc4a78",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "updateWpasupplicant",
+    "func": "var template = `sudo tee /etc/wpa_supplicant/wpa_supplicant.conf <<EOF\nctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=IT\n\n${msg.payload}\nEOF\\n\n`\n\nmsg.payload = template\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 1740,
+    "y": 419,
+    "wires": [
+      [
+        "3150df6d.fd9cc8"
+      ]
+    ]
+  },
+  {
+    "id": "3150df6d.fd9cc8",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "",
+    "addpay": true,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "updateConf",
+    "x": 1330,
+    "y": 539,
+    "wires": [
+      [
+        "a9695a79.ed68c8"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "a9695a79.ed68c8",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "sudo wpa_cli -i wlan0 reconfigure",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "reconfigure",
+    "x": 1510,
+    "y": 526,
+    "wires": [
+      [
+        "3eaf3e20.b78d32"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "3eaf3e20.b78d32",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "showMessage",
+    "func": "\nmsg.payload = msg.payload.trim() === 'OK' ? \"Wifi configuration updated successfully\" : \"Error while updating wifi configuration\"\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 1710,
+    "y": 513,
+    "wires": [
+      [
+        "d9386bd6.27b728"
+      ]
+    ]
+  },
+  {
+    "id": "d9386bd6.27b728",
+    "type": "ui_toast",
+    "z": "536dcc6d.5fb21c",
+    "position": "top right",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": true,
+    "outputs": 0,
+    "ok": "OK",
+    "cancel": "",
+    "raw": false,
+    "topic": "",
+    "name": "",
+    "x": 1780,
+    "y": 579,
+    "wires": []
+  },
+  {
+    "id": "a9aeb474.470e48",
+    "type": "ui_button",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "group": "1b627eec.9662e9",
+    "order": 1,
+    "width": "0",
+    "height": "0",
+    "passthru": false,
+    "label": "Back",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "icon": "arrow_back",
+    "payload": "Menu",
+    "payloadType": "str",
+    "topic": "",
+    "x": 410,
+    "y": 20,
+    "wires": [
+      [
+        "2b5e9b79.aa89cc"
+      ]
+    ]
+  },
+  {
+    "id": "25d55a20.babfd6",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "iwgetid",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "getCurrentSSID",
+    "x": 960,
+    "y": 120,
+    "wires": [
+      [
+        "90d3b8a9.760a68"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "44982780.a38538",
+    "type": "ui_text",
+    "z": "536dcc6d.5fb21c",
+    "group": "1b627eec.9662e9",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "SSID",
+    "format": "{{msg.payload || '---'}}",
+    "layout": "row-spread",
+    "x": 1010,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "90d3b8a9.760a68",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "parseInfo",
+    "func": "var ssid = msg.payload.match(/ESSID:\"([^\"]+)\"/)[1]\n\n\nnode.send({topic: 'ssid', payload: ssid})\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 980,
+    "y": 200,
+    "wires": [
+      [
+        "44982780.a38538"
+      ]
+    ]
+  },
+  {
+    "id": "8f8df13.4cb929",
+    "type": "exec",
+    "z": "536dcc6d.5fb21c",
+    "command": "iwconfig 2>/dev/null | sed 's/ .*//g' | uniq",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "scan",
+    "x": 290,
+    "y": 640,
+    "wires": [
+      [
+        "ea99dd8c.a2acf"
+      ],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "ea99dd8c.a2acf",
+    "type": "function",
+    "z": "536dcc6d.5fb21c",
+    "name": "parseOptions",
+    "func": "var devices = msg.payload.split('\\n').filter(s => !!s)\n\ndevices = [...new Set(devices)];\n\nmsg.options = devices\nmsg.payload = devices[0]\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "x": 470,
+    "y": 680,
+    "wires": [
+      [
+        "27e1cb34.e56fdc"
+      ]
+    ]
+  },
+  {
+    "id": "27e1cb34.e56fdc",
+    "type": "ui_dropdown",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "label": "Device",
+    "tooltip": "",
+    "place": "Select a Device",
+    "group": "24d45800.415ec8",
+    "order": 2,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "multiple": false,
+    "options": [
+      {
+        "label": "wlan0",
+        "value": "wlan0",
+        "type": "str"
+      }
+    ],
+    "payload": "",
+    "topic": "",
+    "x": 630,
+    "y": 620,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4acf634a.647e44",
+    "type": "ui_button",
+    "z": "536dcc6d.5fb21c",
+    "name": "",
+    "group": "24d45800.415ec8",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "passthru": false,
+    "label": "devices",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "icon": "",
+    "payload": "true",
+    "payloadType": "bool",
+    "topic": "",
+    "x": 140,
+    "y": 640,
+    "wires": [
+      [
+        "8f8df13.4cb929"
+      ]
+    ]
+  }
+]

@@ -1,5 +1,12 @@
 FROM nodered/node-red:latest
 
+USER root
+# used by the WIFI Management
+RUN apk --no-cache add wireless-tools wpa_supplicant
+RUN mkdir -p /etc/wpa_supplicant \
+    && chmod 777 /etc/wpa_supplicant
+USER node-red
+
 # copied from https://nodered.org/docs/getting-started/docker
 
 # Copy package.json to the WORKDIR so npm builds all
@@ -16,7 +23,8 @@ RUN cd /usr/src/node-red \
     && npm install node-red-contrib-dmxusbpro --save \
     && npm install node-red-contrib-blockly --save \
     && npm install node-red-contrib-mongodb --save \
-    && npm install node-red-contrib-timerswitch --save
+    && npm install node-red-contrib-timerswitch --save \
+    && npm install node-red-contrib-flow-manager  --save
 
 # RUN npx node-red admin install node-red-dashboard
 # RUN npx node-red admin install node-red-contrib-dmxusbpro
@@ -31,7 +39,7 @@ RUN cd /usr/src/node-red \
 # COPY settings.js /data/settings.js
 # COPY flows_cred.json /data/flows_cred.json
 # COPY flows.json /data/flows.json
-COPY --chown=node-red:node-red . /data/projects/RedFolly/
+COPY --chown=node-red:node-red . /data/
 ENV NODE_RED_ENABLE_PROJECTS=true
 
 # You should add extra nodes via your package.json file but you can also add them here:
