@@ -32,9 +32,11 @@
     "type": "function",
     "z": "536dcc6d.5fb21c",
     "name": "parseOptions",
-    "func": "var ssids = msg.payload.split('\\n').filter(s => !!s)\n\nssids = [...new Set(ssids)];\n\nmsg.options = ssids\nmsg.payload = null\n\nreturn msg;",
+    "func": "var ssids = msg.payload.split('\\n').filter(s => !!s).filter(s => s != \"Folly\")\n\nssids = [...new Set(ssids)];\n\nmsg.options = ssids\nmsg.payload = null\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
+    "initialize": "",
+    "finalize": "",
     "x": 630,
     "y": 140,
     "wires": [
@@ -123,7 +125,8 @@
     "wires": [
       [
         "b325b9d7.2a0a6",
-        "c0d6c34e.25dbc8"
+        "c0d6c34e.25dbc8",
+        "25d55a20.babfd6"
       ]
     ]
   },
@@ -582,8 +585,8 @@
     "timer": "",
     "oldrc": false,
     "name": "scan",
-    "x": 290,
-    "y": 640,
+    "x": 310,
+    "y": 500,
     "wires": [
       [
         "ea99dd8c.a2acf"
@@ -660,10 +663,11 @@
     "payloadType": "bool",
     "topic": "",
     "x": 120,
-    "y": 640,
+    "y": 480,
     "wires": [
       [
-        "8f8df13.4cb929"
+        "8f8df13.4cb929",
+        "25d55a20.babfd6"
       ]
     ]
   },
@@ -741,15 +745,15 @@
     "id": "7f81f078.9c83c8",
     "type": "ui_text",
     "z": "536dcc6d.5fb21c",
-    "group": "570fea41.3f7ebc",
+    "group": "ceeee4ab.c5aa68",
     "order": 5,
     "width": "6",
     "height": "5",
     "name": "",
-    "label": "wpa_supplicant conf",
+    "label": "",
     "format": "{{msg.payload || '---'}}",
-    "layout": "row-spread",
-    "x": 940,
+    "layout": "col-center",
+    "x": 890,
     "y": 540,
     "wires": []
   },
