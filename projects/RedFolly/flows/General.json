@@ -1,0 +1,99 @@
+[
+  {
+    "id": "a74cecf2.f80ba8",
+    "type": "tab",
+    "label": "General",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "8564291c.4882e8",
+    "type": "ui_button",
+    "z": "a74cecf2.f80ba8",
+    "name": "",
+    "group": "4a2c2c86.f2c1ac",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "passthru": false,
+    "label": "backlight on",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "icon": "",
+    "payload": "true",
+    "payloadType": "bool",
+    "topic": "",
+    "x": 150,
+    "y": 140,
+    "wires": [
+      [
+        "20534116.23e86e"
+      ]
+    ]
+  },
+  {
+    "id": "20534116.23e86e",
+    "type": "exec",
+    "z": "a74cecf2.f80ba8",
+    "command": "sh -c 'echo \"0\" > /sys/class/backlight/rpi_backlight/bl_power'",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "scan",
+    "x": 310,
+    "y": 140,
+    "wires": [
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "1f2740b6.01bf5f",
+    "type": "ui_button",
+    "z": "a74cecf2.f80ba8",
+    "name": "",
+    "group": "4a2c2c86.f2c1ac",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "passthru": false,
+    "label": "backlight off",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "icon": "",
+    "payload": "true",
+    "payloadType": "bool",
+    "topic": "",
+    "x": 150,
+    "y": 200,
+    "wires": [
+      [
+        "2135ac27.7b92bc"
+      ]
+    ]
+  },
+  {
+    "id": "2135ac27.7b92bc",
+    "type": "exec",
+    "z": "a74cecf2.f80ba8",
+    "command": "sh -c 'echo \"1\" > /sys/class/backlight/rpi_backlight/bl_power'",
+    "addpay": false,
+    "append": "",
+    "useSpawn": "false",
+    "timer": "",
+    "oldrc": false,
+    "name": "scan",
+    "x": 310,
+    "y": 200,
+    "wires": [
+      [],
+      [],
+      []
+    ]
+  }
+]

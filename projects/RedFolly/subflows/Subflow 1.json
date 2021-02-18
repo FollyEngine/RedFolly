@@ -6,28 +6,5 @@
     "info": "",
     "in": [],
     "out": []
-  },
-  {
-    "id": "33e731b1.49119e",
-    "type": "ui_button",
-    "z": "bdbc668.b39ab98",
-    "name": "",
-    "order": 0,
-    "width": 0,
-    "height": 0,
-    "passthru": false,
-    "label": "button",
-    "tooltip": "",
-    "color": "",
-    "bgcolor": "",
-    "icon": "",
-    "payload": "",
-    "payloadType": "str",
-    "topic": "",
-    "x": 320,
-    "y": 460,
-    "wires": [
-      []
-    ]
   }
 ]
