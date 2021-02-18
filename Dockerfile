@@ -20,6 +20,7 @@ RUN cd /data/projects/RedFolly/ \
 # https://flows.nodered.org/search
 RUN cd /usr/src/node-red \
     && npm install node-red-dashboard --save \
+    && npm install node-red-contrib-homie-convention --save \
     && npm install node-red-contrib-dmxusbpro --save \
     && npm install node-red-contrib-blockly --save \
     && npm install node-red-contrib-mongodb --save \
